@@ -33,6 +33,16 @@
       enable = true;
       userName = "haruki7049";
       userEmail = "tontonkirikiri@gmail.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
+    };
+    alacritty = {
+      enable = true;
+      settings = {
+        font.size = 12.0;
+        font.normal.family = "UDEV Gothic NF";
+      };
     };
     neovim = {
       enable = true;
