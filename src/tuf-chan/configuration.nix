@@ -1,12 +1,16 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs
-, config
-, lib
-, pkgs
-, ...
-}: {
+{ config, lib, pkgs, ... }:
+let
+  home-manager = fetchTarball {
+    url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+    sha256 = "0sjnfw4ia5m0yvpr4y4d7frizvs6si3w2xy931z5xmxszy2rm4sq";
+  };
+in {
   imports = [
+    (import "${home-manager}/nixos")
+    ../home/haruki/home.nix
+    ../home/root/home.nix
     ./hardware-configuration.nix
   ];
 
@@ -244,5 +248,5 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
