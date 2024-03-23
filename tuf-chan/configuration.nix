@@ -246,6 +246,5 @@
     };
   };
 
-  system.copySystemConfiguration = true;
   system.stateVersion = "23.05";
 }
