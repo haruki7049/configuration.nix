@@ -170,10 +170,7 @@
 
   users.users = {
     haruki = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
+      hashedPassword = "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };

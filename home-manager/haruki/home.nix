@@ -5,18 +5,7 @@
 , config
 , pkgs
 , ...
-}:
-let
-  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
-    pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = ref;
-    src = builtins.fetchGit {
-      url = "https://github.com/${repo}.git";
-      ref = ref;
-    };
-  };
-in
-{
+}: {
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -31,6 +20,9 @@ in
   # Enable home-manager
   programs = {
     home-manager.enable = true;
+    eza = {
+      enable = true;
+    };
     bash = {
       enable = true;
     };
@@ -40,12 +32,14 @@ in
     zsh = {
       enable = true;
     };
+    git = {
+      enable = true;
+      userName = "haruki7049";
+      userEmail = "tontonkirikiri@gmail.com";
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
-      plugins = with pkgs.vimPlugins; [
-        (fromGitHub "HEAD" "numToStr/Comment.nvim")
-      ];
       extraPackages = with pkgs; [
         deno
         rust-analyzer
