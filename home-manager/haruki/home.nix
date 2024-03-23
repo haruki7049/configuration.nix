@@ -20,9 +20,6 @@
   # Enable home-manager
   programs = {
     home-manager.enable = true;
-    eza = {
-      enable = true;
-    };
     bash = {
       enable = true;
     };
