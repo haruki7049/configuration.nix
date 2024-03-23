@@ -18,7 +18,7 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
-    # NixOS configuration entrypoint. Available through 'nixos-rebuild --flake .#your-hostname'
+    # "nixos-rebuild switch --flake .#tuf-chan"
     nixosConfigurations = {
       tuf-chan = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
