@@ -201,7 +201,6 @@
       git
       alsa-utils
       nixpkgs-fmt
-      deno
       powershell
       nushell
       guile

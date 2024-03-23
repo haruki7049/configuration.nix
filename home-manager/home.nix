@@ -19,7 +19,22 @@
   };
 
   # Enable home-manager
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      plugins = with pkgs.vimPlugins; [
+      ];
+      extraPackages = with pkgs; [
+        deno
+      ];
+    };
+    emacs = {
+      enable = true;
+      defaultEditor = false;
+    };
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
