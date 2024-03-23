@@ -53,7 +53,6 @@ in
     };
     emacs = {
       enable = true;
-      defaultEditor = false;
     };
   };
 
