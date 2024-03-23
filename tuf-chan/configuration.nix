@@ -1,11 +1,10 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
+{ inputs
+, config
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -176,7 +175,7 @@
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
     };
   };
 

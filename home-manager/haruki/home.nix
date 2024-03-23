@@ -1,12 +1,22 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+{ inputs
+, lib
+, config
+, pkgs
+, ...
+}:
+let
+  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "${lib.strings.sanitizeDerivationName repo}";
+    version = ref;
+    src = builtins.fetchGit {
+      url = "https://github.com/${repo}.git";
+      ref = ref;
+    };
+  };
+in
 {
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -21,13 +31,24 @@
   # Enable home-manager
   programs = {
     home-manager.enable = true;
+    bash = {
+      enable = true;
+    };
+    fish = {
+      enable = true;
+    };
+    zsh = {
+      enable = true;
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
+        (fromGitHub "HEAD" "numToStr/Comment.nvim")
       ];
       extraPackages = with pkgs; [
         deno
+        rust-analyzer
       ];
     };
     emacs = {
