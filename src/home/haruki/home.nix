@@ -22,6 +22,9 @@ in {
         bash = {
           enable = true;
         };
+        nushell = {
+          enable = true;
+        };
         fish = {
           enable = true;
         };
