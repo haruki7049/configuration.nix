@@ -3,8 +3,8 @@
 { config, lib, pkgs, ... }:
 let
   home-manager = fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-    sha256 = "0sjnfw4ia5m0yvpr4y4d7frizvs6si3w2xy931z5xmxszy2rm4sq";
+    url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+    sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
   };
 in {
   imports = [
