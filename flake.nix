@@ -10,6 +10,10 @@
         system = "x86_64-linux";
         modules = [ ./src/tuf-chan/configuration.nix ];
       };
+      pana-chama = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./src/pana-chama/configuration.nix ];
+      };
     };
   };
 }
