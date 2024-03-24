@@ -1,11 +1,13 @@
 { config, lib, pkgs, ... }:
 let
-  neovimPluginFromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
+  neovimPluginFromGitHub = rev: owner: repo: sha256: pkgs.vimUtils.buildVimPlugin {
     pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = ref;
-    src = builtins.fetchGit {
-      url = "https://github.com/${repo}.git";
-      ref = ref;
+    version = rev;
+    src = pkgs.fetchFromGitHub {
+      owner = owner;
+      repo = repo;
+      rev = rev;
+      sha256 = sha256;
     };
   };
 in {
@@ -69,7 +71,7 @@ in {
             nvim-lspconfig
 
             # skkeleton, Vim's SKK
-            #(neovimPluginFromGitHub "HEAD" "vim-skk/skkeleton")
+            (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf" "vim-skk" "skkeleton" "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
           ];
           extraLuaConfig = ''
             -- BASE
