@@ -86,6 +86,21 @@ in {
         PermitRootLogin = "no";
       };
     };
+    nix-serve = {
+      enable = true;
+      port = 5000;
+      bindAddress = "0.0.0.0";
+      openFirewall = false;
+    };
+    nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        "192.168.0.200" = {
+          locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+        };
+      };
+    };
   };
 
   system.stateVersion = "23.11";
