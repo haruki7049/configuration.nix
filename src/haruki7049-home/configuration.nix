@@ -48,9 +48,20 @@ in {
     keyMap = "us";
   };
 
-  users.users.haruki = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
+  users = {
+    mutableUsers = false;
+    users = {
+      haruki = {
+        hashedPassword = "$y$j9T$A2FjmBevK/oLEqTCfU27M0$Q.Y0e3/gr3fCC/FAPv5tIGHP89TrB9IjBtnLTiYETh3";
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+      };
+      root = {
+        hashedPassword = "$y$j9T$CToL.EUZAxPYjn.Fu7IfC1$LBNmqPVyqyLwujDyecwlVkIxCJr4NOmRV.DAGJrt5d8";
+        isSystemUser = true;
+        extraGroups = [ "root" ];
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
