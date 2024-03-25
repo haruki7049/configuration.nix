@@ -48,6 +48,12 @@ in {
     keyMap = "us";
   };
 
+  security = {
+    polkit = {
+      enable = true;
+    };
+  };
+
   users = {
     mutableUsers = false;
     users = {
