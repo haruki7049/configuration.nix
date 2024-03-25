@@ -14,6 +14,10 @@
         system = "x86_64-linux";
         modules = [ ./src/pana-chama/configuration.nix ];
       };
+      haruki7049-home = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./src/haruki7049-home/configuration.nix ];
+      };
     };
   };
 }
