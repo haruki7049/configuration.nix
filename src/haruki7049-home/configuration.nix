@@ -75,6 +75,7 @@ in
   environment.systemPackages = with pkgs; [
     neovim
     git
+    cyanrip
     deno
     nixpkgs-fmt
   ];
