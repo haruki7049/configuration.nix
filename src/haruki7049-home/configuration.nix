@@ -86,7 +86,7 @@ in {
         PermitRootLogin = "no";
       };
     };
-    nfs = {
+    nfs.server = {
       enable = true;
       exports = ''
         /nfs 192.168.0.200(ro,all_squash,nohide)
