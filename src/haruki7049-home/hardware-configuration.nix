@@ -26,6 +26,7 @@
   fileSystems."/nfs" =
     { device = "/dev/disk/by-uuid/db97fad5-8806-4e3a-8119-a895bedc6ddc";
       fsType = "ext4";
+      optinos = [ "bind" ];
     };
 
   swapDevices = [ ];
