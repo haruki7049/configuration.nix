@@ -19,6 +19,7 @@ in {
 
   networking = {
     hostName = "haruki7049-home";
+    firewall.enable = false;
     nameservers = [
       "192.168.0.1"
     ];
