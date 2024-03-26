@@ -30,7 +30,6 @@
     {
       device = "/dev/disk/by-label/NFS";
       fsType = "ext4";
-      options = [ "bind" ];
     };
 
   swapDevices = [ ];
