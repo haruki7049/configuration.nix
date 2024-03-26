@@ -28,6 +28,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/haruki7049-home" = {
+    device = "192.168.0.200:/nfs";
+    fsType = "nfs";
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
