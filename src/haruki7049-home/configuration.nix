@@ -90,7 +90,7 @@ in {
       enable = true;
       port = 5000;
       bindAddress = "127.0.0.0";
-      openFirewall = false;
+      openFirewall = true;
     };
     nginx = {
       enable = true;
