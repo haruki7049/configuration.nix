@@ -16,19 +16,19 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/f3da1a0a-c73d-4f75-8b2b-e1e5d734b4de";
+      device = "/dev/disk/by-label/NIXOS";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/0F46-0A77";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
   fileSystems."/nfs" =
     {
-      device = "/dev/disk/by-uuid/db97fad5-8806-4e3a-8119-a895bedc6ddc";
+      device = "/dev/disk/by-label/NFS";
       fsType = "ext4";
       options = [ "bind" ];
     };
