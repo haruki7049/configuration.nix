@@ -6,7 +6,8 @@ let
     url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
     sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
   };
-in {
+in
+{
   imports = [
     (import "${home-manager}/nixos")
     ../home/haruki/home.nix

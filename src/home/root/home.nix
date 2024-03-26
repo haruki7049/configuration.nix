@@ -10,7 +10,8 @@ let
       sha256 = sha256;
     };
   };
-in {
+in
+{
   home-manager = {
     users.root = {
       home = {
