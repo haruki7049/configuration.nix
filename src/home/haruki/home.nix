@@ -54,8 +54,29 @@ in
           userName = "haruki7049";
           userEmail = "tontonkirikiri@gmail.com";
           extraConfig = {
+            user.signingkey = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIyMbgcpcAX/UKJZgSndJDo4JTUO9ubu6khLF8KU/WYn" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEzVK6RoPsncbPdagGBDWWQ6+vU/B8sliE7Md3oUiEok" ];
             init.defaultBranch = "main";
+            gpg.format = "ssh";
+            gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+            commit.gpgsign = true;
           };
+        };
+        ssh = {
+          enable = true;
+          extraConfig = ''
+            Host *
+              IdentityAgent ~/.1password/agent.sock
+
+            Host github.com
+              User git
+
+            Host gitlab.com
+              User git
+            
+            Host haruki7049-home
+              HostName 240f:3c:196e:1:8ad9:8731:1b45:61fd
+              User haruki
+          '';
         };
         alacritty = {
           enable = true;
