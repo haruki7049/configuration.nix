@@ -33,8 +33,11 @@ in {
     };
   };
 
-  networking.hostName = "tuf-chan";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "tuf-chan";
+    useDHCP = true;
+    nameservers = [ "192.168.0.1" ];
+  };
 
   time.timeZone = "Asia/Tokyo";
 
@@ -247,6 +250,8 @@ in {
       ];
     };
   };
+
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "23.11";
 }
