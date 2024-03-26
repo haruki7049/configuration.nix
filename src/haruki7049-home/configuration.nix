@@ -89,7 +89,7 @@ in {
     nix-serve = {
       enable = true;
       port = 5000;
-      bindAddress = "0.0.0.0";
+      bindAddress = "127.0.0.0";
       openFirewall = false;
     };
     nginx = {
