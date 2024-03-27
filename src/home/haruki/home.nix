@@ -10,6 +10,20 @@ let
       sha256 = sha256;
     };
   };
+  sshConfig = ''
+    Host *
+      IdentityAgent ~/.1password/agent.sock
+
+    Host github.com
+      User git
+
+    Host gitlab.com
+      User git
+            
+    Host haruki7049-home
+      HostName 240f:3c:196e:1:8ad9:8731:1b45:61fd
+      User haruki
+  '';
 in
 {
   home-manager = {
@@ -63,20 +77,7 @@ in
         };
         ssh = {
           enable = true;
-          extraConfig = ''
-            Host *
-              IdentityAgent ~/.1password/agent.sock
-
-            Host github.com
-              User git
-
-            Host gitlab.com
-              User git
-            
-            Host haruki7049-home
-              HostName 240f:3c:196e:1:8ad9:8731:1b45:61fd
-              User haruki
-          '';
+          extraConfig = sshConfig;
         };
         alacritty = {
           enable = true;
