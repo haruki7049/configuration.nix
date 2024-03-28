@@ -23,6 +23,10 @@ let
     Host haruki7049-home
       HostName 240f:3c:196e:1:8ad9:8731:1b45:61fd
       User haruki
+
+    Host conoha-vps-dev
+      HostName 2400:8500:2002:3301:160:251:233:156
+      User haruki
   '';
 in
 {
