@@ -72,7 +72,7 @@ in
           userName = "haruki7049";
           userEmail = "tontonkirikiri@gmail.com";
           extraConfig = {
-            user.signingkey = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIyMbgcpcAX/UKJZgSndJDo4JTUO9ubu6khLF8KU/WYn" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEzVK6RoPsncbPdagGBDWWQ6+vU/B8sliE7Md3oUiEok" ];
+            user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7Rjpnf4kB6UIILl8fohRn0Gz1aBYM59OHlEjdPd/gS";
             init.defaultBranch = "main";
             gpg.format = "ssh";
             gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
