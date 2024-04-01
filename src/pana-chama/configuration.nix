@@ -21,8 +21,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "pana-chama";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "pana-chama";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "Asia/Tokyo";
 
@@ -206,7 +208,6 @@ in
       emacs
       helix
       powershell
-      gnupg
       git
       wget
       curl
@@ -214,13 +215,6 @@ in
       zellij
       deno
       mpc-cli
-
-      clang
-      cargo
-      rustc
-      rustfmt
-      rust-analyzer
-      clippy
     ];
   };
 
