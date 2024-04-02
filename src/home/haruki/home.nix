@@ -10,12 +10,6 @@ let
       sha256 = sha256;
     };
   };
-  bashrc = ''
-    # Write your environment variables contained WiFi password in /home/haruki/.wifi-psk.bash
-    if [ -e "/home/haruki/.wifi-psk.bash" ]; then
-      source /home/haruki/.wifi-psk.bash
-    fi
-  '';
   sshConfig = ''
     Host *
       IdentityAgent ~/.1password/agent.sock
@@ -63,7 +57,6 @@ in
         home-manager.enable = true;
         bash = {
           enable = true;
-          bashrcExtra = bashrc;
         };
         nushell = {
           enable = true;
