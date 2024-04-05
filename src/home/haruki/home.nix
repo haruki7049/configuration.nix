@@ -66,6 +66,7 @@ in
         };
         zsh = {
           enable = true;
+          dotDir = ".config/zsh";
         };
         git = {
           enable = true;
