@@ -4,13 +4,6 @@
   inputs.nixos.url = "github:NixOS/nixpkgs/nixos-23.11";
 
   outputs = { self, nixos }:
-  let
-    eachSystem = f:
-      nixpkgs.lib.genAttrs (import systems)
-      (system: f nixpkgs.legacyPackages.${system});
-    treefmtEval =
-      eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-  in
   {
     # "nixos-rebuild switch --flake .#tuf-chan"
     nixosConfigurations = {
@@ -29,12 +22,6 @@
     };
 
     # Use `nix fmt`
-    formatter =
-      eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-
-    # Use `nix flake check`
-    checks = eachSystem (pkgs: {
-      formatting = treefmtEval.${pkgs.system}.config.build.check self;
-    });
+    formatter = nixos.nixfmt;
   };
 }
