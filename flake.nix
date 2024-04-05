@@ -1,11 +1,17 @@
 {
   description = "My NixOS's configuration for haruki7049";
 
+<<<<<<< HEAD
   inputs = {
     nixos.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
+=======
+  inputs.nixos.url = "github:NixOS/nixpkgs/nixos-23.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+  inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
+>>>>>>> 2c0c7d4 (feat: Add treefmt-nix)
 
   outputs = { self, systems, nixos, nixpkgs, treefmt-nix }:
     let
@@ -34,11 +40,14 @@
       # Use `nix fmt`
       formatter =
         eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+<<<<<<< HEAD
 
       # Use `nix flake check`
       checks = eachSystem (pkgs: {
         formatting = treefmtEval.${pkgs.system}.config.build.check self;
       });
+=======
+>>>>>>> 2c0c7d4 (feat: Add treefmt-nix)
     };
 }
 
