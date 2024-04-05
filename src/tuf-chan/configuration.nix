@@ -255,14 +255,6 @@ in
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      trusted-public-keys = [
-        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      ];
-      substituters = [
-        "https://cache.iog.io"
-      ];
-      extra-trusted-substituters = [ "https://cache.flox.dev" ];
-      extra-trusted-public-keys = [ "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=" ];
     };
   };
 
