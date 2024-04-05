@@ -23,15 +23,16 @@ in
 
   networking = {
     hostName = "pana-chama";
-    useDHCP = true;
-    wireless = {
-      enable = true;
-      environmentFile = "/run/secrets/wireless.env";
-      networks = {
-        "aterm-450699-g".psk = "PSK_ATERM_450699_G";
-        "aterm-450699-a".psk = "PSK_ATERM_450699_A";
-      };
-    };
+    networkmanager.enable = true;
+    #useDHCP = true;
+    #wireless = {
+    #  enable = true;
+    #  environmentFile = "/run/secrets/wireless.env";
+    #  networks = {
+    #    "aterm-450699-g".psk = "@PSK_ATERM_450699_G@";
+    #    "aterm-450699-a".psk = "@PSK_ATERM_450699_A@";
+    #  };
+    #};
   };
 
   time.timeZone = "Asia/Tokyo";
