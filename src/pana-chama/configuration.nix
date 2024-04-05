@@ -5,18 +5,17 @@
 { config, lib, pkgs, ... }:
 let
   home-manager = fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+    url =
+      "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
     sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
   };
-in
-{
-  imports =
-    [
-      (import "${home-manager}/nixos")
-      ../home/haruki/home.nix
-      ../home/root/home.nix
-      ./hardware-configuration.nix
-    ];
+in {
+  imports = [
+    (import "${home-manager}/nixos")
+    ../home/haruki/home.nix
+    ../home/root/home.nix
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -40,9 +39,7 @@ in
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      uim = {
-        toolbar = "gtk3-systray";
-      };
+      uim = { toolbar = "gtk3-systray"; };
       enabled = "uim";
     };
   };
@@ -76,7 +73,8 @@ in
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -85,9 +83,7 @@ in
   };
 
   programs = {
-    _1password = {
-      enable = true;
-    };
+    _1password = { enable = true; };
     _1password-gui = {
       enable = true;
       polkitPolicyOwners = [ "haruki" ];
@@ -194,11 +190,7 @@ in
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

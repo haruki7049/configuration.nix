@@ -3,11 +3,11 @@
 { config, lib, pkgs, ... }:
 let
   home-manager = fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+    url =
+      "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
     sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
   };
-in
-{
+in {
   imports = [
     (import "${home-manager}/nixos")
     ../home/haruki/home.nix
@@ -16,18 +16,12 @@ in
   ];
 
   boot = {
-    kernelModules = [
-      "v4l2loopback"
-    ];
-    extraModulePackages = with pkgs; [
-      linuxPackages.v4l2loopback
-    ];
+    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = with pkgs; [ linuxPackages.v4l2loopback ];
     extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 cardlabel="OBS_Camera" exclusive_caps=1
     '';
-    initrd.kernelModules = [
-      "amdgpu"
-    ];
+    initrd.kernelModules = [ "amdgpu" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -45,16 +39,8 @@ in
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-skk
-          fcitx5-gtk
-        ];
-      };
-      uim = {
-        toolbar = "gtk3-systray";
-      };
+      fcitx5 = { addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ]; };
+      uim = { toolbar = "gtk3-systray"; };
       enabled = "uim";
     };
   };
@@ -73,19 +59,13 @@ in
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        amdvlk
-      ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
-      ];
+      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
       driSupport = true;
       driSupport32Bit = true;
     };
     pulseaudio.enable = false;
-    bluetooth = {
-      enable = true;
-    };
+    bluetooth = { enable = true; };
   };
 
   security = {
@@ -101,7 +81,8 @@ in
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -110,17 +91,13 @@ in
   };
 
   programs = {
-    dconf = {
-      enable = true;
-    };
+    dconf = { enable = true; };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    _1password = {
-      enable = true;
-    };
+    _1password = { enable = true; };
     _1password-gui = {
       enable = true;
       polkitPolicyOwners = [ "haruki" ];
@@ -141,9 +118,7 @@ in
       enable = true;
       vSync = true;
     };
-    printing = {
-      enable = true;
-    };
+    printing = { enable = true; };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -157,9 +132,7 @@ in
       xkb.layout = "us";
       libinput = {
         enable = true;
-        mouse = {
-          accelProfile = "flat";
-        };
+        mouse = { accelProfile = "flat"; };
       };
       displayManager.lightdm.enable = true;
       windowManager.i3 = {
@@ -201,7 +174,8 @@ in
 
   users.users = {
     haruki = {
-      hashedPassword = "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
+      hashedPassword =
+        "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };
@@ -252,18 +226,12 @@ in
     ];
   };
 
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-  };
+  nix = { settings = { experimental-features = [ "nix-command" "flakes" ]; }; };
 
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-21.4.4"
-      ];
+      permittedInsecurePackages = [ "electron-21.4.4" ];
     };
   };
 

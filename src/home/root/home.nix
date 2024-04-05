@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 let
-  neovimPluginFromGitHub = rev: owner: repo: sha256: pkgs.vimUtils.buildVimPlugin {
-    pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = rev;
-    src = pkgs.fetchFromGitHub {
-      owner = owner;
-      repo = repo;
-      rev = rev;
-      sha256 = sha256;
+  neovimPluginFromGitHub = rev: owner: repo: sha256:
+    pkgs.vimUtils.buildVimPlugin {
+      pname = "${lib.strings.sanitizeDerivationName repo}";
+      version = rev;
+      src = pkgs.fetchFromGitHub {
+        owner = owner;
+        repo = repo;
+        rev = rev;
+        sha256 = sha256;
+      };
     };
-  };
-in
-{
+in {
   home-manager = {
     users.root = {
       home = {
@@ -22,16 +22,12 @@ in
       programs = {
         # Enable home-manager
         home-manager.enable = true;
-        bash = {
-          enable = true;
-        };
+        bash = { enable = true; };
         git = {
           enable = true;
           userName = "haruki7049";
           userEmail = "tontonkirikiri@gmail.com";
-          extraConfig = {
-            init.defaultBranch = "main";
-          };
+          extraConfig = { init.defaultBranch = "main"; };
         };
         neovim = {
           enable = true;
@@ -59,7 +55,9 @@ in
             nvim-lspconfig
 
             # skkeleton, Vim's SKK
-            (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf" "vim-skk" "skkeleton" "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
+            (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf"
+              "vim-skk" "skkeleton"
+              "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
           ];
           extraLuaConfig = ''
             -- BASE
@@ -193,9 +191,7 @@ in
             vim.cmd("colorscheme zephyr")
           '';
         };
-        emacs = {
-          enable = true;
-        };
+        emacs = { enable = true; };
       };
 
       # Nicely reload system units when changing configs

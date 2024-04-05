@@ -2,18 +2,17 @@
 
 let
   home-manager = fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+    url =
+      "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
     sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
   };
-in
-{
-  imports =
-    [
-      (import "${home-manager}/nixos")
-      ../home/haruki/home.nix
-      ../home/root/home.nix
-      ./hardware-configuration.nix
-    ];
+in {
+  imports = [
+    (import "${home-manager}/nixos")
+    ../home/haruki/home.nix
+    ../home/root/home.nix
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -21,9 +20,7 @@ in
   networking = {
     hostName = "haruki7049-home";
     firewall.enable = false;
-    nameservers = [
-      "192.168.0.1"
-    ];
+    nameservers = [ "192.168.0.1" ];
     defaultGateway = {
       address = "192.168.0.1";
       interface = "enp4s0";
@@ -50,28 +47,22 @@ in
     keyMap = "us";
   };
 
-  security = {
-    polkit = {
-      enable = true;
-    };
-  };
+  security = { polkit = { enable = true; }; };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   users = {
     mutableUsers = false;
     users = {
       haruki = {
-        hashedPassword = "$y$j9T$A2FjmBevK/oLEqTCfU27M0$Q.Y0e3/gr3fCC/FAPv5tIGHP89TrB9IjBtnLTiYETh3";
+        hashedPassword =
+          "$y$j9T$A2FjmBevK/oLEqTCfU27M0$Q.Y0e3/gr3fCC/FAPv5tIGHP89TrB9IjBtnLTiYETh3";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
       };
       root = {
-        hashedPassword = "$y$j9T$CToL.EUZAxPYjn.Fu7IfC1$LBNmqPVyqyLwujDyecwlVkIxCJr4NOmRV.DAGJrt5d8";
+        hashedPassword =
+          "$y$j9T$CToL.EUZAxPYjn.Fu7IfC1$LBNmqPVyqyLwujDyecwlVkIxCJr4NOmRV.DAGJrt5d8";
         isSystemUser = true;
         extraGroups = [ "root" ];
       };
