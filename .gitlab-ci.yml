@@ -1,0 +1,8 @@
+stages:
+  - build
+
+nix-checks:
+  stage: build
+  image: ghcr.io/nixos/nix:latest
+  script:
+    - nix --extra-experimental-features nix-command --extra-experimental-features flakes flake check --all-systems
