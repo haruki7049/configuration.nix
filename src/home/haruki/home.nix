@@ -36,7 +36,7 @@ in {
         username = "haruki";
         homeDirectory = "/home/haruki";
         pointerCursor = let
-          getFrom = url: hash: name: size: {
+          getFrom = url: sha256: name: size: {
             gtk.enable = true;
             x11.enable = true;
             name = name;
@@ -44,9 +44,9 @@ in {
             package = pkgs.runCommand "moveUp" { } ''
               mkdir -p $out/share/icons
               ln -s ${
-                pkgs.fetchTarball {
+                builtins.fetchTarball {
                   url = url;
-                  hash = hash;
+                  sha256 = sha256;
                 }
               } $out/share/icons/${name}
             '';
