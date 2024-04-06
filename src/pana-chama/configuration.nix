@@ -7,7 +7,7 @@ let
   home-manager = fetchTarball {
     url =
       "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-    sha256 = "0g51f2hz13dk953i501fmc6935difhz60741nypaqwz127hy5ldk";
+    sha256 = "0r19x4n1wlsr9i3w4rlc4jc5azhv2yq1n3qb624p0dhhwfj3c3vl";
   };
 in {
   imports = [
@@ -217,6 +217,15 @@ in {
       deno
       mpc-cli
     ];
+  };
+
+  virtualisation = {
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    docker.enable = true;
+    podman.enable = true;
   };
 
   system.stateVersion = "23.11";
