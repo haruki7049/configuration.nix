@@ -28,6 +28,10 @@ let
     Host conoha-vps-dev
       HostName 2400:8500:2002:3301:160:251:233:156
       User haruki
+
+    Host mstdn-haruki7049-dev
+      HostName 2400:8500:2002:3303:160:251:236:76
+      User haruki
   '';
 in {
   home-manager = {
