@@ -1,18 +1,5 @@
-{ config, lib, pkgs, ... }:
-
-let
-  home-manager = fetchTarball {
-    url =
-      "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-    sha256 = "0r19x4n1wlsr9i3w4rlc4jc5azhv2yq1n3qb624p0dhhwfj3c3vl";
-  };
-in {
-  imports = [
-    (import "${home-manager}/nixos")
-    ../home/haruki/home.nix
-    ../home/root/home.nix
-    ./hardware-configuration.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
