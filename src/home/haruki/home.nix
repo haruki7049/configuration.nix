@@ -39,6 +39,7 @@ in {
       home = {
         username = "haruki";
         homeDirectory = "/home/haruki";
+        packages = with pkgs; [ bat fzf eza fd ];
         pointerCursor = let
           getFrom = url: sha256: name: size: {
             gtk.enable = true;
@@ -80,10 +81,17 @@ in {
         home-manager.enable = true;
         bash = { enable = true; };
         nushell = { enable = true; };
-        fish = { enable = true; };
-        zsh = {
+        fish = {
           enable = true;
-          dotDir = ".config/zsh";
+          interactiveShellInit = ''
+            set fish_greeting # Disable greeting
+          '';
+        };
+        starship = {
+          enable = true;
+          enableBashIntegration = false;
+          enableFishIntegration = true;
+          settings = { };
         };
         git = {
           enable = true;
