@@ -1,21 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-let
-  home-manager = fetchTarball {
-    url =
-      "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-    sha256 = "0r19x4n1wlsr9i3w4rlc4jc5azhv2yq1n3qb624p0dhhwfj3c3vl";
-  };
-in {
-  imports = [
-    (import "${home-manager}/nixos")
-    ../home/haruki/home.nix
-    ../home/root/home.nix
-    ./hardware-configuration.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -176,20 +160,6 @@ in {
     extraGroups = [ "wheel" ];
   };
 
-  home-manager = {
-    users.haruki = { pkgs, ... }: {
-      home.packages = [ ];
-      programs = {
-        bash.enable = true;
-        neovim = {
-          enable = true;
-          defaultEditor = true;
-        };
-      };
-      home.stateVersion = "23.11";
-    };
-  };
-
   nixpkgs = { config = { allowUnfree = true; }; };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -228,6 +198,6 @@ in {
     podman.enable = true;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "unstable";
 }
 
