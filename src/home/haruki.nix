@@ -126,9 +126,9 @@ in {
   programs = {
     # Enable home-manager
     home-manager.enable = true;
-    bash = { enable = true; };
-    nushell = { enable = true; };
-    fish = { enable = true; };
+    bash.enable = true;
+    nushell.enable = true;
+    fish.enable = true;
     zsh = {
       enable = true;
       dotDir = ".config/zsh";
