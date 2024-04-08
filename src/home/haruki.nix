@@ -37,6 +37,7 @@ in {
   home = {
     username = "haruki";
     homeDirectory = "/home/haruki";
+    packages = with pkgs; [ fd ];
     pointerCursor = let
       getFrom = url: sha256: name: size: {
         gtk.enable = true;
@@ -73,6 +74,55 @@ in {
     };
   };
 
+  accounts.email = {
+    accounts."harukiman" = {
+      name = "haruki7049";
+      primary = true;
+      address = "harukiman@haruki7049.dev";
+      realName = "Haruki Shimauchi";
+      userName = "harukiman@haruki7049.dev";
+      smtp = {
+        host = "mail73.conoha.ne.jp";
+        port = 465;
+      };
+      imap = {
+        host = "mail73.conoha.ne.jp";
+        port = 993;
+      };
+      thunderbird.enable = true;
+      himalaya = {
+        enable = false;
+        #settings = {
+        #  accounts.harukiman = {
+        #    default = true;
+        #    display-name = "haruki7049";
+        #    email = "harukiman@haruki7049.dev";
+        #    sync.enable = true;
+        #    backend = "imap";
+        #    message.send = {
+        #      backend = "smtp";
+        #      save-copy = true;
+        #    };
+        #    imap = {
+        #      host = "mail73.conoha.ne.jp";
+        #      port = 993;
+        #      encryption = "tls";
+        #      login = "harukiman@haruki7049.dev";
+        #      passwd.cmd = "cat /run/secrets/harukiman@haruki7049.dev.env";
+        #    };
+        #    smtp = {
+        #      host = "mail73.conoha.ne.jp";
+        #      port = 465;
+        #      encryption = "tls";
+        #      login = "harukiman@haruki7049.dev";
+        #      passwd.cmd = "cat /run/secrets/harukiman@haruki7049.dev.env";
+        #    };
+        #  };
+        #};
+      };
+    };
+  };
+
   programs = {
     # Enable home-manager
     home-manager.enable = true;
@@ -95,6 +145,13 @@ in {
         gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
         commit.gpgsign = true;
       };
+    };
+    bat.enable = true;
+    eza.enable = true;
+    fzf.enable = true;
+    himalaya = {
+      enable = true;
+      settings.downloads-dir = "~/Downloads";
     };
     ssh = {
       enable = true;
