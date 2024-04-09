@@ -94,6 +94,7 @@ in {
         gpg.format = "ssh";
         gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
         commit.gpgsign = true;
+        pull.rebase = true;
       };
     };
     ssh = {
