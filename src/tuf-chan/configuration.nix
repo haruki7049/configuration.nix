@@ -192,6 +192,7 @@
       nushell
       guile
       google-cloud-sdk
+      immersed-vr
     ];
   };
 
