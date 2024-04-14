@@ -135,6 +135,10 @@
         HandleLidSwitch=ignore
       '';
     };
+    clamav = {
+      updater.enable = true;
+      daemon.enable = true;
+    };
   };
 
   fonts = {
@@ -186,6 +190,9 @@
       zellij
       deno
       mpc-cli
+      ciscoPacketTracer8
+      gns3-gui
+      gns3-server
     ];
   };
 
