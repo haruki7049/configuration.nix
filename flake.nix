@@ -69,6 +69,23 @@
             }
           ];
         };
+        rpi4-cache-server = nixos.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./src/rpi4-cache-server/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = {
+                  haruki = import ./src/home/haruki.nix;
+                  root = import ./src/home/root.nix;
+                };
+              };
+            }
+          ];
+        };
       };
 
       # Use `nix fmt`
