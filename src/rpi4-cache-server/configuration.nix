@@ -44,6 +44,8 @@
     };
   };
 
+  virtualisation.podman.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   hardware.enableRedistributableFirmware = true;
