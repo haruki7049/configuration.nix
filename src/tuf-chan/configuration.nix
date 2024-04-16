@@ -153,6 +153,7 @@
           osu-lazer
           anki
           thunderbird
+          immersed-vr
         ];
       };
     };
@@ -180,6 +181,7 @@
     systemPackages = with pkgs; [
       your-editor
       neovim
+      helix
       htop
       wget
       curl
@@ -192,7 +194,6 @@
       nushell
       guile
       google-cloud-sdk
-      immersed-vr
     ];
   };
 
