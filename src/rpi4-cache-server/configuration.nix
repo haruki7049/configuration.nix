@@ -33,6 +33,16 @@
 
   services.openssh.enable = true;
 
+  systemd.services.cloudflared = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = "notify";
+      User = "cloudflare";
+      ExecStart = "${pkgs.cloudflared} service install eyJhIjoiMzBiMzJiZGMyMWJlYWNkZWQ1NWNmOWIyZDNhNmEwZTciLCJ0IjoiZGQyYzBkYmEtNGExNy00Njg5LWJlNzQtMGFjYWZmOWE5NDllIiwicyI6Ik56UmlOalE1TlRRdFpXTXhaaTAwWkdOa0xXRXlNR010TWpJMVpUTTFOR0kzTWprMSJ9";
+    };
+  };
+
   users = {
     mutableUsers = false;
     users.haruki = {
