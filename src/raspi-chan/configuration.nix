@@ -24,15 +24,87 @@
   sound.enable = true;
 
   hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
     pulseaudio.enable = true;
     bluetooth.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ neovim git curl wget nixpkgs-fmt ];
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
+
+  programs = {
+    dconf.enable = true;
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "haruki" ];
+    };
+  };
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+  services = {
+    openssh.enable = true;
+    xserver = {
+      enable = true;
+      libinput = {
+        enable = true;
+        mouse.accelProfile = "flat";
+      };
+      displayManager.startx.enable = true;
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          dunst
+          rofi
+          alacritty
+          kitty
+          i3status
+          i3blocks
+          i3lock
+          emacs
+          brave
+          google-chrome
+          pavucontrol
+          obs-studio
+          neovide
+          discord
+          element-desktop
+          whalebird
+          scrot
+          feh
+          gimp
+          osu-lazer
+          anki
+          thunderbird
+        ];
+      };
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
 
-  services.openssh.enable = true;
 
   users = {
     mutableUsers = false;
@@ -43,6 +115,30 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7Rjpnf4kB6UIILl8fohRn0Gz1aBYM59OHlEjdPd/gS"
       ];
     };
+  };
+
+  environment = {
+    etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          microsoft-edge
+          google-chrome-stable
+        '';
+        mode = "0755";
+      };
+    };
+    systemPackages = with pkgs; [
+      neovim
+      helix
+      htop
+      wget
+      curl
+      unzip
+      gzip
+      git
+      alsa-utils
+      nixpkgs-fmt
+    ];
   };
 
   virtualisation.podman.enable = true;
