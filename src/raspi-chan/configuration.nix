@@ -18,13 +18,7 @@
 
   networking = {
     hostName = "raspi-chan";
-    defaultGateway = "192.168.0.1";
-    nameservers = [ "192.168.0.1" ];
-    interfaces.end0.ipv4.addresses = [{
-      address = "192.168.0.200";
-      prefixLength = 24;
-    }];
-    wireless.enable = false;
+    networkmanager.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ neovim git curl wget nixpkgs-fmt ];
