@@ -17,7 +17,7 @@
   };
 
   networking = {
-    hostName = "rpi4-cache-server";
+    hostName = "raspi-chan";
     defaultGateway = "192.168.0.1";
     nameservers = [ "192.168.0.1" ];
     interfaces.end0.ipv4.addresses = [{

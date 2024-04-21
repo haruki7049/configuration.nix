@@ -69,10 +69,10 @@
             }
           ];
         };
-        rpi4-cache-server = nixos.lib.nixosSystem {
+        raspi-chan = nixos.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
-            ./src/rpi4-cache-server/configuration.nix
+            ./src/raspi-chan/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
