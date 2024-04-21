@@ -21,6 +21,13 @@
     networkmanager.enable = true;
   };
 
+  sound.enable = true;
+
+  hardware = {
+    pulseaudio.enable = true;
+    bluetooth.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [ neovim git curl wget nixpkgs-fmt ];
 
   nixpkgs.config.allowUnfree = true;
