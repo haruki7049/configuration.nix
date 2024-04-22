@@ -120,7 +120,7 @@
           vscode
         ];
       };
-      displayManager.lightdm.enable = true;
+      displayManager.startx.enable = true;
       desktopManager.runXdgAutostartIfNone = true;
     };
     pipewire = {
