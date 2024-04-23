@@ -154,6 +154,7 @@
           anki
           thunderbird
           immersed-vr
+          spotify
         ];
       };
     };
