@@ -16,6 +16,13 @@
       treefmtEval =
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in {
+      homeConfigurations = {
+        "haruki7049" = home-manager.lib.homeManagerConfiguration {
+          pkgs = eachSystem (pkgs: import pkgs);
+          modules = [ ./src/home/haruki.nix ./src/home/root.nix ];
+        };
+      };
+
       # "nixos-rebuild switch --flake .#tuf-chan"
       nixosConfigurations = {
         tuf-chan = nixos.lib.nixosSystem {
