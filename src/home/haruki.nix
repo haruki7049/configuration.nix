@@ -29,6 +29,18 @@ in {
   home = {
     username = "haruki";
     homeDirectory = "/home/haruki";
+    packages = with pkgs; [
+      vim
+      neovim
+      helix
+      emacs
+      git
+      bash
+      zsh
+      fish
+      wget
+      curl
+    ];
     pointerCursor = let
       getFrom = url: sha256: name: size: {
         gtk.enable = true;
