@@ -18,8 +18,8 @@
     in {
       homeConfigurations = {
         "haruki7049" = home-manager.lib.homeManagerConfiguration {
-          pkgs = eachSystem (pkgs: import pkgs);
-          modules = [ ./src/home/haruki.nix ./src/home/root.nix ];
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          modules = [ ./src/home/haruki.nix ];
         };
       };
 

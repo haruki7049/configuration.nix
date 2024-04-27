@@ -50,6 +50,17 @@ in {
     "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU=" "bibata" 24;
   };
 
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
+
   xdg = {
     enable = true;
     mime.enable = true;
