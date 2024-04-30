@@ -33,7 +33,6 @@ in {
       vim
       your-editor
       helix
-      emacs
       bash
       htop
       wget
