@@ -34,9 +34,9 @@
     keyMap = "us";
   };
 
-  security = { polkit = { enable = true; }; };
+  security.polkit.enable = true;
 
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs.config.allowUnfree = true;
 
   users = {
     mutableUsers = false;
@@ -56,13 +56,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    cyanrip
-    deno
-    nixpkgs-fmt
-  ];
+  environment.systemPackages = with pkgs; [ cyanrip ];
 
   services = {
     openssh = {

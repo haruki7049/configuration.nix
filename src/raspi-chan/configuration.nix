@@ -78,26 +78,14 @@
         extraPackages = with pkgs; [
           dunst
           rofi
-          alacritty
-          kitty
           i3status
           i3blocks
           i3lock
-          emacs
-          brave
-          google-chrome
           pavucontrol
           obs-studio
-          neovide
-          discord
-          element-desktop
-          whalebird
           scrot
           feh
           gimp
-          osu-lazer
-          anki
-          thunderbird
         ];
       };
     };
@@ -126,18 +114,7 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [
-      neovim
-      helix
-      htop
-      wget
-      curl
-      unzip
-      gzip
-      git
-      alsa-utils
-      nixpkgs-fmt
-    ];
+    systemPackages = with pkgs; [ alsa-utils ];
   };
 
   virtualisation.podman.enable = true;

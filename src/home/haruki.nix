@@ -31,15 +31,31 @@ in {
     homeDirectory = "/home/haruki";
     packages = with pkgs; [
       vim
+      your-editor
       neovim
       helix
       emacs
-      git
       bash
-      zsh
-      fish
+      htop
       wget
       curl
+      unzip
+      gzip
+      git
+      nixpkgs-fmt
+      brave
+      google-chrome
+      neovide
+      discord
+      element-desktop
+      whalebird
+      osu-lazer
+      anki
+      thunderbird
+      spotify
+      gns3-gui
+      gns3-server
+      #ciscoPacketTracer8
     ];
     pointerCursor = let
       getFrom = url: sha256: name: size: {
@@ -62,16 +78,9 @@ in {
     "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU=" "bibata" 24;
   };
 
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   xdg = {
     enable = true;

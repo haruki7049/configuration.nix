@@ -105,19 +105,8 @@
           i3blocks
           rofi
           dunst
-          chromium
-          alacritty
           pwvucontrol
           pavucontrol
-          microsoft-edge
-          google-chrome
-          firefox
-          opera
-          vivaldi
-          element-desktop
-          discord
-          anki-bin
-          vscode
         ];
       };
       displayManager.startx.enable = true;
@@ -164,7 +153,7 @@
     extraGroups = [ "wheel" ];
   };
 
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -178,22 +167,7 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [
-      neovim
-      emacs
-      helix
-      powershell
-      git
-      wget
-      curl
-      acpi
-      zellij
-      deno
-      mpc-cli
-      ciscoPacketTracer8
-      gns3-gui
-      gns3-server
-    ];
+    systemPackages = with pkgs; [ mpc-cli acpi ];
   };
 
   virtualisation = {
