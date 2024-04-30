@@ -32,7 +32,6 @@ in {
     packages = with pkgs; [
       vim
       your-editor
-      neovim
       helix
       emacs
       bash
