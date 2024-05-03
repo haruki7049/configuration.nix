@@ -133,7 +133,14 @@ in {
     neovim = {
       enable = true;
       defaultEditor = true;
-      extraPackages = with pkgs; [ deno rust-analyzer lua53Packages.lua-lsp ];
+      extraPackages = with pkgs; [
+        deno
+        rust-analyzer
+        lua53Packages.lua-lsp
+        nixd
+        rubyPackages.solargraph
+        ruff
+      ];
       plugins = with pkgs.vimPlugins; [
         # zephyr-nvim, A colorscheme for neovim and vim
         zephyr-nvim
@@ -269,6 +276,70 @@ in {
             ['rust-analyzer'] = {},
           },
         })
+        require('lspconfig').denols.setup({
+          settings = {
+            ['denols'] = {
+              cmd = {
+                "deno",
+                "lsp",
+              },
+              filetypes = {
+                "javascript",
+                "javascriptreact",
+                "javascript.jsx",
+                "typescript",
+                "typescriptreact",
+                "typescript.tsx"
+              },
+              settings = {
+                deno = {
+                  enable = true,
+                  suggest = {
+                    imports = {
+                      hosts = {
+                        ["https://deno.land"] = true,
+                        ["https://jsr.io"] = true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        })
+        require('lspconfig').ruff.setup({
+          settings = {
+            ['ruff'] = {
+              cmd = {
+                "ruff",
+                "server",
+                "--preview",
+              },
+              filetypes = {
+                "python",
+              },
+              single_file_support = true,
+            },
+          },
+        })
+        require('lspconfig').solargraph.setup({
+          settings = {
+            ['solargraph'] = {
+              cmd = {
+                "solargraph",
+                "stdio",
+              },
+              filetypes = {
+                "ruby",
+              },
+              settings = {
+                solargraph = {
+                  diagnostics = true,
+                },
+              },
+            },
+          },
+        })
         require('lspconfig').lua_ls.setup({
           settings = {
             Lua = {
@@ -279,6 +350,26 @@ in {
               },
               telemetry = {
                 enable = true,
+              },
+            },
+          },
+        })
+        require('lspconfig').nixd.setup({
+          settings = {
+            ['nixd'] = {
+              nixpkgs = {
+                expr = "import <nixpkgs> { }",
+              },
+              formatting = {
+                command = { "nixpkgs-fmt" },
+              },
+              options = {
+                nixos = {
+                  expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+                },
+                home_manager = {
+                  expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+                },
               },
             },
           },
