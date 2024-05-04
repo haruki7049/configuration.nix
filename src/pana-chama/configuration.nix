@@ -109,7 +109,7 @@
           pavucontrol
         ];
       };
-      displayManager.startx.enable = true;
+      displayManager.lightdm.enable = true;
       desktopManager.runXdgAutostartIfNone = true;
     };
     pipewire = {
