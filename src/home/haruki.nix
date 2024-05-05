@@ -46,6 +46,7 @@ in {
       neovide
       discord
       element-desktop
+      slack
       whalebird
       osu-lazer
       anki
