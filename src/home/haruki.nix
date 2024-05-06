@@ -22,8 +22,9 @@ let
       User git
             
     Host haruki7049-home
-      HostName 240f:3c:196e:1:8ad9:8731:1b45:61fd
+      HostName ssh.haruki7049.dev
       User haruki
+      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.haruki7049.dev
   '';
 in {
   home = {
