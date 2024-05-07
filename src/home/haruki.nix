@@ -142,6 +142,7 @@ in {
         nixd
         rubyPackages.solargraph
         ruff
+        ruff-lsp
       ];
       plugins = with pkgs.vimPlugins; [
         # zephyr-nvim, A colorscheme for neovim and vim
@@ -316,6 +317,19 @@ in {
                 "ruff",
                 "server",
                 "--preview",
+              },
+              filetypes = {
+                "python",
+              },
+              single_file_support = true,
+            },
+          },
+        })
+        require('lspconfig').ruff_lsp.setup({
+          settings = {
+            ['ruff-lsp'] = {
+              cmd = {
+                "ruff-lsp",
               },
               filetypes = {
                 "python",
