@@ -41,6 +41,7 @@ in {
       unzip
       gzip
       git
+      zellij
       nixpkgs-fmt
       brave
       google-chrome
