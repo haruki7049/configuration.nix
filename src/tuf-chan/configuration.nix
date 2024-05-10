@@ -147,7 +147,6 @@
         ];
       };
     };
-    spotifyd.enable = true;
   };
 
   users.users = {
