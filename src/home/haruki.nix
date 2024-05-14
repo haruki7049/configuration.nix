@@ -492,10 +492,8 @@ in {
     spotifyd = {
       enable = true;
       settings = {
-        global = {
-          username = "tontonkirikiri@gmail.com";
-          password = builtins.getEnv "SPOTIFY_PASSWORD";
-        };
+        global.username = "tontonkirikiri@gmail.com";
+        global.password = builtins.getEnv "SPOTIFY_PASSWORD";
       };
     };
   };
