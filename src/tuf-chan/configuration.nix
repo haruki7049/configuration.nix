@@ -147,13 +147,6 @@
         ];
       };
     };
-    spotifyd = {
-      enable = true;
-      settings = {
-        global.username = "tontonkirikiri@gmail.com";
-        global.password_cmd = "cat /run/secrets/spotify-passwd.txt";
-      };
-    };
   };
 
   users.users = {

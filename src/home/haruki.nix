@@ -491,6 +491,16 @@ in {
     };
   };
 
+  services = {
+    spotifyd = {
+      enable = true;
+      settings = {
+        global.username = "tontonkirikiri@gmail.com";
+        global.password = builtins.getEnv "SPOTIFY_PASSWORD";
+      };
+    };
+  };
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
