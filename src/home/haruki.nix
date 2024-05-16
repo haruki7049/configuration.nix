@@ -166,6 +166,9 @@ in {
         (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf"
           "vim-skk" "skkeleton"
           "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
+
+        # GitHub Copilot
+        copilot-vim
       ];
       extraLuaConfig = ''
         -- BASE
