@@ -254,6 +254,11 @@ in {
           command = 'setlocal tabstop=4 shiftwidth=4 et',
         })
 
+        vim.api.nvim_create_autocmd({'FileType'}, {
+          pattern = '*',
+          command = 'if &l:omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif',
+        })
+
         -- NEOVIDE
         local font_name = "UDEV Gothic NF:h14"
         if vim.g.neovide then
