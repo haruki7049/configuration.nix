@@ -33,7 +33,6 @@ in {
     packages = with pkgs; [
       vim
       mg
-      micro
       your-editor
       helix
       bash
