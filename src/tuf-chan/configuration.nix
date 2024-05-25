@@ -131,11 +131,12 @@
           i3status
           i3blocks
           i3lock
-          emacs
-          brave
-          google-chrome
           pwvucontrol
           pavucontrol
+          scrot
+          feh
+          gimp
+          immersed-vr
           (wrapOBS {
             plugins = with pkgs.obs-studio-plugins; [
               wlrobs
@@ -143,17 +144,14 @@
               obs-pipewire-audio-capture
             ];
           })
-          neovide
-          discord
-          element-desktop
-          whalebird
-          scrot
-          feh
-          gimp
-          osu-lazer
-          anki
-          thunderbird
         ];
+      };
+    };
+    spotifyd = {
+      enable = true;
+      settings = {
+        global.username = "tontonkirikiri@gmail.com";
+        global.password_cmd = "cat /run/secrets/spotify-passwd.txt";
       };
     };
   };
@@ -177,22 +175,7 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [
-      your-editor
-      neovim
-      htop
-      wget
-      curl
-      unzip
-      gzip
-      git
-      alsa-utils
-      nixpkgs-fmt
-      powershell
-      nushell
-      guile
-      google-cloud-sdk
-    ];
+    systemPackages = with pkgs; [ alsa-utils ];
   };
 
   fonts = {
@@ -226,7 +209,6 @@
       enable = true;
       enableExtensionPack = true;
     };
-    docker.enable = true;
   };
 
   system.stateVersion = "23.11";

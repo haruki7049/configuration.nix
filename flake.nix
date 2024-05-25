@@ -16,6 +16,13 @@
       treefmtEval =
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in {
+      homeConfigurations = {
+        "haruki7049" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          modules = [ ./src/home/haruki.nix ];
+        };
+      };
+
       # "nixos-rebuild switch --flake .#tuf-chan"
       nixosConfigurations = {
         tuf-chan = nixos.lib.nixosSystem {
@@ -69,6 +76,23 @@
             }
           ];
         };
+        #raspi-chan = nixos.lib.nixosSystem {
+        #  system = "aarch64-linux";
+        #  modules = [
+        #    ./src/raspi-chan/configuration.nix
+        #    home-manager.nixosModules.home-manager
+        #    {
+        #      home-manager = {
+        #        useGlobalPkgs = true;
+        #        useUserPackages = true;
+        #        users = {
+        #          haruki = import ./src/home/haruki.nix;
+        #          root = import ./src/home/root.nix;
+        #        };
+        #      };
+        #    }
+        #  ];
+        #};
       };
 
       # Use `nix fmt`
