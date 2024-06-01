@@ -12,10 +12,11 @@
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
-        (system: f nixpkgs.legacyPackages.${system});
+          (system: f nixpkgs.legacyPackages.${system});
       treefmtEval =
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-    in {
+    in
+    {
       homeConfigurations = {
         "haruki7049" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };

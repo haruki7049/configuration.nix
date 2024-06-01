@@ -15,7 +15,8 @@ let
       User haruki
       ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.haruki7049.dev
   '';
-in {
+in
+{
   imports = [ ./develop/develop.nix ];
 
   home = {

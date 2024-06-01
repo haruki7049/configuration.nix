@@ -11,7 +11,8 @@ let
         sha256 = sha256;
       };
     };
-in {
+in
+{
   imports = [
     ./i3wm/i3.nix
   ];
@@ -44,25 +45,27 @@ in {
     gns3-server
     #ciscoPacketTracer8
   ];
-  home.pointerCursor = let
-    getFrom = url: sha256: name: size: {
-      gtk.enable = true;
-      x11.enable = true;
-      name = name;
-      size = size;
-      package = pkgs.runCommand "moveUp" { } ''
-        mkdir -p $out/share/icons
-        ln -s ${
-          builtins.fetchTarball {
-            url = url;
-            sha256 = sha256;
-          }
-        } $out/share/icons/${name}
-      '';
-    };
-  in getFrom
-  "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
-  "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU=" "bibata" 24;
+  home.pointerCursor =
+    let
+      getFrom = url: sha256: name: size: {
+        gtk.enable = true;
+        x11.enable = true;
+        name = name;
+        size = size;
+        package = pkgs.runCommand "moveUp" { } ''
+          mkdir -p $out/share/icons
+          ln -s ${
+            builtins.fetchTarball {
+              url = url;
+              sha256 = sha256;
+            }
+          } $out/share/icons/${name}
+        '';
+      };
+    in
+    getFrom
+      "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
+      "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU=" "bibata" 24;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
