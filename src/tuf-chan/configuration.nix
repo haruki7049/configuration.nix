@@ -112,14 +112,14 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    libinput = {
+      enable = true;
+      mouse = { accelProfile = "flat"; };
+    };
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.layout = "us";
-      libinput = {
-        enable = true;
-        mouse = { accelProfile = "flat"; };
-      };
       displayManager.lightdm.enable = true;
       windowManager.i3 = {
         enable = true;
@@ -138,7 +138,7 @@
           gimp
           immersed-vr
           (wrapOBS {
-            plugins = with pkgs.obs-studio-plugins; [
+            plugins = with obs-studio-plugins; [
               wlrobs
               obs-backgroundremoval
               obs-pipewire-audio-capture
