@@ -3,6 +3,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.enableContainers = false;
 
   networking = {
     hostName = "pana-chama";
@@ -93,10 +94,10 @@
         }
       '';
     };
+    libinput.enable = true;
     xserver = {
       enable = true;
       xkb.layout = "us";
-      libinput.enable = true;
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
