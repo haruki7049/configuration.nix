@@ -65,6 +65,7 @@
         TimeoutStopSec = 10;
       };
     };
+    services.NetworkManager-wait-online.enable = false;
   };
 
   programs = {
