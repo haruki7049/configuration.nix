@@ -2,8 +2,8 @@
   description = "My NixOS's configuration for haruki7049";
 
   inputs = {
-    nixos.url = "github:NixOS/nixpkgs";
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixos.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
