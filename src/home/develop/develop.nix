@@ -6,7 +6,6 @@
     ./vim/vim.nix
   ];
   home.packages = with pkgs; [
-    vim
     mg
     your-editor
     helix
