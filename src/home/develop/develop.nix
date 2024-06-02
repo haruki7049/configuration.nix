@@ -3,6 +3,7 @@
   imports = [
     ./i3wm/i3.nix
     ./neovim/neovim.nix
+    ./vim/vim.nix
   ];
   home.packages = with pkgs; [
     vim
