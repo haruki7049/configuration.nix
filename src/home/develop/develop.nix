@@ -4,6 +4,8 @@
     ./i3wm/i3.nix
     ./neovim/neovim.nix
     ./vim/vim.nix
+    ./mpd/mpd.nix
+    ./xdg/xdg.nix
   ];
   home.packages = with pkgs; [
     mg
