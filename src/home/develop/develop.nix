@@ -2,6 +2,7 @@
 {
   imports = [
     ./windowManager/i3wm/i3.nix
+    ./windowManager/hyprland/hyprland.nix
     ./neovim/neovim.nix
     ./vim/vim.nix
     ./mpd/mpd.nix
