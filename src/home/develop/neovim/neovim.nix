@@ -47,6 +47,11 @@ in
         "vim-skk" "skkeleton"
         "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
 
+      # Comment out
+      (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89"
+        "numToStr" "Comment.nvim"
+        "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc=")
+
       # GitHub Copilot
       copilot-vim
     ];
@@ -150,9 +155,14 @@ in
       vim.g.sh = "bash"
 
       -- KEYCONFIG
-      vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>", {noremap = true});
-      vim.api.nvim_set_keymap("i", "<C-j>", "<Plug>(skkeleton-enable)", {noremap = true});
-      vim.api.nvim_set_keymap("c", "<C-j>", "<Plug>(skkeleton-enable)", {noremap = true});
+      vim.keymap.set("n", "<leader>q", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>");
+      vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)");
+      vim.keymap.set("c", "<C-j>", "<Plug>(skkeleton-enable)");
+      vim.keymap.set("n", "<Leader>`", require('Comment.api').toggle.linewise.current);
+      vim.keymap.set("x", "<Leader>`", function()
+        vim.api.nvim_feedkeys('<Esc>', 'nx', false)
+        require('Comment.api').toggle.linewise(vim.fn.visualmode())
+      end);
 
       -- SKKELETON's JISYO
       vim.api.nvim_exec([[
@@ -161,6 +171,21 @@ in
           \   'eggLikeNewline': v:true,
           \ })
       ]], false);
+
+      -- Comment out, by Comment.nvim
+      require('Comment').setup({
+        padding = true,
+        sticky = true,
+        ignore = nil,
+
+        mappings = {
+          basic = false,
+          extra = false,
+        },
+
+        pre_hook = nil,
+        post_hook = nil,
+      })
 
       -- LSPCONFIG
       require('lspconfig').rust_analyzer.setup({
