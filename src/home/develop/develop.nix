@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
-    ./i3wm/i3.nix
+    ./windowManager/i3wm/i3.nix
     ./neovim/neovim.nix
     ./vim/vim.nix
     ./mpd/mpd.nix
