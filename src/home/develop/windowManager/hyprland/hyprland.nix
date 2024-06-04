@@ -124,8 +124,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle {
-          pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true # You probably want this
+          preserve_split = true
       }
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
@@ -182,14 +181,11 @@
       $mainMod = SUPER # Sets "Windows" key as main modifier
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Q, exec, $terminal
-      bind = $mainMod, C, killactive,
-      bind = $mainMod, M, exit,
-      bind = $mainMod, E, exec, $fileManager
-      bind = $mainMod, V, togglefloating,
-      bind = $mainMod, R, exec, $menu
-      bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
+      bind = $mainMod, return, exec, $terminal
+      bind = $mainMod_SHIFT, Q, killactive,
+      bind = $mainMod_SHIFT, E, exit,
+      bind = $mainMod, SPACE, togglefloating,
+      bind = $mainMod, P, exec, $menu
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l

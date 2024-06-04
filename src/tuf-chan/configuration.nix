@@ -94,6 +94,10 @@
         enableSSHSupport = true;
       };
     };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
   services = {
@@ -175,7 +179,13 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [ alsa-utils ];
+    systemPackages = with pkgs; [
+      alsa-utils
+    ] ++ [
+      # for Hyprland
+      wofi
+      alacritty
+    ];
   };
 
   fonts = {
