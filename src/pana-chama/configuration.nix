@@ -79,6 +79,10 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
   services = {
@@ -169,7 +173,13 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [ mpc-cli acpi ];
+    systemPackages = with pkgs; [
+      mpc-cli acpi
+    ] ++ [
+      # for Hyprland
+      wofi
+      alacritty
+    ];
   };
 
   virtualisation = {
