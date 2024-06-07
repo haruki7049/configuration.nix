@@ -60,6 +60,23 @@
             }
           ];
         };
+        spectre-chan = nixos.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./src/spectre-chan/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = {
+                  haruki = import ./src/home/haruki.nix;
+                  root = import ./src/home/root.nix;
+                };
+              };
+            }
+          ];
+        };
         haruki7049-home = nixos.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
