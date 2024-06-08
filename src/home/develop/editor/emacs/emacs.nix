@@ -47,10 +47,15 @@ let
       '((sbcl ("sbcl"))
         (ecl ("ecl"))
         (clisp ("clisp"))))
+
+    ;; Eglot settings
+    (add-hook 'rust-mode-hook 'eglot-ensure)
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
+    eglot
     slime
+    rust-mode
   ];
 in
 {
