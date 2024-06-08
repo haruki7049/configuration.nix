@@ -4,7 +4,11 @@
     homeDirectory = "/root";
   };
 
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    neovim.enable = true;
+    git.enable = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
