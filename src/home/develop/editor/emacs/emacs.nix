@@ -32,6 +32,7 @@ let
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     iceberg-theme
+    magit
   ];
 in
 {
