@@ -174,7 +174,8 @@
       };
     };
     systemPackages = with pkgs; [
-      mpc-cli acpi
+      mpc-cli
+      acpi
     ] ++ [
       # for Hyprland
       wofi

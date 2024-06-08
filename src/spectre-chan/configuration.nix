@@ -1,43 +1,184 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
-
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.enableContainers = false;
 
   networking.hostName = "spectre-chan";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      uim = { toolbar = "gtk3-systray"; };
+      enabled = "uim";
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "us";
+    useXkbConfig = true;
+  };
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "adwaita-dark";
+  };
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+    services.NetworkManager-wait-online.enable = false;
+  };
+
+  programs = {
+    _1password = { enable = true; };
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "haruki" ];
+    };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+  };
+
+  services = {
+    openssh.enable = true;
+    asterisk.enable = true;
+    blueman.enable = true;
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    mpd = {
+      enable = true;
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "My pipewire output"
+        }
+      '';
+    };
+    libinput.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          i3lock
+          i3status
+          i3blocks
+          rofi
+          dunst
+          pwvucontrol
+          pavucontrol
+        ];
+      };
+      displayManager.lightdm.enable = true;
+      desktopManager.runXdgAutostartIfNone = true;
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    logind = {
+      extraConfig = ''
+        HandleLidSwitch=ignore
+      '';
+    };
+    clamav = {
+      updater.enable = true;
+      daemon.enable = true;
+    };
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      ipafont
+      ipaexfont
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+      udev-gothic-nf
+      dejavu_fonts
+    ];
+  };
+
+  users.users.haruki = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  users.users.haruki = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment = {
+    etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          microsoft-edge-stable
+          google-chrome-stable
+        '';
+        mode = "0755";
+      };
+    };
+    systemPackages = with pkgs; [
+      mpc-cli
+      acpi
+    ] ++ [
+      # for Hyprland
+      wofi
+      alacritty
+    ];
   };
 
-  environment.systemPackages = with pkgs; [
-    acpi
-  ];
+  virtualisation = {
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    docker.enable = true;
+    podman.enable = true;
+  };
 
-  services.openssh.enable = true;
-
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "unstable";
 }

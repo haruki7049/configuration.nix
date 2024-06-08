@@ -17,11 +17,11 @@
         preserve_split = true;
       };
       general = {
-          gaps_in = 5;
-          gaps_out = 20;
-          border_size = 2;
-          resize_on_border = false;
-          allow_tearing = false;
+        gaps_in = 5;
+        gaps_out = 20;
+        border_size = 2;
+        resize_on_border = false;
+        allow_tearing = false;
       };
       decoration = {
         rounding = 10;
@@ -114,7 +114,5 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    settings = {
-    };
   };
 }
