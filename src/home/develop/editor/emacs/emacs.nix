@@ -3,7 +3,7 @@ let
   emacsConfig = ''
     ;; FONT SETTING
     (set-face-attribute 'default nil
-      :family "UDEV Gothic NF"
+      :family "UDEV Gothic NF" ;;This point has a font dependency
       :height 80)
 
     ;; Backup files
@@ -41,23 +41,16 @@ let
       ("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
       ("zenn.dev - React" "https://zenn.dev/topics/react/feed")))
 
-    ;; Language Mode's settings
-    ;; for Rust-lang
-    (add-hook 'rust-mode-hook
-      (lambda ()
-        (setq-local indent-tabs-mode nil)
-        (setq-local tab-width 4)))
-    (add-hook 'rust-mode-hook 'eglot-ensure)
-
-    ;; for Common Lisp
-    (setq inferior-lisp-program "sbcl")
+    ;; SLIME settings
+    (slime-setup '(slime-repl slime-fancy slime-banner))
+    (setq slime-lisp-implementations
+      '((sbcl ("sbcl"))
+        (ecl ("ecl"))
+        (clisp ("clisp"))))
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
-    magit
-    rust-mode
     slime
-    treemacs
   ];
 in
 {
