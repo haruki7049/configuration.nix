@@ -26,15 +26,15 @@
     keyMap = "us";
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   users.users.haruki = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
+    acpi
   ];
 
   services.openssh.enable = true;
