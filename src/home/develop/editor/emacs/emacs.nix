@@ -26,8 +26,7 @@ let
     (setq inhibit-startup-message t)
 
     ;; Custom theme
-    (iceberg-theme-create-theme-file)
-    (load-theme 'solarized-iceberg-dark t)
+    (load-theme 'ef-maris-dark t)
 
     ;; Add News Feed to newsticker.el
     (setq newsticker-url-list
@@ -54,7 +53,7 @@ let
     (setq inferior-lisp-program "sbcl")
   '';
   emacsExtraPackages = epkgs: with epkgs; [
-    iceberg-theme
+    ef-themes
     magit
     rust-mode
     slime
