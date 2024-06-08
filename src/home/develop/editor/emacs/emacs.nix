@@ -4,11 +4,23 @@ let
     ;; FONT SETTING
     (set-face-attribute 'default nil
       :family "UDEV Gothic NF"
-      :height 120)
+      :height 80)
 
     ;; Backup files
     (setq make-backup-files nil)
     (setq auto-save-default nil)
+
+    ;; Delete menu bar
+    (menu-bar-mode -1)
+
+    ;; Display line number
+    (global-display-line-numbers-mode t)
+
+    ;; Delete tool bar
+    (tool-bar-mode -1)
+
+    ;; Delete scroll bar
+    (scroll-bar-mode -1)
 
     ;; Delete welcome message
     (setq inhibit-startup-message t)
@@ -29,10 +41,24 @@ let
       ("zenn.dev - TypeScript" "https://zenn.dev/topics/typescript/feed")
       ("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
       ("zenn.dev - React" "https://zenn.dev/topics/react/feed")))
+
+    ;; Language Mode's settings
+    ;; for Rust-lang
+    (add-hook 'rust-mode-hook
+      (lambda ()
+        (setq-local indent-tabs-mode nil)
+        (setq-local tab-width 4)))
+    (add-hook 'rust-mode-hook 'eglot-ensure)
+
+    ;; for Common Lisp
+    (setq inferior-lisp-program "sbcl")
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     iceberg-theme
     magit
+    rust-mode
+    slime
+    treemacs
   ];
 in
 {
@@ -40,7 +66,7 @@ in
     enable = true;
     extraConfig = emacsConfig;
     extraPackages = emacsExtraPackages;
-    package = pkgs.emacs-nox;
+    package = pkgs.emacs;
   };
   services.emacs = {
     enable = true;
