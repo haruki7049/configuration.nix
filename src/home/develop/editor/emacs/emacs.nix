@@ -13,6 +13,10 @@ let
     ;; Delete welcome message
     (setq inhibit-startup-message t)
 
+    ;; Custom theme
+    (iceberg-theme-create-theme-file)
+    (load-theme 'solarized-iceberg-dark t)
+
     ;; Add News Feed to newsticker.el
     (setq newsticker-url-list
           '(("deno" "https://deno.com/feed")
@@ -26,11 +30,15 @@ let
       ("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
       ("zenn.dev - React" "https://zenn.dev/topics/react/feed")))
   '';
+  emacsExtraPackages = epkgs: with epkgs; [
+    iceberg-theme
+  ];
 in
 {
   programs.emacs = {
     enable = true;
     extraConfig = emacsConfig;
+    extraPackages = emacsExtraPackages;
     package = pkgs.emacs-nox;
   };
   services.emacs = {
