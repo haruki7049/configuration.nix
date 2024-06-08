@@ -27,6 +27,11 @@
     useXkbConfig = true;
   };
 
+  hardware = {
+    pulseaudio.enable = false;
+    bluetooth.enable = true;
+  };
+
   security = {
     polkit.enable = true;
     rtkit.enable = true;
