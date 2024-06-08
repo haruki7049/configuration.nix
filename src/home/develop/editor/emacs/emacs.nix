@@ -41,6 +41,10 @@ let
       ("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
       ("zenn.dev - React" "https://zenn.dev/topics/react/feed")))
 
+    ;; zig-mode
+    (autoload 'zig-mode "zig-mode" "Major mode for editing Zig code" t)
+    (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
+
     ;; SLIME settings
     (slime-setup '(slime-repl slime-fancy slime-banner))
     (setq slime-lisp-implementations
@@ -56,6 +60,7 @@ let
     eglot
     slime
     rust-mode
+    zig-mode
   ];
 in
 {
