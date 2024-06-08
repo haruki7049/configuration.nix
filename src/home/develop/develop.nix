@@ -5,6 +5,7 @@
     ./windowManager/hyprland/hyprland.nix
     ./editor/neovim/neovim.nix
     ./editor/vim/vim.nix
+    ./editor/emacs/emacs.nix
     ./mpd/mpd.nix
     ./xdg/xdg.nix
   ];
@@ -70,6 +71,5 @@
         font.normal.family = "UDEV Gothic NF";
       };
     };
-    emacs = { enable = true; };
   };
 }
