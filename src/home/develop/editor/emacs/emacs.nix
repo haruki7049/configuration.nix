@@ -45,6 +45,10 @@ let
     (autoload 'zig-mode "zig-mode" "Major mode for editing Zig code" t)
     (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
 
+    ;; nix-mode
+    (autoload 'nix-mode "nix-mode" "Major mode for editing Nix code" t)
+    (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+
     ;; SLIME settings
     (slime-setup '(slime-repl slime-fancy slime-banner))
     (setq slime-lisp-implementations
@@ -53,7 +57,19 @@ let
         (clisp ("clisp"))))
 
     ;; Eglot settings
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs
+        '(nix-mode . ("nixd"))))
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs
+        '(zig-mode . ("zls"))))
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs
+        '(rust-mode . ("rust-analyzer"))))
+
     (add-hook 'rust-mode-hook 'eglot-ensure)
+    (add-hook 'zig-mode-hook 'eglot-ensure)
+    (add-hook 'nix-mode-hook 'eglot-ensure)
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
@@ -61,6 +77,7 @@ let
     slime
     rust-mode
     zig-mode
+    nix-mode
   ];
 in
 {
