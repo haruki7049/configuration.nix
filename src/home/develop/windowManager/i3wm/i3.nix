@@ -15,7 +15,7 @@
           "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+p" =
-            "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
+            "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun";
 
           "${modifier}+Left" = "focus left";
           "${modifier}+Right" = "focus right";
