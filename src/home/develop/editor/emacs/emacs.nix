@@ -88,10 +88,4 @@ in
     extraPackages = emacsExtraPackages;
     package = pkgs.emacs;
   };
-  services.emacs = {
-    enable = true;
-    socketActivation.enable = true;
-    defaultEditor = false;
-    client.enable = true;
-  };
 }
