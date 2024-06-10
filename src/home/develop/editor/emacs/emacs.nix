@@ -74,6 +74,7 @@ let
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
     eglot
+    treemacs
     slime
     rust-mode
     zig-mode
