@@ -70,6 +70,9 @@ let
     (add-hook 'rust-mode-hook 'eglot-ensure)
     (add-hook 'zig-mode-hook 'eglot-ensure)
     (add-hook 'nix-mode-hook 'eglot-ensure)
+
+    ;; Direnv settings
+    (add-hook 'after-init-hook 'envrc-global-mode)
   '';
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
@@ -79,6 +82,7 @@ let
     rust-mode
     zig-mode
     nix-mode
+    envrc
   ];
 in
 {

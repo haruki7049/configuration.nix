@@ -8,6 +8,7 @@
     ./editor/emacs/emacs.nix
     ./mpd/mpd.nix
     ./xdg/xdg.nix
+    ./shell/shell.nix
   ];
   home.packages = with pkgs; [
     mg
@@ -64,6 +65,11 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
     alacritty = {
       enable = true;
       settings = {
