@@ -57,6 +57,7 @@ in
     ];
     extraLuaConfig = ''
       -- BASE
+      vim.g.mapleader = ' '
       vim.opt.termguicolors = true
       vim.opt.number = true
       vim.opt.syntax = 'on'
@@ -158,8 +159,8 @@ in
       vim.keymap.set("n", "<leader>q", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>");
       vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)");
       vim.keymap.set("c", "<C-j>", "<Plug>(skkeleton-enable)");
-      vim.keymap.set("n", "<Leader>`", require('Comment.api').toggle.linewise.current);
-      vim.keymap.set("x", "<Leader>`", function()
+      vim.keymap.set("n", "<Leader><Leader>", require('Comment.api').toggle.linewise.current);
+      vim.keymap.set("x", "<Leader><Leader>", function()
         vim.api.nvim_feedkeys('<Esc>', 'nx', false)
         require('Comment.api').toggle.linewise(vim.fn.visualmode())
       end);
