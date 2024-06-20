@@ -6,6 +6,7 @@
     ./editor/neovim/neovim.nix
     ./editor/vim/vim.nix
     ./editor/emacs/emacs.nix
+    ./editor/vscode/vscode.nix
     ./mpd/mpd.nix
     ./xdg/xdg.nix
     ./shell/shell.nix
