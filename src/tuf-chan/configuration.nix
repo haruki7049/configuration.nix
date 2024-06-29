@@ -2,6 +2,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
+    enableContainers = false;
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = with pkgs; [ linuxPackages.v4l2loopback ];
     extraModprobeConfig = ''
@@ -219,6 +220,8 @@
       enable = true;
       enableExtensionPack = true;
     };
+    docker.enable = true;
+    podman.enable = true;
   };
 
   system.stateVersion = "unstable";
