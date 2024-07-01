@@ -103,6 +103,10 @@ in
         command = 'setlocal tabstop=2 shiftwidth=2 et',
       })
       vim.api.nvim_create_autocmd({'FileType'}, {
+        pattern = 'ruby',
+        command = 'setlocal tabstop=2 shiftwidth=2 et',
+      })
+      vim.api.nvim_create_autocmd({'FileType'}, {
         pattern = 'ps1',
         command = 'setlocal tabstop=4 shiftwidth=4 et',
       })
