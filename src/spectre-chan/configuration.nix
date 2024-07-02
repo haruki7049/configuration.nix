@@ -152,7 +152,13 @@
     extraGroups = [ "wheel" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+      allowUnfree = true;
+    };
+  };
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
