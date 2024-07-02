@@ -48,7 +48,7 @@
       enable = true;
       extraPackages = with pkgs; [ amdvlk ];
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
-      driSupport = true;
+      #driSupport = true;
       driSupport32Bit = true;
     };
     pulseaudio.enable = false;
@@ -211,7 +211,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [ "electron-21.4.4" ];
+      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
     };
   };
 
