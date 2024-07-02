@@ -44,12 +44,11 @@
   };
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [ amdvlk ];
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
-      #driSupport = true;
-      driSupport32Bit = true;
     };
     pulseaudio.enable = false;
     bluetooth = { enable = true; };
