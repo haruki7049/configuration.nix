@@ -316,7 +316,6 @@ in
             analyses = {
               unusedparams = true,
             },
-            statuscheck = true,
             gofumpt = true,
           },
         },
