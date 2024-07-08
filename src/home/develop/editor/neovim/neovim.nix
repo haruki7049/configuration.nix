@@ -24,6 +24,7 @@ in
       rubyPackages.solargraph
       ruff
       ruff-lsp
+      gopls
     ];
     plugins = with pkgs.vimPlugins; [
       # zephyr-nvim, A colorscheme for neovim and vim
@@ -306,6 +307,17 @@ in
                 expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
               },
             },
+          },
+        },
+      })
+      require('lspconfig').gopls.setup({
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            statuccheck = true,
+            gofumpt = true,
           },
         },
       })
