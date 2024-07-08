@@ -156,7 +156,7 @@
 
   users.users.haruki = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "wireshark" ];
   };
 
   nixpkgs = {
