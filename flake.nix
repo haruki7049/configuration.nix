@@ -12,13 +12,14 @@
     };
   };
 
-  outputs = { self, systems, nixos, nixpkgs, home-manager, treefmt-nix, flake-utils, ... }:
+  outputs = { self, systems, nixos, nixpkgs, home-manager, treefmt-nix, flake-utils, emacs-overlay, ... }:
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
           (system: f nixpkgs.legacyPackages.${system});
       treefmtEval =
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+      overlays = [ (import emacs-overlay) ];
     in
     {
       homeConfigurations = {
