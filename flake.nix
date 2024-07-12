@@ -6,12 +6,13 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-utils.url = "github:numtide/flake-utils";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
     };
   };
 
-  outputs = { self, systems, nixos, nixpkgs, home-manager, treefmt-nix, ... }:
+  outputs = { self, systems, nixos, nixpkgs, home-manager, treefmt-nix, flake-utils, ... }:
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
