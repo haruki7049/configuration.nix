@@ -38,6 +38,7 @@
     gns3-server
     #ciscoPacketTracer8
     wireshark
+    lutris
   ];
   home.pointerCursor =
     let
