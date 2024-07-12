@@ -30,7 +30,15 @@
     element-desktop
     slack
     whalebird
-    osu-lazer
+    (osu-lazer.overrideAttrs (oldAttrs: rec {
+      version = "2024.625.3";
+      src = fetchFromGitHub {
+        owner = "ppy";
+        repo = "osu";
+        rev = version;
+        hash = "sha256-yZBE1mW9ZekW1JwrsF1QoeNH+D3BOilyQkrg9XE+fnY=";
+      };
+    }))
     anki
     thunderbird
     spotify
