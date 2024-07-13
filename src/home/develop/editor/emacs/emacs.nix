@@ -19,6 +19,11 @@ let
     ;; Delete tool bar
     (tool-bar-mode -1)
 
+    ;; DDSKK'S SETTIINGS
+    (add-to-list 'load-path "${pkgs.emacsPackages.ddskk}/share/emacs/site-lisp/elpa")
+    (setq skk-tut-file "${pkgs.emacsPackages.ddskk}/share/emacs/site-lisp")
+    (global-set-key "\C-x\C-j" 'skk-mode)
+
     ;; Delete scroll bar
     (scroll-bar-mode -1)
 
@@ -83,6 +88,7 @@ let
     zig-mode
     nix-mode
     envrc
+    ddskk
   ];
 in
 {
