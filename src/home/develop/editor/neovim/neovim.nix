@@ -59,7 +59,6 @@ in
     ];
     extraLuaConfig = ''
       -- BASE
-      vim.g.autoformat = false -- Disable autoformat globally
       vim.g.mapleader = ' '
       vim.opt.termguicolors = true
       vim.opt.number = true
