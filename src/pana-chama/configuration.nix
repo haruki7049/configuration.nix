@@ -37,6 +37,7 @@
   hardware = {
     pulseaudio.enable = false;
     bluetooth.enable = true;
+    steam-hardware.enable = true;
   };
 
   security = {
