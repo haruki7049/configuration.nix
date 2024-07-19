@@ -25,6 +25,7 @@ in
       ruff
       ruff-lsp
       gopls
+      zls
     ];
     plugins = with pkgs.vimPlugins; [
       # zephyr-nvim, A colorscheme for neovim and vim
@@ -58,6 +59,7 @@ in
     ];
     extraLuaConfig = ''
       -- BASE
+      vim.b.autoformat = false -- Disable autoformat
       vim.g.mapleader = ' '
       vim.opt.termguicolors = true
       vim.opt.number = true
@@ -323,6 +325,11 @@ in
             gofumpt = true,
           },
         },
+      })
+      require('lspconfig').zls.setup({
+        settings = {
+          diagnostics = false
+        }
       })
 
       -- COLORSCHEME
