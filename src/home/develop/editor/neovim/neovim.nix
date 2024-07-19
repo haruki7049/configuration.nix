@@ -333,6 +333,9 @@ in
 
       -- COLORSCHEME
       vim.cmd("colorscheme zephyr")
+
+      -- DON'T FORMAT ON SAVE, ZIGLANG!!
+      vim.g.zig_fmt_autosave = false
     '';
   };
 }
