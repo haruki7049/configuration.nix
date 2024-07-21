@@ -151,6 +151,7 @@
           })
         ];
       };
+      windowManager.twm.enable = true;
     };
     spotifyd = {
       enable = true;
