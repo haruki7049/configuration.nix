@@ -24,7 +24,7 @@
   time.timeZone = "Asia/Tokyo";
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
       fcitx5 = { addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ]; };
       uim = { toolbar = "gtk3-systray"; };

@@ -15,7 +15,7 @@
   time.timeZone = "Asia/Tokyo";
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
       uim = { toolbar = "gtk3-systray"; };
       enabled = "uim";
