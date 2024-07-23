@@ -28,7 +28,7 @@
     inputMethod = {
       fcitx5 = { addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ]; };
       uim = { toolbar = "gtk3-systray"; };
-      enabled = "uim";
+      type = "uim";
     };
   };
 

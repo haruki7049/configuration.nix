@@ -18,7 +18,7 @@
     defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
       uim = { toolbar = "gtk3-systray"; };
-      enabled = "uim";
+      type = "uim";
     };
   };
 
