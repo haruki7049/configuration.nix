@@ -83,15 +83,6 @@
     asterisk.enable = true;
     blueman.enable = true;
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-    mpd = {
-      enable = true;
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "My pipewire output"
-        }
-      '';
-    };
     libinput.enable = true;
     xserver = {
       enable = true;
