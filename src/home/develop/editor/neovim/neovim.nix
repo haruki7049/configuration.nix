@@ -18,6 +18,7 @@ in
     defaultEditor = true;
     extraPackages = with pkgs; [
       deno
+      typescript-language-server
       rust-analyzer
       lua53Packages.lua-lsp
       nixd
@@ -205,6 +206,7 @@ in
         },
       })
       require('lspconfig').denols.setup({
+        root_dir = lspconfig.util.root_pattern("deno.json"),
         settings = {
           ['denols'] = {
             cmd = {
@@ -234,6 +236,9 @@ in
             },
           },
         },
+      })
+      require('lspconfig').tsserver.setup({
+        root_dir = lspconfig.util.root_pattern("package.json"),
       })
       require('lspconfig').ruff.setup({
         settings = {
