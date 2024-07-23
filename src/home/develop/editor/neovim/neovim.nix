@@ -206,7 +206,7 @@ in
         },
       })
       require('lspconfig').denols.setup({
-        root_dir = lspconfig.util.root_pattern("deno.json"),
+        root_dir = require('lspconfig').util.root_pattern("deno.json"),
         settings = {
           ['denols'] = {
             cmd = {
@@ -238,7 +238,7 @@ in
         },
       })
       require('lspconfig').tsserver.setup({
-        root_dir = lspconfig.util.root_pattern("package.json"),
+        root_dir = require('lspconfig').util.root_pattern("package.json"),
       })
       require('lspconfig').ruff.setup({
         settings = {
