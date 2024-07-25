@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 let
   vimrc = builtins.readFile ./vimrc;
-in {
+in
+{
   programs.vim = {
     enable = true;
     extraConfig = vimrc;
