@@ -1,11 +1,9 @@
 { config, lib, pkgs, ... }:
-{
+let
+  vimrc = builtins.readFile ./vimrc;
+in {
   programs.vim = {
     enable = true;
-    extraConfig = ''
-      set number
-      syntax on
-      colorscheme desert
-    '';
+    extraConfig = vimrc;
   };
 }
