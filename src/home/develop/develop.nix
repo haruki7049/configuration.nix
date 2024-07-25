@@ -15,7 +15,7 @@
   home.packages = with pkgs; [
     mg
     your-editor
-    helix
+    #helix # Use github:helix-editor/helix 's flakes for master build
     bash
     htop
     wget
