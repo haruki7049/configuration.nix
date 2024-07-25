@@ -5,6 +5,7 @@
     ./windowManager/hyprland/hyprland.nix
     ./editor/neovim/neovim.nix
     ./editor/vim/vim.nix
+    ./editor/helix/helix.nix
     ./editor/emacs/emacs.nix
     ./editor/vscode/vscode.nix
     ./mpd/mpd.nix
