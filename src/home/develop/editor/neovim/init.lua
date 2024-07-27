@@ -119,17 +119,6 @@ vim.keymap.set("x", "<Leader><Leader>", function()
   require("Comment.api").toggle.linewise(vim.fn.visualmode())
 end)
 
--- SKKELETON's JISYO
-vim.api.nvim_exec(
-  [[
-  call skkeleton#config({
-    \   'globalDictionaries': ['~/.skk/.skk-jisyo'],
-    \   'eggLikeNewline': v:true,
-    \ })
-]],
-  false
-)
-
 -- Comment out, by Comment.nvim
 require("Comment").setup({
   padding = true,
