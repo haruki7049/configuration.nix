@@ -53,7 +53,6 @@
     pulseaudio.enable = false;
     bluetooth = { enable = true; };
     steam-hardware.enable = true;
-    joycond.enable = true;
   };
 
   security = {
@@ -103,6 +102,7 @@
   };
 
   services = {
+    joycond.enable = true;
     pcscd.enable = true;
     blueman.enable = true;
     openssh.enable = true;
