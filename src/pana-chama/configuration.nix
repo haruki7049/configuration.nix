@@ -38,6 +38,7 @@
     pulseaudio.enable = false;
     bluetooth.enable = true;
     steam-hardware.enable = true;
+    joycond.enable = true;
   };
 
   security = {
