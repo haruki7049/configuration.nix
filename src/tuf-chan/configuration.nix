@@ -2,6 +2,16 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
+    kernelPatches = [
+      {
+        name = "amdgpu-ignore-ctx-privileges";
+        patch = pkgs.fetchpatch {
+          name = "cap_sys_nice_begone.patch";
+          url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+          hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
+        };
+      }
+    ];
     enableContainers = false;
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = with pkgs; [ linuxPackages.v4l2loopback ];
@@ -43,6 +53,8 @@
     style = "adwaita-dark";
   };
 
+  xdg.mime.enable = true;
+
   hardware = {
     graphics = {
       enable = true;
@@ -61,18 +73,24 @@
   };
 
   systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    user.services = {
+      monado.environment = {
+        STEAMVR_LH_ENABLE = "1";
+        XRT_COMPOSITOR_COMPUTE = "1";
+      };
+      polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart =
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
     };
   };
@@ -102,6 +120,10 @@
   };
 
   services = {
+    monado = {
+      enable = true;
+      defaultRuntime = true;
+    };
     joycond.enable = true;
     pcscd.enable = true;
     blueman.enable = true;
@@ -173,6 +195,9 @@
   };
 
   environment = {
+    variables = {
+      VRCLIENT = "~/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrclient.so";
+    };
     etc = {
       "1password/custom_allowed_browsers" = {
         text = ''
@@ -184,6 +209,7 @@
     };
     systemPackages = with pkgs; [
       alsa-utils
+      xdg-utils
     ] ++ [
       # for Hyprland
       wofi
