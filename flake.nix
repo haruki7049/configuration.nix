@@ -4,6 +4,7 @@
   inputs = {
     nixos.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-utils.url = "github:numtide/flake-utils";
@@ -12,7 +13,7 @@
     };
   };
 
-  outputs = { self, systems, nixos, nixpkgs, home-manager, treefmt-nix, flake-utils, emacs-overlay, ... }:
+  outputs = { self, systems, nixos, nixpkgs, nixos-wsl, home-manager, treefmt-nix, flake-utils, emacs-overlay, ... }:
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
@@ -31,6 +32,41 @@
 
       # "nixos-rebuild switch --flake .#tuf-chan"
       nixosConfigurations = {
+        wsl-kun = nixos.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = {
+                  haruki = import ./src/home/haruki.nix;
+                  root = import ./src/home/root.nix;
+                };
+              };
+            }
+            nixos-wsl.nixosModules.default
+            {
+              system.stateVersion = "24.05";
+              wsl.enable = true;
+              wsl.defaultUser = "haruki";
+
+              nixpkgs = {
+                config = {
+                  permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+                  allowUnfree = true;
+                };
+              };
+
+              nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+
+              services.openssh.enable = false;
+            }
+          ];
+        };
+
         tuf-chan = nixos.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
