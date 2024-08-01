@@ -52,6 +52,14 @@
               wsl.enable = true;
               wsl.defaultUser = "haruki";
 
+              programs = {
+                _1password.enable = true;
+                _1password-gui = {
+                  enable = true;
+                  polkitPolicyOwners = [ "haruki" ];
+                };
+              };
+
               nixpkgs = {
                 config = {
                   permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
