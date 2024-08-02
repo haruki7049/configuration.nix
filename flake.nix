@@ -32,47 +32,71 @@
 
       # "nixos-rebuild switch --flake .#tuf-chan"
       nixosConfigurations = {
-        wsl-kun = nixos.lib.nixosSystem {
+        wsl-kun = nixos.lib.nixosSystem rec {
           system = "x86_64-linux";
-          modules = [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  haruki = import ./src/home/haruki.nix;
-                  root = import ./src/home/root.nix;
+          modules =
+            let
+              pkgs = import nixpkgs { inherit system; };
+            in
+            [
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = {
+                    haruki = import ./src/home/haruki.nix;
+                    root = import ./src/home/root.nix;
+                  };
                 };
-              };
-            }
-            nixos-wsl.nixosModules.default
-            {
-              system.stateVersion = "24.05";
-              wsl.enable = true;
-              wsl.defaultUser = "haruki";
+              }
+              nixos-wsl.nixosModules.default
+              {
+                system.stateVersion = "24.05";
 
-              programs = {
-                _1password.enable = true;
-                _1password-gui = {
-                  enable = true;
-                  polkitPolicyOwners = [ "haruki" ];
+                wsl.enable = true;
+                wsl.defaultUser = "haruki";
+
+                networking.hostName = "wsl-kun";
+
+                programs = {
+                  _1password.enable = true;
+                  _1password-gui = {
+                    enable = true;
+                    polkitPolicyOwners = [ "haruki" ];
+                  };
                 };
-              };
 
-              nixpkgs = {
-                config = {
-                  permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
-                  allowUnfree = true;
+                nixpkgs = {
+                  config = {
+                    permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+                    allowUnfree = true;
+                  };
                 };
-              };
 
-              nix.settings.experimental-features = [ "nix-command" "flakes" ];
+                fonts = {
+                  packages = with pkgs; [
+                    ipafont
+                    ipaexfont
+                    noto-fonts
+                    noto-fonts-cjk
+                    noto-fonts-emoji
+                    udev-gothic-nf
+                    liberation_ttf
+                    fira-code
+                    fira-code-symbols
+                    mplus-outline-fonts.githubRelease
+                    dina-font
+                    proggyfonts
+                  ];
+                };
+
+                nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
-              services.openssh.enable = false;
-            }
-          ];
+                services.openssh.enable = false;
+              }
+            ];
         };
 
         tuf-chan = nixos.lib.nixosSystem {
