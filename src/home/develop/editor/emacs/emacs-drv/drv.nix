@@ -33,5 +33,5 @@ stdenv.mkDerivation {
 
   configureFlags = [ "--without-all" ];
 
-  meta.platforms = [ "x86_64-linux" ];
+  meta.platforms = [ "${stdenv.hostPlatform.system}" ];
 }
