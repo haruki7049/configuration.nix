@@ -1,6 +1,9 @@
 { pkgs
 , emacs-src
-, emacs-drv ? import ./emacs-drv/drv.nix
+, emacs-drv ? import ./emacs-drv/drv.nix {
+    inherit pkgs;
+    version = "29.4";
+  }
 , ...
 }:
 let
