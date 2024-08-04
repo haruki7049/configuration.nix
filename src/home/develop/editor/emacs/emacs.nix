@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config
+, lib
+, pkgs
+, stdenv ? pkgs.stdenv
+, emacs-drv ? import ./emacs-drv/drv.nix { }
+, ...
+}:
 let
   emacsConfig = builtins.readFile ./init.el;
   emacsExtraPackages = epkgs: with epkgs; [
@@ -18,6 +24,6 @@ in
     enable = true;
     extraConfig = emacsConfig;
     extraPackages = emacsExtraPackages;
-    package = pkgs.emacs;
+    package = emacs-drv;
   };
 }
