@@ -1,14 +1,18 @@
 { pname ? "emacs"
 , pkgs
 , version
-, emacs-src
 , stdenv ? pkgs.stdenv
 }:
 
 stdenv.mkDerivation {
   inherit pname version;
 
-  src = emacs-src;
+  src = pkgs.fetchFromGitHub {
+    owner = "emacs-mirror";
+    repo = "emacs";
+    rev = "emacs-29.4";
+    hash = "sha256-FCP6ySkN9mAdp2T09n6foS2OciqZXc/54guRZ0B4Z2s=";
+  };
 
   nativeBuildInputs = with pkgs; [
     gnumake
