@@ -1,10 +1,13 @@
 { pname ? "emacs"
 , pkgs
 , version
-, emacs-src
+, specialArgs
 , stdenv ? pkgs.stdenv
 }:
 
+let
+  emacs-src = specialArgs.emacs-src;
+in
 stdenv.mkDerivation {
   inherit pname version;
 

@@ -1,8 +1,7 @@
-{ pkgs, specialArgs, ... }:
+{ pkgs, ... }:
 let
-  emacs-src = specialArgs.emacs-src;
   emacs-drv = import ./emacs-drv/drv.nix {
-    inherit pkgs emacs-src;
+    inherit pkgs;
     version = "29.4";
   };
   emacsConfig = builtins.readFile ./init.el;
