@@ -1,5 +1,6 @@
-{ pkgs, emacs-src, ... }:
+{ pkgs, specialArgs, ... }:
 let
+  emacs-src = specialArgs.emacs-src;
   emacs-drv = import ./emacs-drv/drv.nix {
     inherit pkgs emacs-src;
     version = "29.4";
