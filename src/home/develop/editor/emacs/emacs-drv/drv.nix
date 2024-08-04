@@ -24,6 +24,15 @@ stdenv.mkDerivation {
     texinfo
     ncurses
     gnutls
+    libgccjit
+    tree-sitter
+    alsa-lib
+    gtk3
+    mailutils
+    zlib
+    imagemagick
+    xorg.libXpm
+    giflib
   ];
 
   configurePhase = ''
@@ -31,7 +40,15 @@ stdenv.mkDerivation {
     ./configure --prefix=$out
   '';
 
-  configureFlags = [ "--without-all" ];
+  configureFlags = [
+    "--with-native-compilation"
+    "--with-tree-sitter"
+    "--with-imagemagick"
+    "--with-ns"
+    "--with-x-toolkit=gtk3"
+    "--with-xwidgets"
+    "--with-x"
+  ];
 
   meta.platforms = [ "${stdenv.hostPlatform.system}" ];
 }
