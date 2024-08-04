@@ -2,6 +2,7 @@
 let
   emacs-drv = import ./emacs-drv/drv.nix {
     inherit pkgs;
+    inherit (specialArgs) emacs-src;
     version = "29.4";
   };
   emacsConfig = builtins.readFile ./init.el;
