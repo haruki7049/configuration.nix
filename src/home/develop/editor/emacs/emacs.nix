@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 let
   emacs-drv = import ./emacs-drv/drv.nix {
     inherit pkgs;

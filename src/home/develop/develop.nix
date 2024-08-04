@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
 {
   imports = [
     ./windowManager/i3wm/i3.nix
