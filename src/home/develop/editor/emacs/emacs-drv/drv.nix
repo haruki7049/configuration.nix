@@ -1,6 +1,6 @@
 { pname ? "emacs"
 , pkgs
-, version
+, version ? "29.4"
 , stdenv ? pkgs.stdenv
 }:
 
