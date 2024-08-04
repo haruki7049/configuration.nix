@@ -8,8 +8,9 @@
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-utils.url = "github:numtide/flake-utils";
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
+    emacs-src = {
+      url = "github:emacs-mirror/emacs/emacs-29.4";
+      flake = false;
     };
   };
 
