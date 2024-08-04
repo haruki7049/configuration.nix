@@ -14,14 +14,13 @@
     };
   };
 
-  outputs = { self, systems, nixos, nixpkgs, nixos-wsl, home-manager, treefmt-nix, flake-utils, emacs-overlay, ... }:
+  outputs = { self, systems, nixos, nixpkgs, nixos-wsl, home-manager, treefmt-nix, flake-utils, emacs-src, ... }:
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
           (system: f nixpkgs.legacyPackages.${system});
       treefmtEval =
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-      overlays = [ (import emacs-overlay) ];
     in
     {
       homeConfigurations = {
@@ -35,6 +34,9 @@
       nixosConfigurations = {
         wsl-kun = nixos.lib.nixosSystem rec {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit emacs-src;
+          };
           modules =
             let
               pkgs = import nixpkgs { inherit system; };
@@ -102,6 +104,9 @@
 
         tuf-chan = nixos.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit emacs-src;
+          };
           modules = [
             ./src/tuf-chan/configuration.nix
             home-manager.nixosModules.home-manager
@@ -119,6 +124,9 @@
         };
         pana-chama = nixos.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit emacs-src;
+          };
           modules = [
             ./src/pana-chama/configuration.nix
             home-manager.nixosModules.home-manager
@@ -136,6 +144,9 @@
         };
         spectre-chan = nixos.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit emacs-src;
+          };
           modules = [
             ./src/spectre-chan/configuration.nix
             home-manager.nixosModules.home-manager
@@ -153,6 +164,9 @@
         };
         haruki7049-home = nixos.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit emacs-src;
+          };
           modules = [
             ./src/haruki7049-home/configuration.nix
             home-manager.nixosModules.home-manager
