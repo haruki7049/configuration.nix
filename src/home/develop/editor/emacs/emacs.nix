@@ -1,12 +1,9 @@
-{ pkgs
-, emacs-src
-, emacs-drv ? import ./emacs-drv/drv.nix {
+{ pkgs, ... }:
+let
+  emacs-drv = import ./emacs-drv/drv.nix {
     inherit pkgs;
     version = "29.4";
-  }
-, ...
-}:
-let
+  };
   emacsConfig = builtins.readFile ./init.el;
   emacsExtraPackages = epkgs: with epkgs; [
     ef-themes
