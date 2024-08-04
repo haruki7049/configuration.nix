@@ -12,15 +12,19 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = with pkgs; [
     gnumake
+    pkg-config
   ];
 
   buildInputs = with pkgs; [
     autoconf
     texinfo
     ncurses
+    gnutls
   ];
 
-  preConfigure = ''
+  configurePhase = ''
+    $src/autogen.sh
+    ./configure --prefix=$out
   '';
 
   configureFlags = [ "--without-all" ];
