@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.emacs.overrideAttrs (oldAttrs: {
+pkgs.emacs-gtk.overrideAttrs (oldAttrs: {
   withX = true;
   withPgtk = true;
   withGTK3 = true;
