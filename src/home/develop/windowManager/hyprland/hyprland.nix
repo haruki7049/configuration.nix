@@ -62,8 +62,8 @@
       gestures.workspace_swipe = false;
 
       "$mod" = "SUPER";
-      "$terminal" = "alacritty";
-      "$menu" = "wofi --show drun";
+      "$terminal" = lib.getExe pkgs.alacritty;
+      "$menu" = lib.getExe pkgs.fuzzel;
 
       bind = [
         "$mod, return, exec, $terminal"
@@ -109,10 +109,5 @@
       ];
       windowrulev2 = "suppressevent maximize, class:.*";
     };
-  };
-
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
   };
 }

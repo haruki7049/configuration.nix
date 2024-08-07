@@ -34,11 +34,12 @@
   time.timeZone = "Asia/Tokyo";
 
   i18n = {
-    defaultLocale = "ja_JP.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     inputMethod = {
       fcitx5 = { addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ]; };
       uim = { toolbar = "gtk3-systray"; };
       type = "uim";
+      enabled = "uim";
     };
   };
 
@@ -115,8 +116,21 @@
     };
     hyprland = {
       enable = true;
-      xwayland.enable = true;
+      xwayland.enable = false;
     };
+    sway = {
+      enable = true;
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        alacritty
+        rofi
+      ];
+      wrapperFeatures.base = true;
+      wrapperFeatures.gtk = true;
+      xwayland.enable = false;
+    };
+    waybar.enable = false;
   };
 
   services = {
