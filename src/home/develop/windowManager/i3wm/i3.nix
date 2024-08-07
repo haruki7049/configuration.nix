@@ -13,7 +13,7 @@
           {
             command = lib.strings.concatStringsSep " " [
               "feh --bg-scale"
-              (lib.strings.toString ../wallpapers/fanta-hhkb.jpg)
+              (builtins.toString ../wallpapers/fanta-hhkb.jpg)
             ];
             always = true;
             notification = false;
