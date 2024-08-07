@@ -164,6 +164,7 @@
       xkb.layout = "us";
       #displayManager.lightdm.enable = true;
       displayManager.startx.enable = true;
+      desktopManager.runXdgAutostartIfNone = true;
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
