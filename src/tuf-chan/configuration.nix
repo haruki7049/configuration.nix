@@ -148,7 +148,8 @@
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.layout = "us";
-      displayManager.lightdm.enable = true;
+      #displayManager.lightdm.enable = true;
+      displayManager.startx.enable = true;
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
