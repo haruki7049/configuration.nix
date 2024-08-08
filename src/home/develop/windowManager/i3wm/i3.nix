@@ -95,7 +95,7 @@
         };
         bars = [{
           position = "bottom";
-          command = lib.getExe pkgs.i3status;
+          statusCommand = lib.getExe pkgs.i3status;
         }];
       };
   };
