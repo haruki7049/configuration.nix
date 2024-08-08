@@ -94,8 +94,7 @@
           size = 8.0;
         };
         bars = [{
-          position = "bottom";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
+          command = builtins.toString ../tools/eww/start-eww.sh;
         }];
       };
   };
