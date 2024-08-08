@@ -94,7 +94,8 @@
           size = 8.0;
         };
         bars = [{
-          command = builtins.toString ../tools/eww/start-eww.sh;
+          position = "bottom";
+          command = lib.getExe pkgs.i3status;
         }];
       };
   };
