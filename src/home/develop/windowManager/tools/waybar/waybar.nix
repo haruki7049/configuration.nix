@@ -8,7 +8,7 @@
         position = "top";
         height = 30;
         modules-left = [ "sway/workspaces" "hyprland/workspaces" ];
-        modules-right = [ "clock" ];
+        modules-center = [ "clock" ];
 
         clock = {
           format = "{:%H:%M}";
