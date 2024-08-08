@@ -95,7 +95,7 @@
         };
         bars = [{
           position = "bottom";
-          statusCommand = lib.getExe pkgs.i3status;
+          statusCommand = lib.getExe pkgs.i3status-rust;
         }];
       };
   };
