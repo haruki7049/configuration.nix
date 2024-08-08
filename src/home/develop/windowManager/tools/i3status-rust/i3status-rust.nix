@@ -4,7 +4,7 @@
     enable = true;
     bars.default = {
       #icons = "awesome4";
-      #theme = "solarized-daek";
+      #theme = "solarized-dark";
       settings = {
         icons = {
           icons = "awesome4";
@@ -19,7 +19,7 @@
           };
         };
         theme = {
-          theme = "solarized-daek";
+          theme = "solarized-dark";
           overrides = {
             idle_bg = "#123456";
             idle_fg = "#abcdef";
