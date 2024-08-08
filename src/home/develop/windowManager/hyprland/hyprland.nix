@@ -61,6 +61,10 @@
       };
       gestures.workspace_swipe = false;
 
+      exec-once = [
+        (builtins.toString ../tools/eww/start-eww.sh)
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = lib.getExe pkgs.alacritty;
       "$menu" = lib.getExe pkgs.fuzzel;
