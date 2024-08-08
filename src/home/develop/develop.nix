@@ -5,6 +5,7 @@
     ./windowManager/hyprland/hyprland.nix
     ./windowManager/tools/fuzzel/fuzzel.nix
     ./windowManager/tools/waybar/waybar.nix
+    #./windowManager/tools/eww/eww.nix
     ./windowManager/tools/hyprpaper/hyprpaper.nix
     ./editor/neovim/neovim.nix
     ./editor/vim/vim.nix
