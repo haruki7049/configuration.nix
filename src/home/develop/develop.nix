@@ -54,6 +54,19 @@
     wireshark
     lutris
   ];
+  home.file = {
+    xinitrc = {
+      enable = true;
+      executable = true;
+      target = ".xinitrc";
+      text = ''
+        #!/bin/sh
+
+        ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+        exec ${pkgs.i3}/bin/i3
+      '';
+    };
+  };
   home.pointerCursor =
     let
       getFrom = url: sha256: name: size: {
