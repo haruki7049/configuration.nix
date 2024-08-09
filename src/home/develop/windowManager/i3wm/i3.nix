@@ -12,8 +12,9 @@
         startup = [
           {
             command = lib.strings.concatStringsSep " " [
-              "feh --bg-scale"
-              (builtins.toString ../wallpapers/fanta-hhkb.jpg)
+              (lib.getExe pkgs.feh)
+              "--bg-center"
+              (builtins.toString ../wallpapers/use-nix_nixos.jpg)
             ];
             always = true;
             notification = false;
