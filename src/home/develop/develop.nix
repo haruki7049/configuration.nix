@@ -13,6 +13,7 @@
     ./editor/helix/helix.nix
     ./editor/emacs/emacs.nix
     ./editor/vscode/vscode.nix
+    ./tools/fzf/fzf.nix
     ./mpd/mpd.nix
     ./xdg/xdg.nix
     ./shell/shell.nix
