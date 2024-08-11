@@ -2,7 +2,6 @@
   description = "My NixOS's configuration for haruki7049";
 
   inputs = {
-    nixos.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     home-manager.url = "github:nix-community/home-manager";
@@ -18,7 +17,6 @@
   outputs =
     { self
     , systems
-    , nixos
     , nixpkgs
     , home-manager
     , treefmt-nix
@@ -45,7 +43,7 @@
                 config.allowUnfree = true;
               };
             in
-            nixos.lib.nixosSystem {
+            nixpkgs.lib.nixosSystem {
               inherit system;
               modules = [
                 systemConfiguration
