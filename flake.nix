@@ -35,7 +35,13 @@
     {
       nixosConfigurations =
         let
-          x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs }:
+          x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs, emacs-overlay }:
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+              };
+            in
             nixos.lib.nixosSystem {
               inherit system;
               modules = [
@@ -45,7 +51,9 @@
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    users = userhome-configs;
+                    users = userhome-configs {
+                      inherit pkgs emacs-overlay;
+                    };
                   };
                 }
               ];
@@ -53,22 +61,19 @@
         in
         {
           tuf-chan = x86_64-linux-pc {
+            inherit emacs-overlay;
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix {
-              inherit emacs-overlay;
-            };
+            userhome-configs = import ./src/home/users/default.nix;
           };
           pana-chama = x86_64-linux-pc {
+            inherit emacs-overlay;
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix {
-              inherit emacs-overlay;
-            };
+            userhome-configs = import ./src/home/users/default.nix;
           };
           spectre-chan = x86_64-linux-pc {
+            inherit emacs-overlay;
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix {
-              inherit emacs-overlay;
-            };
+            userhome-configs = import ./src/home/users/default.nix;
           };
         };
 

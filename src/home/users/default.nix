@@ -1,6 +1,6 @@
-{ emacs-overlay }:
+{ pkgs, emacs-overlay }:
 
 {
-  haruki = import ./haruki.nix;
-  root = import ./root.nix;
+  haruki = import ./haruki.nix { inherit pkgs emacs-overlay; };
+  root = import ./root.nix { inherit pkgs emacs-overlay; };
 }
