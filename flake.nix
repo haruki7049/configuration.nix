@@ -54,24 +54,15 @@
         {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = {
-              haruki = import ./src/home/users/haruki.nix;
-              root = import ./src/home/users/root.nix;
-            };
+            userhome-configs = import ./src/home/users/default.nix { };
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = {
-              haruki = import ./src/home/users/haruki.nix;
-              root = import ./src/home/users/root.nix;
-            };
+            userhome-configs = import ./src/home/users/default.nix { };
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = {
-              haruki = import ./src/home/users/haruki.nix;
-              root = import ./src/home/users/root.nix;
-            };
+            userhome-configs = import ./src/home/users/default.nix { };
           };
         };
 
