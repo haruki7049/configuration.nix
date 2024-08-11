@@ -35,10 +35,13 @@
     {
       nixosConfigurations =
         let
-          x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs, emacs-overlay }:
+          x86_64-linux-pc = { system ? "x87_64-linux", systemConfiguration, userhome-configs }:
             let
+              overlays = [
+                (import emacs-overlay)
+              ];
               pkgs = import nixpkgs {
-                inherit system;
+                inherit system overlays;
                 config.allowUnfree = true;
               };
             in
@@ -52,7 +55,7 @@
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     users = userhome-configs {
-                      inherit pkgs emacs-overlay;
+                      inherit pkgs;
                     };
                   };
                 }
@@ -61,17 +64,14 @@
         in
         {
           tuf-chan = x86_64-linux-pc {
-            inherit emacs-overlay;
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
             userhome-configs = import ./src/home/users/default.nix;
           };
           pana-chama = x86_64-linux-pc {
-            inherit emacs-overlay;
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
             userhome-configs = import ./src/home/users/default.nix;
           };
           spectre-chan = x86_64-linux-pc {
-            inherit emacs-overlay;
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
             userhome-configs = import ./src/home/users/default.nix;
           };
