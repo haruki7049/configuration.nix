@@ -54,15 +54,21 @@
         {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix { };
+            userhome-configs = import ./src/home/users/default.nix {
+              inherit emacs-overlay;
+            };
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix { };
+            userhome-configs = import ./src/home/users/default.nix {
+              inherit emacs-overlay;
+            };
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix { };
+            userhome-configs = import ./src/home/users/default.nix {
+              inherit emacs-overlay;
+            };
           };
         };
 

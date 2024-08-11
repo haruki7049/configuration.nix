@@ -1,4 +1,4 @@
-{ }:
+{ emacs-overlay }:
 
 {
   haruki = import ./haruki.nix;
