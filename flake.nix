@@ -8,9 +8,10 @@
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-utils.url = "github:numtide/flake-utils";
-    emacs-src = {
-      url = "github:emacs-mirror/emacs/emacs-29.4";
-      flake = false;
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixos.follows = "nixos";
     };
   };
 
@@ -19,11 +20,9 @@
     , systems
     , nixos
     , nixpkgs
-    , nixos-wsl
     , home-manager
     , treefmt-nix
-    , flake-utils
-    , emacs-src
+    , emacs-overlay
     , ...
     }:
     let
