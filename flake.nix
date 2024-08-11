@@ -14,7 +14,18 @@
     };
   };
 
-  outputs = { self, systems, nixos, nixpkgs, nixos-wsl, home-manager, treefmt-nix, flake-utils, emacs-src, ... }:
+  outputs =
+    { self
+    , systems
+    , nixos
+    , nixpkgs
+    , nixos-wsl
+    , home-manager
+    , treefmt-nix
+    , flake-utils
+    , emacs-src
+    , ...
+    }:
     let
       eachSystem = f:
         nixpkgs.lib.genAttrs (import systems)
@@ -23,182 +34,43 @@
         eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
-      homeConfigurations = {
-        "haruki7049" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-          modules = [ ./src/home/haruki.nix ];
-        };
-      };
-
-      # "nixos-rebuild switch --flake .#tuf-chan"
-      nixosConfigurations = {
-        wsl-kun = nixos.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit emacs-src;
-          };
-          modules =
-            let
-              pkgs = import nixpkgs { inherit system; };
-            in
-            [
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users = {
-                    haruki = import ./src/home/haruki.nix;
-                    root = import ./src/home/root.nix;
-                  };
-                };
-              }
-              nixos-wsl.nixosModules.default
-              {
-                system.stateVersion = "24.05";
-
-                wsl.enable = true;
-                wsl.defaultUser = "haruki";
-
-                networking.hostName = "wsl-kun";
-
-                programs = {
-                  _1password.enable = true;
-                  _1password-gui = {
-                    enable = true;
-                    polkitPolicyOwners = [ "haruki" ];
-                  };
-                };
-
-                nixpkgs = {
-                  config = {
-                    permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
-                    allowUnfree = true;
-                  };
-                };
-
-                fonts = {
-                  packages = with pkgs; [
-                    ipafont
-                    ipaexfont
-                    noto-fonts
-                    noto-fonts-cjk
-                    noto-fonts-emoji
-                    udev-gothic-nf
-                    liberation_ttf
-                    fira-code
-                    fira-code-symbols
-                    mplus-outline-fonts.githubRelease
-                    dina-font
-                    proggyfonts
-                  ];
-                };
-
-                nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-                services.openssh.enable = false;
-              }
-            ];
-        };
-
-        tuf-chan = nixos.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit emacs-src;
-          };
+      nixosConfigurations =
+      let
+        x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs }:
+        nixos.lib.nixosSystem {
+          inherit system;
           modules = [
-            ./src/systems/tuf-chan/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  haruki = import ./src/home/haruki.nix;
-                  root = import ./src/home/root.nix;
-                };
-              };
+            systemConfiguration
+            home-manager.nixosModules.home-manager {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users = userhome-configs;
             }
           ];
         };
-        pana-chama = nixos.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit emacs-src;
+      in
+      {
+        tuf-chan = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
+          userhome-configs = {
+            haruki = import ./src/home/haruki.nix;
+            root = import ./src/home/root.nix;
           };
-          modules = [
-            ./src/systems/pana-chama/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  haruki = import ./src/home/haruki.nix;
-                  root = import ./src/home/root.nix;
-                };
-              };
-            }
-          ];
         };
-        spectre-chan = nixos.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit emacs-src;
+        pana-chama = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/pana-chama/configuration.nix;
+          userhome-configs = {
+            haruki = import ./src/home/haruki.nix;
+            root = import ./src/home/root.nix;
           };
-          modules = [
-            ./src/systems/spectre-chan/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  haruki = import ./src/home/haruki.nix;
-                  root = import ./src/home/root.nix;
-                };
-              };
-            }
-          ];
         };
-        haruki7049-home = nixos.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit emacs-src;
+        spectre-chan = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
+          userhome-configs = {
+            haruki = import ./src/home/haruki.nix;
+            root = import ./src/home/root.nix;
           };
-          modules = [
-            ./src/systems/haruki7049-home/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  haruki = import ./src/home/haruki.nix;
-                  root = import ./src/home/root.nix;
-                };
-              };
-            }
-          ];
         };
-        #raspi-chan = nixos.lib.nixosSystem {
-        #  system = "aarch64-linux";
-        #  modules = [
-        #    ./src/systems/raspi-chan/configuration.nix
-        #    home-manager.nixosModules.home-manager
-        #    {
-        #      home-manager = {
-        #        useGlobalPkgs = true;
-        #        useUserPackages = true;
-        #        users = {
-        #          haruki = import ./src/home/haruki.nix;
-        #          root = import ./src/home/root.nix;
-        #        };
-        #      };
-        #    }
-        #  ];
-        #};
       };
 
       # Use `nix fmt`
