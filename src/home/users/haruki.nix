@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   sshConfig = ''
     Host *
@@ -17,7 +17,7 @@ let
   '';
 in
 {
-  imports = [ ./develop/develop.nix ];
+  imports = [ ../develop/develop.nix ];
 
   home = {
     username = "haruki";
