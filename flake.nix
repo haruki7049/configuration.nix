@@ -42,9 +42,11 @@
                 systemConfiguration
                 home-manager.nixosModules.home-manager
                 {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users = userhome-configs;
+                  home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users = userhome-configs;
+                  };
                 }
               ];
             };
