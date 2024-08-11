@@ -108,7 +108,7 @@
             inherit emacs-src;
           };
           modules = [
-            ./src/tuf-chan/configuration.nix
+            ./src/systems/tuf-chan/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -128,7 +128,7 @@
             inherit emacs-src;
           };
           modules = [
-            ./src/pana-chama/configuration.nix
+            ./src/systems/pana-chama/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -148,7 +148,7 @@
             inherit emacs-src;
           };
           modules = [
-            ./src/spectre-chan/configuration.nix
+            ./src/systems/spectre-chan/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -168,7 +168,7 @@
             inherit emacs-src;
           };
           modules = [
-            ./src/haruki7049-home/configuration.nix
+            ./src/systems/haruki7049-home/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -185,7 +185,7 @@
         #raspi-chan = nixos.lib.nixosSystem {
         #  system = "aarch64-linux";
         #  modules = [
-        #    ./src/raspi-chan/configuration.nix
+        #    ./src/systems/raspi-chan/configuration.nix
         #    home-manager.nixosModules.home-manager
         #    {
         #      home-manager = {
