@@ -35,43 +35,44 @@
     in
     {
       nixosConfigurations =
-      let
-        x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs }:
-        nixos.lib.nixosSystem {
-          inherit system;
-          modules = [
-            systemConfiguration
-            home-manager.nixosModules.home-manager {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users = userhome-configs;
-            }
-          ];
-        };
-      in
-      {
-        tuf-chan = x86_64-linux-pc {
-          systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-          userhome-configs = {
-            haruki = import ./src/home/haruki.nix;
-            root = import ./src/home/root.nix;
+        let
+          x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs }:
+            nixos.lib.nixosSystem {
+              inherit system;
+              modules = [
+                systemConfiguration
+                home-manager.nixosModules.home-manager
+                {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = userhome-configs;
+                }
+              ];
+            };
+        in
+        {
+          tuf-chan = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
+            userhome-configs = {
+              haruki = import ./src/home/haruki.nix;
+              root = import ./src/home/root.nix;
+            };
+          };
+          pana-chama = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/pana-chama/configuration.nix;
+            userhome-configs = {
+              haruki = import ./src/home/haruki.nix;
+              root = import ./src/home/root.nix;
+            };
+          };
+          spectre-chan = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
+            userhome-configs = {
+              haruki = import ./src/home/haruki.nix;
+              root = import ./src/home/root.nix;
+            };
           };
         };
-        pana-chama = x86_64-linux-pc {
-          systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-          userhome-configs = {
-            haruki = import ./src/home/haruki.nix;
-            root = import ./src/home/root.nix;
-          };
-        };
-        spectre-chan = x86_64-linux-pc {
-          systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-          userhome-configs = {
-            haruki = import ./src/home/haruki.nix;
-            root = import ./src/home/root.nix;
-          };
-        };
-      };
 
       # Use `nix fmt`
       formatter =
