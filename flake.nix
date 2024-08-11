@@ -32,7 +32,7 @@
     {
       nixosConfigurations =
         let
-          x86_64-linux-pc = { system ? "x87_64-linux", systemConfiguration, userhome-configs }:
+          x86_64-linux-pc = { system ? "x86_64-linux", systemConfiguration, userhome-configs }:
             let
               overlays = [
                 (import emacs-overlay)
