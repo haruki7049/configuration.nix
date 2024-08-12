@@ -92,7 +92,7 @@
 
       # Use `nix flake check`
       checks = {
-        formatting = treefmtEval.config.build.check;
+        formatting = treefmtEval.config.build.check self;
       };
     });
 }
