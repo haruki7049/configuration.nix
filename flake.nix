@@ -18,6 +18,7 @@
     , systems
     , nixpkgs
     , home-manager
+    , flake-utils
     , treefmt-nix
     , emacs-overlay
     , ...
@@ -87,6 +88,7 @@
       checks = eachSystem (pkgs: {
         formatting = treefmtEval.${pkgs.system}.config.build.check self;
       });
-    };
+    } //
+    flake-utils.lib.eachDefaultSystem (system: { });
 }
 
