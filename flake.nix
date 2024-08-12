@@ -18,6 +18,7 @@
     , systems
     , nixpkgs
     , home-manager
+    , flake-utils
     , treefmt-nix
     , emacs-overlay
     , ...
@@ -78,15 +79,21 @@
             userhome-configs = import ./src/home/users/default.nix;
           };
         };
-
+    } //
+    flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = import nixpkgs { inherit system; };
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+    in
+    {
       # Use `nix fmt`
       formatter =
-        eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+        treefmtEval.config.build.wrapper;
 
       # Use `nix flake check`
-      checks = eachSystem (pkgs: {
-        formatting = treefmtEval.${pkgs.system}.config.build.check self;
-      });
-    };
+      checks = {
+        formatting = treefmtEval.config.build.check self;
+      };
+    });
 }
 
