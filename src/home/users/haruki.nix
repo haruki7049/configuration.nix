@@ -10,10 +10,10 @@ let
     Host gitlab.com
       User git
             
-    Host haruki7049-home
-      HostName ssh.haruki7049.dev
+    Host keyserver
+      HostName keyserver.haruki7049.dev
       User haruki
-      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.haruki7049.dev
+      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname keyserver.haruki7049.dev
   '';
 in
 {
