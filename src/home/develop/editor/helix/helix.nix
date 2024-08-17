@@ -15,6 +15,14 @@
           name = "zig";
           auto-format = true;
         }
+        {
+          name = "perl";
+          auto-format = true;
+        }
+        {
+          name = "nix";
+          auto-format = true;
+        }
       ];
     };
   };
