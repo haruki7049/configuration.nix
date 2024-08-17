@@ -255,6 +255,17 @@ require("lspconfig").nixd.setup({
     },
   },
 })
+require("lspconfig").nil_ls.setup({
+  autostart = true,
+  settings = {
+    ['nil'] = {
+      testSettings = 42,
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      },
+    },
+  },
+})
 require("lspconfig").gopls.setup({
   settings = {
     gopls = {
