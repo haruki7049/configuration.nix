@@ -8,6 +8,7 @@
     ./windowManager/tools/i3status-rust/i3status-rust.nix
     #./windowManager/tools/eww/eww.nix
     ./windowManager/tools/hyprpaper/hyprpaper.nix
+    ./browser/firefox/firefox.nix
     ./editor/neovim/neovim.nix
     ./editor/vim/vim.nix
     ./editor/helix/helix.nix
