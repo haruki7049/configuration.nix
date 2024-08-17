@@ -40,7 +40,7 @@ in
       gopls
       zls
     ];
-    plugins = with pkgs.vimPlugins; [
+    plugins = (with pkgs.vimPlugins; [
       # zephyr-nvim, A colorscheme for neovim and vim
       zephyr-nvim
 
@@ -57,6 +57,9 @@ in
       # lspconfig
       nvim-lspconfig
 
+      # GitHub Copilot
+      copilot-vim
+    ]) ++ [
       # skkeleton, Vim's SKK
       (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf"
         "vim-skk" "skkeleton"
@@ -66,9 +69,6 @@ in
       (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89"
         "numToStr" "Comment.nvim"
         "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc=")
-
-      # GitHub Copilot
-      copilot-vim
     ];
     extraLuaConfig = lib.strings.concatStrings [
       (builtins.readFile ./init.lua)
