@@ -56,6 +56,12 @@
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in
     {
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.lua-language-server
+        ];
+      };
+
       # Use `nix fmt`
       formatter =
         treefmtEval.config.build.wrapper;
