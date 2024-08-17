@@ -1,3 +1,3 @@
 { pkgs }:
 
-pkgs.emacs-unstable-pgtk
+pkgs.emacs-unstable
