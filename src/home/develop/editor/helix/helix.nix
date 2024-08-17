@@ -2,6 +2,9 @@
   programs.helix = {
     enable = false;
     defaultEditor = false;
+    settings = {
+      theme = "dracula";
+    };
     languages = {
       language = [
         {
