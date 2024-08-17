@@ -41,8 +41,8 @@ in
       zls
     ];
     plugins = (with pkgs.vimPlugins; [
-      # zephyr-nvim, A colorscheme for neovim and vim
-      zephyr-nvim
+      # Colorscheme, nvim-base16
+      base16-nvim
 
       # plenary, A library for plugin creator
       plenary-nvim

@@ -272,7 +272,7 @@ require("lspconfig").zls.setup({
 })
 
 -- COLORSCHEME
-vim.cmd("colorscheme zephyr")
+vim.cmd("colorscheme base16-dracula")
 
 -- DON'T FORMAT ON SAVE, ZIGLANG!!
 vim.g.zig_fmt_autosave = false
