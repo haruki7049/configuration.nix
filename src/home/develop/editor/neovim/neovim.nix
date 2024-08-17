@@ -59,6 +59,9 @@ in
 
       # GitHub Copilot
       copilot-vim
+
+      # Treesitter
+      nvim-treesitter.withAllGrammars
     ]) ++ [
       # skkeleton, Vim's SKK
       (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf"
