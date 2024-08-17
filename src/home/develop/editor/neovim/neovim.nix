@@ -33,7 +33,6 @@ in
       typescript-language-server
       rust-analyzer
       lua53Packages.lua-lsp
-      nixd
       rubyPackages.solargraph
       ruff
       ruff-lsp
