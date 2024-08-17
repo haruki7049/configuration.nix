@@ -258,7 +258,7 @@ require("lspconfig").nixd.setup({
 require("lspconfig").nil_ls.setup({
   autostart = true,
   settings = {
-    ['nil'] = {
+    ["nil"] = {
       testSettings = 42,
       formatting = {
         command = { "nixpkgs-fmt" },
