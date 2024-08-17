@@ -5,7 +5,7 @@ let
   };
   emacsConfig = builtins.readFile ./init.el;
   emacsExtraPackages = epkgs: with epkgs; [
-    ef-themes
+    dracula-theme
     eglot
     treemacs
     slime

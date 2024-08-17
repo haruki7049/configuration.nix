@@ -28,7 +28,7 @@
 (setq inhibit-startup-message t)
 
 ;; Custom theme
-(load-theme 'ef-maris-dark t)
+(load-theme 'dracula t)
 
 ;; Add News Feed to newsticker.el
 (setq newsticker-url-list
