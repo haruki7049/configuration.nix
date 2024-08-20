@@ -15,7 +15,6 @@
 
   outputs =
     { self
-    , systems
     , nixpkgs
     , home-manager
     , flake-utils
@@ -23,13 +22,6 @@
     , emacs-overlay
     , ...
     }:
-    let
-      eachSystem = f:
-        nixpkgs.lib.genAttrs (import systems)
-          (system: f nixpkgs.legacyPackages.${system});
-      treefmtEval =
-        eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
-    in
     {
       nixosConfigurations =
         let
