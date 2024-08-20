@@ -52,6 +52,7 @@
         packages = [
           pkgs.lua-language-server
           pkgs.nil
+          pkgs.sops
         ];
       };
 
