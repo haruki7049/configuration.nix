@@ -70,11 +70,6 @@
   };
 
   programs = {
-    _1password = { enable = true; };
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = [ "haruki" ];
-    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
