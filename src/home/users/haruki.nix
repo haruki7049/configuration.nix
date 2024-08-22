@@ -2,7 +2,7 @@
 let
   sshConfig = ''
     Host *
-      IdentityAgent ~/.1password/agent.sock
+      IdentityFile ~/.ssh/haruki7049
 
     Host github.com
       User git
@@ -71,12 +71,7 @@ in
       userName = "haruki7049";
       userEmail = "tontonkirikiri@gmail.com";
       extraConfig = {
-        user.signingkey =
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7Rjpnf4kB6UIILl8fohRn0Gz1aBYM59OHlEjdPd/gS";
         init.defaultBranch = "main";
-        gpg.format = "ssh";
-        gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-        commit.gpgsign = true;
         pull.rebase = true;
       };
     };

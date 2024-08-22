@@ -103,11 +103,6 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    _1password = { enable = true; };
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = [ "haruki" ];
-    };
     gnupg = {
       agent = {
         enable = true;
