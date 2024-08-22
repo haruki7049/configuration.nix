@@ -71,10 +71,7 @@ in
       userName = "haruki7049";
       userEmail = "tontonkirikiri@gmail.com";
       extraConfig = {
-        user.signingkey =
-          "D7CD44E4FFBEE0BC411F5A25D94B96EDE02EEFA4";
         init.defaultBranch = "main";
-        commit.gpgsign = true;
         pull.rebase = true;
       };
     };
