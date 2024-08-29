@@ -24,8 +24,12 @@
   i18n = {
     defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
-      uim = { toolbar = "gtk3-systray"; };
-      type = "uim";
+      fcitx5 = {
+        addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ];
+        waylandFrontend = true;
+      };
+      type = "fcitx5";
+      enable = true;
     };
   };
 
