@@ -81,6 +81,12 @@
     blueman.enable = true;
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     libinput.enable = true;
+    displayManager = {
+      ly = {
+        enable = true;
+        settings = { };
+      };
+    };
     xserver = {
       enable = true;
       xkb.layout = "us";
@@ -96,7 +102,6 @@
           pavucontrol
         ];
       };
-      displayManager.lightdm.enable = true;
       desktopManager.runXdgAutostartIfNone = true;
     };
     pipewire = {
