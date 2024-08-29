@@ -14,7 +14,7 @@
             command = lib.strings.concatStringsSep " " [
               (lib.getExe pkgs.feh)
               "--bg-center"
-              (builtins.toString ../wallpapers/use-nix_nixos.jpg)
+              (pkgs.callPackage ../wallpapers/use-nix_nixos.nix { }).outPath
             ];
             always = true;
             notification = false;
