@@ -19,6 +19,10 @@
     ./xdg/xdg.nix
     ./shell/shell.nix
   ];
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-skk fcitx5-mozc fcitx5-gtk ];
+  };
   home.packages = with pkgs; [
     mg
     your-editor
