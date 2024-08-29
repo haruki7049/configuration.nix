@@ -153,12 +153,16 @@
       enable = true;
       mouse = { accelProfile = "flat"; };
     };
+    displayManager = {
+      ly = {
+        enable = true;
+        settings = { };
+      };
+    };
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.layout = "us";
-      #displayManager.lightdm.enable = true;
-      displayManager.startx.enable = true;
       desktopManager.runXdgAutostartIfNone = true;
       windowManager.i3 = {
         enable = true;
