@@ -40,6 +40,10 @@
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
             userhome-configs = import ./src/home/users/default.nix;
           };
+          latitude-chan = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
+            userhome-configs = import ./src/home/users/default.nix;
+          };
         };
     } //
     flake-utils.lib.eachDefaultSystem (system:
