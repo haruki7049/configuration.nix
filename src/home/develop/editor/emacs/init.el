@@ -65,7 +65,7 @@
 ;; Eglot settings
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-    '(nix-mode . ("nixd"))))
+    '(nix-mode . ("nil"))))
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
     '(zig-mode . ("zls"))))
