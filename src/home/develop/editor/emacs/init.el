@@ -3,6 +3,9 @@
   :family "UDEV Gothic NF" ;;This point has a font dependency
   :height 80)
 
+;; Save history of mini-buffer and etc
+(savehist-mode 1)
+
 ;; Backup files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -62,7 +65,7 @@
 ;; Eglot settings
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-    '(nix-mode . ("nixd"))))
+    '(nix-mode . ("nil"))))
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
     '(zig-mode . ("zls"))))
@@ -74,5 +77,9 @@
 (add-hook 'zig-mode-hook 'eglot-ensure)
 (add-hook 'nix-mode-hook 'eglot-ensure)
 
+;; Enable Vertico
+(vertico-mode)
+
 ;; Direnv settings
+;; This mode MUST be enabled after other global minor modes
 (add-hook 'after-init-hook 'envrc-global-mode)
