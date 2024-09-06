@@ -7,7 +7,7 @@ let
   emacsExtraPackages = epkgs: with epkgs; [
     dracula-theme
     eglot
-    treemacs
+    neotree
     slime
     rust-mode
     zig-mode
