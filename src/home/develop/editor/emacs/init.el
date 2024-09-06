@@ -3,6 +3,9 @@
   :family "UDEV Gothic NF" ;;This point has a font dependency
   :height 80)
 
+;; Save history of mini-buffer and etc
+(savehist-mode 1)
+
 ;; Backup files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -76,3 +79,6 @@
 
 ;; Direnv settings
 (add-hook 'after-init-hook 'envrc-global-mode)
+
+;; Enable Vertico
+(vertico-mode)

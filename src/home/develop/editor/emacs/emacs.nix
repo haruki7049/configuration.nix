@@ -14,6 +14,7 @@ let
     nix-mode
     envrc
     ddskk
+    vertico
   ];
 in
 {
