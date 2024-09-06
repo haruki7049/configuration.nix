@@ -37,6 +37,7 @@
     nixpkgs-fmt
     brave
     google-chrome
+    nyxt
     neovide
     discord
     element-desktop
