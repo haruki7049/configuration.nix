@@ -77,8 +77,9 @@
 (add-hook 'zig-mode-hook 'eglot-ensure)
 (add-hook 'nix-mode-hook 'eglot-ensure)
 
-;; Direnv settings
-(add-hook 'after-init-hook 'envrc-global-mode)
-
 ;; Enable Vertico
 (vertico-mode)
+
+;; Direnv settings
+;; This mode MUST be enabled after other global minor modes
+(add-hook 'after-init-hook 'envrc-global-mode)
