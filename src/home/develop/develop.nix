@@ -60,6 +60,8 @@
     #ciscoPacketTracer8
     wireshark
     lutris
+    bitwarden-cli
+    bitwarden-desktop
   ];
   home.pointerCursor =
     let
