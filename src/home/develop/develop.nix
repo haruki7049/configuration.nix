@@ -62,6 +62,7 @@
     lutris
     bitwarden-cli
     bitwarden-desktop
+    zulip
   ];
   home.pointerCursor =
     let
