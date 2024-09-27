@@ -16,20 +16,21 @@
           emacs-overlay.overlays.emacs
         ];
       };
+      home-manager-settings = {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users = userhome-configs { inherit pkgs; };
+        };
+      };
     in
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         nixpkgs-overlay-settings
+        home-manager-settings
         systemConfiguration
         home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users = userhome-configs { inherit pkgs; };
-          };
-        }
       ];
     };
 }
