@@ -6,7 +6,8 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,60 +15,55 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , flake-utils
-    , treefmt-nix
-    , emacs-overlay
-    , ...
-    }:
-    {
-      nixosConfigurations =
-        let
-          inherit (import ./system-builder.nix { inherit nixpkgs emacs-overlay home-manager; }) x86_64-linux-pc;
-        in
-        {
-          tuf-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
-          };
-          pana-chama = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
-          };
-          spectre-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
-          };
-          latitude-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
-          };
-        };
-    } //
-    flake-utils.lib.eachDefaultSystem (system:
+    inputs:
     let
-      pkgs = import nixpkgs { inherit system; };
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; }) x86_64-linux-pc;
     in
     {
-      devShells.default = pkgs.mkShell {
-        packages = [
-          pkgs.lua-language-server
-          pkgs.nil
-          pkgs.sops
-        ];
+      tuf-chan = x86_64-linux-pc {
+        systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
+        userhome-configs = import ./src/home/users/default.nix;
       };
-
-      # Use `nix fmt`
-      formatter =
-        treefmtEval.config.build.wrapper;
-
-      # Use `nix flake check`
-      checks = {
-        formatting = treefmtEval.config.build.check self;
+      pana-chama = x86_64-linux-pc {
+        systemConfiguration = ./src/systems/pana-chama/configuration.nix;
+        userhome-configs = import ./src/home/users/default.nix;
       };
-    });
+      spectre-chan = x86_64-linux-pc {
+        systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
+        userhome-configs = import ./src/home/users/default.nix;
+      };
+      latitude-chan = x86_64-linux-pc {
+        systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
+        userhome-configs = import ./src/home/users/default.nix;
+      };
+    } //
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = import inputs.systems;
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
+      perSystem = { pkgs, ... }: {
+        treefmt = {
+          projectRootFile = "flake.nix";
+          programs.nixpkgs-fmt.enable = true;
+          programs.taplo.enable = true;
+          programs.stylua.enable = true;
+          programs.actionlint.enable = true;
+          settings.formatter = {
+            "stylua".options = [
+              "--indent-type"
+              "Spaces"
+            ];
+          };
+        };
+
+        devShells.default = pkgs.mkShell {
+          packages = [
+            pkgs.lua-language-server
+            pkgs.nil
+            pkgs.sops
+          ];
+        };
+      };
+    };
 }
-
