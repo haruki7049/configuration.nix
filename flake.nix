@@ -20,21 +20,23 @@
       inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; }) x86_64-linux-pc;
     in
     {
-      tuf-chan = x86_64-linux-pc {
-        systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-        userhome-configs = import ./src/home/users/default.nix;
-      };
-      pana-chama = x86_64-linux-pc {
-        systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-        userhome-configs = import ./src/home/users/default.nix;
-      };
-      spectre-chan = x86_64-linux-pc {
-        systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-        userhome-configs = import ./src/home/users/default.nix;
-      };
-      latitude-chan = x86_64-linux-pc {
-        systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-        userhome-configs = import ./src/home/users/default.nix;
+      nixosConfigurations = {
+        tuf-chan = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
+          userhome-configs = import ./src/home/users/default.nix;
+        };
+        pana-chama = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/pana-chama/configuration.nix;
+          userhome-configs = import ./src/home/users/default.nix;
+        };
+        spectre-chan = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
+          userhome-configs = import ./src/home/users/default.nix;
+        };
+        latitude-chan = x86_64-linux-pc {
+          systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
+          userhome-configs = import ./src/home/users/default.nix;
+        };
       };
     } //
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
