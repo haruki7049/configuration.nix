@@ -21,9 +21,11 @@
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
+
       imports = [
         inputs.treefmt-nix.flakeModule
       ];
+
       flake = {
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
@@ -44,6 +46,7 @@
           };
         };
       };
+
       perSystem = { pkgs, ... }: {
         treefmt = {
           projectRootFile = "flake.nix";
