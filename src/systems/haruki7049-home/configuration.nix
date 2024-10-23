@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
@@ -14,14 +20,18 @@
     };
     interfaces = {
       enp4s0 = {
-        ipv6.addresses = [{
-          address = "240f:3c:196e:1:8ad9:8731:1b45:61fd";
-          prefixLength = 64;
-        }];
-        ipv4.addresses = [{
-          address = "192.168.0.200";
-          prefixLength = 24;
-        }];
+        ipv6.addresses = [
+          {
+            address = "240f:3c:196e:1:8ad9:8731:1b45:61fd";
+            prefixLength = 64;
+          }
+        ];
+        ipv4.addresses = [
+          {
+            address = "192.168.0.200";
+            prefixLength = 24;
+          }
+        ];
       };
     };
   };
@@ -38,18 +48,19 @@
 
   nixpkgs = {
     config = {
-      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+      permittedInsecurePackages = [
+        "electron-21.4.4"
+        "electron-27.3.11"
+      ];
       allowUnfree = true;
     };
   };
-
 
   users = {
     mutableUsers = false;
     users = {
       haruki = {
-        hashedPassword =
-          "$y$j9T$A2FjmBevK/oLEqTCfU27M0$Q.Y0e3/gr3fCC/FAPv5tIGHP89TrB9IjBtnLTiYETh3";
+        hashedPassword = "$y$j9T$A2FjmBevK/oLEqTCfU27M0$Q.Y0e3/gr3fCC/FAPv5tIGHP89TrB9IjBtnLTiYETh3";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7Rjpnf4kB6UIILl8fohRn0Gz1aBYM59OHlEjdPd/gS"
         ];
@@ -57,8 +68,7 @@
         extraGroups = [ "wheel" ];
       };
       root = {
-        hashedPassword =
-          "$y$j9T$CToL.EUZAxPYjn.Fu7IfC1$LBNmqPVyqyLwujDyecwlVkIxCJr4NOmRV.DAGJrt5d8";
+        hashedPassword = "$y$j9T$CToL.EUZAxPYjn.Fu7IfC1$LBNmqPVyqyLwujDyecwlVkIxCJr4NOmRV.DAGJrt5d8";
         isSystemUser = true;
         extraGroups = [ "root" ];
       };

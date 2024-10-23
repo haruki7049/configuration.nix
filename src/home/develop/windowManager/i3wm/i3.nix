@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   xsession.windowManager.i3 = {
     enable = true;
@@ -26,8 +31,7 @@
         keybindings = {
           "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
           "${modifier}+Shift+q" = "kill";
-          "${modifier}+p" =
-            "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun";
+          "${modifier}+p" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun";
 
           "${modifier}+Left" = "focus left";
           "${modifier}+Right" = "focus right";
@@ -94,13 +98,15 @@
           style = "normal";
           size = 8.0;
         };
-        bars = [{
-          position = "bottom";
-          statusCommand = lib.strings.concatStringsSep " " [
-            (lib.getExe pkgs.i3status-rust)
-            "~/.config/i3status-rust/config-default.toml"
-          ];
-        }];
+        bars = [
+          {
+            position = "bottom";
+            statusCommand = lib.strings.concatStringsSep " " [
+              (lib.getExe pkgs.i3status-rust)
+              "~/.config/i3status-rust/config-default.toml"
+            ];
+          }
+        ];
       };
   };
 }

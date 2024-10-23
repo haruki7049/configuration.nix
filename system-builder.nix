@@ -1,14 +1,19 @@
-{ nixpkgs, home-manager, emacs-overlay }:
+{
+  nixpkgs,
+  home-manager,
+  emacs-overlay,
+}:
 
 {
   x86_64-linux-pc =
-    { system ? "x86_64-linux"
-    , pkgs ? import nixpkgs {
+    {
+      system ? "x86_64-linux",
+      pkgs ? import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-      }
-    , systemConfiguration
-    , userhome-configs
+      },
+      systemConfiguration,
+      userhome-configs,
     }:
     let
       nixpkgs-overlay-settings = {

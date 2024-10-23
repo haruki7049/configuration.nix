@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
@@ -37,7 +43,11 @@
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
       fcitx5 = {
-        addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ];
+        addons = with pkgs; [
+          fcitx5-mozc
+          fcitx5-skk
+          fcitx5-gtk
+        ];
         waylandFrontend = true;
       };
       type = "fcitx5";
@@ -66,7 +76,9 @@
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
     pulseaudio.enable = false;
-    bluetooth = { enable = true; };
+    bluetooth = {
+      enable = true;
+    };
     steam-hardware.enable = true;
   };
 
@@ -88,8 +100,7 @@
         after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart =
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -99,7 +110,9 @@
   };
 
   programs = {
-    dconf = { enable = true; };
+    dconf = {
+      enable = true;
+    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -143,7 +156,9 @@
       enable = true;
       vSync = true;
     };
-    printing = { enable = true; };
+    printing = {
+      enable = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -153,7 +168,9 @@
     };
     libinput = {
       enable = true;
-      mouse = { accelProfile = "flat"; };
+      mouse = {
+        accelProfile = "flat";
+      };
     };
     displayManager = {
       ly = {
@@ -204,10 +221,12 @@
 
   users.users = {
     haruki = {
-      hashedPassword =
-        "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
+      hashedPassword = "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
       isNormalUser = true;
-      extraGroups = [ "wheel" "wireshark" ];
+      extraGroups = [
+        "wheel"
+        "wireshark"
+      ];
     };
   };
 
@@ -224,14 +243,17 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [
-      alsa-utils
-      xdg-utils
-    ] ++ [
-      # for Hyprland
-      wofi
-      alacritty
-    ];
+    systemPackages =
+      with pkgs;
+      [
+        alsa-utils
+        xdg-utils
+      ]
+      ++ [
+        # for Hyprland
+        wofi
+        alacritty
+      ];
   };
 
   fonts = {
@@ -251,11 +273,21 @@
     ];
   };
 
-  nix = { settings = { experimental-features = [ "nix-command" "flakes" ]; }; };
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
 
   nixpkgs = {
     config = {
-      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+      permittedInsecurePackages = [
+        "electron-21.4.4"
+        "electron-27.3.11"
+      ];
       allowUnfree = true;
     };
   };

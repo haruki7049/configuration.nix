@@ -21,7 +21,11 @@
   ];
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-skk fcitx5-mozc fcitx5-gtk ];
+    fcitx5.addons = with pkgs; [
+      fcitx5-skk
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
   };
   home.packages = with pkgs; [
     mg
@@ -84,7 +88,9 @@
     in
     getFrom
       "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
-      "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU=" "bibata" 24;
+      "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU="
+      "bibata"
+      24;
 
   xresources = {
     properties = {
@@ -108,15 +114,20 @@
       "*.color7" = "#BFBFBF";
       "*.color15" = "#E6E6E6";
     };
-    extraConfig = ''
-    '';
+    extraConfig = '''';
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs = {
     config = {
-      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+      permittedInsecurePackages = [
+        "electron-21.4.4"
+        "electron-27.3.11"
+      ];
       allowUnfree = true;
     };
   };

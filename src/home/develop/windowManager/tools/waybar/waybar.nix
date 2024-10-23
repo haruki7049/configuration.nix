@@ -7,7 +7,10 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = [ "sway/workspaces" "hyprland/workspaces" ];
+        modules-left = [
+          "sway/workspaces"
+          "hyprland/workspaces"
+        ];
         modules-center = [ "clock" ];
         modules-right = [ "tray" ];
 
