@@ -1,6 +1,12 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  neovimPluginFromGitHub = rev: owner: repo: sha256:
+  neovimPluginFromGitHub =
+    rev: owner: repo: sha256:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = rev;
@@ -39,39 +45,41 @@ in
       gopls
       zls
     ];
-    plugins = (with pkgs.vimPlugins; [
-      # Colorscheme, nvim-base16
-      base16-nvim
+    plugins =
+      (with pkgs.vimPlugins; [
+        # Colorscheme, nvim-base16
+        base16-nvim
 
-      # plenary, A library for plugin creator
-      plenary-nvim
+        # plenary, A library for plugin creator
+        plenary-nvim
 
-      # denops, A Deno-Vim library for plugin creator
-      denops-vim
+        # denops, A Deno-Vim library for plugin creator
+        denops-vim
 
-      # Telescope
-      telescope-nvim
-      telescope-file-browser-nvim
+        # Telescope
+        telescope-nvim
+        telescope-file-browser-nvim
 
-      # lspconfig
-      nvim-lspconfig
+        # lspconfig
+        nvim-lspconfig
 
-      # GitHub Copilot
-      copilot-vim
+        # GitHub Copilot
+        copilot-vim
 
-      # Treesitter
-      nvim-treesitter.withAllGrammars
-    ]) ++ [
-      # skkeleton, Vim's SKK
-      (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf"
-        "vim-skk" "skkeleton"
-        "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo=")
+        # Treesitter
+        nvim-treesitter.withAllGrammars
+      ])
+      ++ [
+        # skkeleton, Vim's SKK
+        (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf" "vim-skk" "skkeleton"
+          "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo="
+        )
 
-      # Comment out
-      (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89"
-        "numToStr" "Comment.nvim"
-        "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc=")
-    ];
+        # Comment out
+        (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89" "numToStr" "Comment.nvim"
+          "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc="
+        )
+      ];
     extraLuaConfig = lib.strings.concatStrings [
       (builtins.readFile ./init.lua)
       skkeleton-jisyo

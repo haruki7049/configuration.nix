@@ -1,9 +1,13 @@
-{ config, lib, pkgs, ... }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,7 +22,11 @@
     defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
       fcitx5 = {
-        addons = with pkgs; [ fcitx5-mozc fcitx5-skk fcitx5-gtk ];
+        addons = with pkgs; [
+          fcitx5-mozc
+          fcitx5-skk
+          fcitx5-gtk
+        ];
         waylandFrontend = true;
       };
       type = "fcitx5";
@@ -56,8 +64,7 @@
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -146,18 +153,26 @@
 
   users.users.haruki = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" ];
+    extraGroups = [
+      "wheel"
+      "wireshark"
+    ];
   };
 
   nixpkgs = {
     config = {
-      permittedInsecurePackages = [ "electron-21.4.4" "electron-27.3.11" ];
+      permittedInsecurePackages = [
+        "electron-21.4.4"
+        "electron-27.3.11"
+      ];
       allowUnfree = true;
     };
   };
 
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment = {
     etc = {
@@ -169,14 +184,17 @@
         mode = "0755";
       };
     };
-    systemPackages = with pkgs; [
-      mpc-cli
-      acpi
-    ] ++ [
-      # for Hyprland
-      wofi
-      alacritty
-    ];
+    systemPackages =
+      with pkgs;
+      [
+        mpc-cli
+        acpi
+      ]
+      ++ [
+        # for Hyprland
+        wofi
+        alacritty
+      ];
   };
 
   virtualisation = {

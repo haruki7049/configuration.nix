@@ -17,7 +17,9 @@
   outputs =
     inputs:
     let
-      inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; }) x86_64-linux-pc;
+      inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; })
+        x86_64-linux-pc
+        ;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
@@ -47,28 +49,30 @@
         };
       };
 
-      perSystem = { pkgs, ... }: {
-        treefmt = {
-          projectRootFile = "flake.nix";
-          programs.nixpkgs-fmt.enable = true;
-          programs.taplo.enable = true;
-          programs.stylua.enable = true;
-          programs.actionlint.enable = true;
-          settings.formatter = {
-            "stylua".options = [
-              "--indent-type"
-              "Spaces"
+      perSystem =
+        { pkgs, ... }:
+        {
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+            programs.taplo.enable = true;
+            programs.stylua.enable = true;
+            programs.actionlint.enable = true;
+            settings.formatter = {
+              "stylua".options = [
+                "--indent-type"
+                "Spaces"
+              ];
+            };
+          };
+
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.lua-language-server
+              pkgs.nil
+              pkgs.sops
             ];
           };
         };
-
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.lua-language-server
-            pkgs.nil
-            pkgs.sops
-          ];
-        };
-      };
     };
 }
