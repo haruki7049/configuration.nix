@@ -203,24 +203,7 @@ require("lspconfig").ruff_lsp.setup({
     },
   },
 })
-require("lspconfig").solargraph.setup({
-  settings = {
-    ["solargraph"] = {
-      cmd = {
-        "solargraph",
-        "stdio",
-      },
-      filetypes = {
-        "ruby",
-      },
-      settings = {
-        solargraph = {
-          diagnostics = true,
-        },
-      },
-    },
-  },
-})
+require("lspconfig").rubocop.setup({})
 require("lspconfig").lua_ls.setup({
   settings = {
     Lua = {
