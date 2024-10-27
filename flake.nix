@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     home-manager.url = "github:nix-community/home-manager";
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -29,6 +30,12 @@
       ];
 
       flake = {
+        darwinConfigurations = {
+	  enmac = inputs.nix-darwin.lib.darwinSystem {
+	    system = "aarch64-darwin";
+	    modules = [ ./src/systems/enmac/configuration.nix ];
+	  };
+	};
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
