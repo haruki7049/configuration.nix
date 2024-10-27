@@ -5,6 +5,7 @@
     pkgs.vim
     pkgs.neovim
     pkgs.git
+    pkgs.emacs-nox
   ];
 
   services.nix-daemon.enable = true;
@@ -18,6 +19,11 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  fonts.packages = [
+    pkgs.udev-gothic-nf
+    pkgs.udev-gothic
+  ];
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
