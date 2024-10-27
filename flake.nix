@@ -31,11 +31,11 @@
 
       flake = {
         darwinConfigurations = {
-	  enmac = inputs.nix-darwin.lib.darwinSystem {
-	    system = "aarch64-darwin";
-	    modules = [ ./src/systems/enmac/configuration.nix ];
-	  };
-	};
+          enmac = inputs.nix-darwin.lib.darwinSystem {
+            system = "aarch64-darwin";
+            modules = [ ./src/systems/enmac/configuration.nix ];
+          };
+        };
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
