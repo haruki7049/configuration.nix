@@ -20,12 +20,7 @@
     let
       inherit
         (import ./system-builder.nix {
-          inherit (inputs)
-            nixpkgs
-            nix-darwin
-            emacs-overlay
-            home-manager
-            ;
+          inherit inputs;
         })
         x86_64-linux-pc
         aarch64-darwin-pc

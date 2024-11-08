@@ -1,15 +1,12 @@
 {
-  nixpkgs,
-  nix-darwin,
-  home-manager,
-  emacs-overlay,
+  inputs,
 }:
 
 {
   x86_64-linux-pc =
     {
       system ? "x86_64-linux",
-      pkgs ? import nixpkgs {
+      pkgs ? import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       },
@@ -19,7 +16,7 @@
     let
       nixpkgs-overlay-settings = {
         nixpkgs.overlays = [
-          emacs-overlay.overlays.emacs
+          inputs.emacs-overlay.overlays.emacs
         ];
       };
       home-manager-settings = {
@@ -30,20 +27,20 @@
         };
       };
     in
-    nixpkgs.lib.nixosSystem {
+    inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         nixpkgs-overlay-settings
         home-manager-settings
         systemConfiguration
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
       ];
     };
 
   aarch64-darwin-pc =
     {
       system ? "aarch64-darwin",
-      pkgs ? import nixpkgs {
+      pkgs ? import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       },
@@ -52,11 +49,11 @@
     let
       nixpkgs-overlay-settings = {
         nixpkgs.overlays = [
-          emacs-overlay.overlays.emacs
+          inputs.emacs-overlay.overlays.emacs
         ];
       };
     in
-    nix-darwin.lib.darwinSystem {
+    inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
         nixpkgs-overlay-settings
