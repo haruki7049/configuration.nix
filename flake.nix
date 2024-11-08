@@ -18,8 +18,12 @@
   outputs =
     inputs:
     let
-      inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; })
+      inherit
+        (import ./system-builder.nix {
+          inherit inputs;
+        })
         x86_64-linux-pc
+        aarch64-darwin-pc
         ;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -31,27 +35,41 @@
 
       flake = {
         darwinConfigurations = {
-          enmac = inputs.nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [ ./src/systems/enmac/configuration.nix ];
+          enmac = aarch64-darwin-pc {
+            systemConfiguration = ./src/systems/enmac/configuration.nix;
+            userhome-configs = {
+              haruki = ./src/home/darwin/users/haruki.nix;
+            };
           };
         };
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
+            userhome-configs = {
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
+            };
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
+            userhome-configs = {
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
+            };
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
+            userhome-configs = {
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
+            };
           };
           latitude-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-            userhome-configs = import ./src/home/users/default.nix;
+            userhome-configs = {
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
+            };
           };
         };
       };

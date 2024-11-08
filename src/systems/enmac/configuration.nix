@@ -9,7 +9,15 @@
   ];
 
   services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.bash.enable = true;
