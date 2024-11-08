@@ -43,29 +43,29 @@
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
             userhome-configs = {
-              haruki = ./src/home/users/haruki.nix;
-              root = ./src/home/users/root.nix;
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
             };
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
             userhome-configs = {
-              haruki = ./src/home/users/haruki.nix;
-              root = ./src/home/users/root.nix;
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
             };
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
             userhome-configs = {
-              haruki = ./src/home/users/haruki.nix;
-              root = ./src/home/users/root.nix;
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
             };
           };
           latitude-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
             userhome-configs = {
-              haruki = ./src/home/users/haruki.nix;
-              root = ./src/home/users/root.nix;
+              haruki = ./src/home/linux/users/haruki.nix;
+              root = ./src/home/linux/users/root.nix;
             };
           };
         };
