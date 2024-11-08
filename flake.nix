@@ -18,8 +18,17 @@
   outputs =
     inputs:
     let
-      inherit (import ./system-builder.nix { inherit (inputs) nixpkgs emacs-overlay home-manager; })
+      inherit
+        (import ./system-builder.nix {
+          inherit (inputs)
+            nixpkgs
+            nix-darwin
+            emacs-overlay
+            home-manager
+            ;
+        })
         x86_64-linux-pc
+        aarch64-darwin-pc
         ;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -31,9 +40,8 @@
 
       flake = {
         darwinConfigurations = {
-          enmac = inputs.nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [ ./src/systems/enmac/configuration.nix ];
+          enmac = aarch64-darwin-pc {
+            systemConfiguration = ./src/systems/enmac/configuration.nix;
           };
         };
         nixosConfigurations = {

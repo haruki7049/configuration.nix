@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  nix-darwin,
   home-manager,
   emacs-overlay,
 }:
@@ -36,6 +37,30 @@
         home-manager-settings
         systemConfiguration
         home-manager.nixosModules.home-manager
+      ];
+    };
+
+  aarch64-darwin-pc =
+    {
+      system ? "aarch64-darwin",
+      pkgs ? import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      },
+      systemConfiguration,
+    }:
+    let
+      nixpkgs-overlay-settings = {
+        nixpkgs.overlays = [
+          emacs-overlay.overlays.emacs
+        ];
+      };
+    in
+    nix-darwin.lib.darwinSystem {
+      inherit system;
+      modules = [
+        nixpkgs-overlay-settings
+        systemConfiguration
       ];
     };
 }
