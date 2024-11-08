@@ -37,6 +37,9 @@
         darwinConfigurations = {
           enmac = aarch64-darwin-pc {
             systemConfiguration = ./src/systems/enmac/configuration.nix;
+            userhome-configs = {
+              haruki = ./src/home/darwin/users/haruki.nix;
+            };
           };
         };
         nixosConfigurations = {
