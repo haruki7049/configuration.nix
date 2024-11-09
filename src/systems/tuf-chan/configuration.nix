@@ -261,7 +261,7 @@
       ipafont
       ipaexfont
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       udev-gothic-nf
       liberation_ttf

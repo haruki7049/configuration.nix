@@ -3,12 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nixos-wsl.url = "github:nix-community/nixos-wsl";
-    home-manager.url = "github:nix-community/home-manager";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

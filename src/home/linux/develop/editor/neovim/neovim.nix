@@ -22,7 +22,7 @@ let
     vim.api.nvim_exec(
       [[
       call skkeleton#config({
-        \   'globalDictionaries': ['${pkgs.skk-dicts}/share/SKK-JISYO.L'],
+        \   'globalDictionaries': ['${pkgs.libskk}/share/skk/SKK-JISYO.L'],
         \   'eggLikeNewline': v:true,
         \ })
     ]],
