@@ -198,7 +198,7 @@
           scrot
           feh
           gimp
-          immersed-vr
+          immersed
           (wrapOBS {
             plugins = with obs-studio-plugins; [
               wlrobs
