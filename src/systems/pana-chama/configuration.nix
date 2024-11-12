@@ -99,7 +99,7 @@
     openssh.enable = true;
     asterisk.enable = true;
     blueman.enable = true;
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    udev.packages = with pkgs; [ gnome-settings-daemon ];
     libinput.enable = true;
     displayManager = {
       ly = {
