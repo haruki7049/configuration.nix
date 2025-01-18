@@ -1,9 +1,9 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
+
 let
   neovimPluginFromGitHub =
     rev: owner: repo: sha256:
@@ -30,6 +30,7 @@ let
     )
   '';
 in
+
 {
   programs.neovim = {
     enable = true;

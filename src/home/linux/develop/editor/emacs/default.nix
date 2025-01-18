@@ -1,8 +1,5 @@
 { pkgs, ... }:
 let
-  emacs-drv = import ./emacs-drv/drv.nix {
-    inherit pkgs;
-  };
   emacsConfig = builtins.readFile ./init.el;
   emacsExtraPackages =
     epkgs: with epkgs; [
@@ -23,6 +20,6 @@ in
     enable = true;
     extraConfig = emacsConfig;
     extraPackages = emacsExtraPackages;
-    package = emacs-drv;
+    package = pkgs.emacs-nox;
   };
 }

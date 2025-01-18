@@ -1,3 +1,0 @@
-{ pkgs }:
-
-pkgs.emacs-nox

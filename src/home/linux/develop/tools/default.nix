@@ -1,3 +1,7 @@
 {
+  ...
+}:
+
+{
   programs.fzf.enable = true;
 }

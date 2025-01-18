@@ -1,4 +1,8 @@
-{ lib, ... }:
+{
+  lib,
+  ...
+}:
+
 {
   services.hyprpaper = {
     enable = true;

@@ -5,10 +5,7 @@
 }:
 
 let
-  path = if stdenv.isLinux then
-    ./linux
-  else
-    ./darwin;
+  path = if stdenv.isLinux then ./linux else ./darwin;
 in
 
 import path {

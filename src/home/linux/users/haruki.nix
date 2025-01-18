@@ -17,7 +17,9 @@ let
   '';
 in
 {
-  imports = [ ../develop/develop.nix ];
+  imports = [
+    ../develop
+  ];
 
   home = {
     username = "haruki";

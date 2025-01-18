@@ -1,23 +1,13 @@
 { pkgs, ... }:
 {
   imports = [
-    ./windowManager/i3wm/i3.nix
-    ./windowManager/hyprland/hyprland.nix
-    ./windowManager/tools/fuzzel/fuzzel.nix
-    ./windowManager/tools/waybar/waybar.nix
-    ./windowManager/tools/i3status-rust/i3status-rust.nix
-    #./windowManager/tools/eww/eww.nix
-    ./windowManager/tools/hyprpaper/hyprpaper.nix
-    ./browser/firefox/firefox.nix
-    ./editor/neovim/neovim.nix
-    ./editor/vim/vim.nix
-    ./editor/helix/helix.nix
-    ./editor/emacs/emacs.nix
-    ./editor/vscode/vscode.nix
-    ./tools/fzf/fzf.nix
-    ./mpd/mpd.nix
-    ./xdg/xdg.nix
-    ./shell/shell.nix
+    ./windowManager
+    ./browser
+    ./mpd
+    ./shell
+    ./tools
+    ./editor
+    ./xdg
   ];
   i18n.inputMethod = {
     enabled = "fcitx5";
