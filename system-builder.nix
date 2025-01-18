@@ -15,11 +15,6 @@
     }:
     let
       users = builtins.mapAttrs (name: value: import value { inherit pkgs; }) userhome-configs;
-      nixpkgs-overlay-settings = {
-        nixpkgs.overlays = [
-          inputs.emacs-overlay.overlays.emacs
-        ];
-      };
       home-manager-settings = {
         home-manager = {
           inherit users;
@@ -31,7 +26,6 @@
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        nixpkgs-overlay-settings
         home-manager-settings
         systemConfiguration
         inputs.home-manager.nixosModules.home-manager
@@ -50,11 +44,6 @@
     }:
     let
       users = import userhome-configs { inherit (pkgs) lib pkgs; };
-      nixpkgs-overlay-settings = {
-        nixpkgs.overlays = [
-          inputs.emacs-overlay.overlays.emacs
-        ];
-      };
       home-manager-settings = {
         home-manager = {
           inherit users;
@@ -66,7 +55,6 @@
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        nixpkgs-overlay-settings
         home-manager-settings
         systemConfiguration
         inputs.home-manager.darwinModules.home-manager
