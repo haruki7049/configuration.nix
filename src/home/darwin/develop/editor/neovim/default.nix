@@ -50,9 +50,6 @@ in
         # lspconfig
         pkgs.vimPlugins.nvim-lspconfig
 
-        # GitHub Copilot
-        pkgs.vimPlugins.copilot-vim
-
         # Treesitter
         pkgs.vimPlugins.nvim-treesitter.withAllGrammars
       ]

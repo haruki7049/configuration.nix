@@ -63,9 +63,6 @@ in
         # lspconfig
         nvim-lspconfig
 
-        # GitHub Copilot
-        copilot-vim
-
         # Treesitter
         nvim-treesitter.withAllGrammars
       ])
