@@ -1,3 +1,3 @@
 { pkgs }:
 
-pkgs.emacs-unstable-nox
+pkgs.emacs-nox

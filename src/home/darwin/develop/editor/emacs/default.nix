@@ -24,6 +24,6 @@ in
     enable = true;
     extraConfig = emacsConfig;
     extraPackages = emacsExtraPackages;
-    package = pkgs.emacs-unstable-nox;
+    package = pkgs.emacs-nox;
   };
 }
