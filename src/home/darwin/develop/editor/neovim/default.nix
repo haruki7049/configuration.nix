@@ -1,9 +1,15 @@
 {
-  config,
-  lib,
   pkgs,
+  lib,
+
+  # TODO: These cannot import by 'imports' attribute
+  #vimPlugins,
+  #vimUtils,
+  #fetchFromGitHub,
+  #deno,
   ...
 }:
+
 let
   neovimPluginFromGitHub =
     rev: owner: repo: sha256:
@@ -18,37 +24,38 @@ let
       };
     };
 in
+
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    extraPackages = with pkgs; [
-      deno
+    extraPackages = [
+      pkgs.deno
     ];
     plugins =
-      (with pkgs.vimPlugins; [
+      [
         # Colorscheme, nvim-base16
-        base16-nvim
+        pkgs.vimPlugins.base16-nvim
 
         # plenary, A library for plugin creator
-        plenary-nvim
+        pkgs.vimPlugins.plenary-nvim
 
         # denops, A Deno-Vim library for plugin creator
-        denops-vim
+        pkgs.vimPlugins.denops-vim
 
         # Telescope
-        telescope-nvim
-        telescope-file-browser-nvim
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.telescope-file-browser-nvim
 
         # lspconfig
-        nvim-lspconfig
+        pkgs.vimPlugins.nvim-lspconfig
 
         # GitHub Copilot
-        copilot-vim
+        pkgs.vimPlugins.copilot-vim
 
         # Treesitter
-        nvim-treesitter.withAllGrammars
-      ])
+        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+      ]
       ++ [
         # Comment out
         (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89" "numToStr" "Comment.nvim"

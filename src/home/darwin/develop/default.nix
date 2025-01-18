@@ -1,23 +1,24 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
+
 {
   imports = [
-    ./editor/neovim/neovim.nix
-    ./editor/vim/vim.nix
-    ./editor/helix/helix.nix
-    ./editor/emacs/emacs.nix
-    ./tools/fzf/fzf.nix
-    ./shell/shell.nix
+    ./editor
+    ./tools
+    ./shell
   ];
-  home.packages = with pkgs; [
-    mg
-    your-editor
-    htop
-    wget
-    curl
-    unzip
-    gzip
-    git
-    nixpkgs-fmt
+  home.packages = [
+    pkgs.mg
+    pkgs.your-editor
+    pkgs.htop
+    pkgs.wget
+    pkgs.curl
+    pkgs.unzip
+    pkgs.gzip
+    pkgs.git
+    pkgs.nixpkgs-fmt
   ];
 
   nix.settings.experimental-features = [

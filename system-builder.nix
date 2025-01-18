@@ -46,10 +46,10 @@
         config.allowUnfree = true;
       },
       systemConfiguration,
-      userhome-configs ? { },
+      userhome-configs ? null,
     }:
     let
-      users = builtins.mapAttrs (name: value: import value { inherit pkgs; }) userhome-configs;
+      users = import userhome-configs { inherit (pkgs) lib pkgs; };
       nixpkgs-overlay-settings = {
         nixpkgs.overlays = [
           inputs.emacs-overlay.overlays.emacs

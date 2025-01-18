@@ -1,15 +1,15 @@
 {
-  config,
-  lib,
   pkgs,
+  lib,
   ...
 }:
+
 {
   programs = {
     bash = {
       enable = true;
       bashrcExtra = ''
-        eval "$(${pkgs.direnv}/bin/direnv hook bash)"
+        eval "$(${lib.getExe pkgs.direnv} hook bash)"
       '';
     };
     nushell.enable = true;
