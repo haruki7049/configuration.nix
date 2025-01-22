@@ -29,6 +29,8 @@
         x86_64-linux-pc
         aarch64-darwin-pc
         ;
+
+      userhome-configs = ./src/home;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
@@ -41,37 +43,25 @@
         darwinConfigurations = {
           enmac = aarch64-darwin-pc {
             systemConfiguration = ./src/systems/enmac/configuration.nix;
-            userhome-configs = ./src/home/darwin/default.nix;
+            inherit userhome-configs;
           };
         };
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            userhome-configs = {
-              haruki = ./src/home/linux/users/haruki.nix;
-              root = ./src/home/linux/users/root.nix;
-            };
+            inherit userhome-configs;
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            userhome-configs = {
-              haruki = ./src/home/linux/users/haruki.nix;
-              root = ./src/home/linux/users/root.nix;
-            };
+            inherit userhome-configs;
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            userhome-configs = {
-              haruki = ./src/home/linux/users/haruki.nix;
-              root = ./src/home/linux/users/root.nix;
-            };
+            inherit userhome-configs;
           };
           latitude-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-            userhome-configs = {
-              haruki = ./src/home/linux/users/haruki.nix;
-              root = ./src/home/linux/users/root.nix;
-            };
+            inherit userhome-configs;
           };
         };
       };

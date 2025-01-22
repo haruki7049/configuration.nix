@@ -14,7 +14,7 @@
       userhome-configs ? { },
     }:
     let
-      users = builtins.mapAttrs (name: value: import value { inherit pkgs; }) userhome-configs;
+      users = import userhome-configs { inherit pkgs; };
       home-manager-settings = {
         home-manager = {
           inherit users;
@@ -43,7 +43,7 @@
       userhome-configs ? null,
     }:
     let
-      users = import userhome-configs { inherit (pkgs) lib pkgs; };
+      users = import userhome-configs { inherit pkgs; };
       home-manager-settings = {
         home-manager = {
           inherit users;
