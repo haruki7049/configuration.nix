@@ -133,6 +133,37 @@
       settings = {
         font.size = 10.0;
         font.normal.family = "UDEV Gothic NF";
+        colors = {
+          # Dracula color theme
+          # https://github.com/dracula/alacritty
+          primary.background = "#282a36";
+          primary.foreground = "#f8f8f2";
+          primary.bright_foreground = "#ffffff";
+          cursor.text = "#282a36";
+          cursor.cursor = "#f8f8f2";
+          vi_mode_cursor.text = "CellBackground";
+          vi_mode_cursor.cursor = "CellForeground";
+          selection.text = "CellForeground";
+          selection.background = "#44475a";
+          normal.black = "#21222c";
+          normal.red = "#ff5555";
+          normal.green = "#50fa7b";
+          normal.yellow = "#f1fa8c";
+          normal.blue = "#bd93f9";
+          normal.magenta = "#ff79c6";
+          normal.cyan = "#a4ffff";
+          normal.white = "#ffffff";
+          search.matches.foreground = "#44475a";
+          search.matches.background = "#50fa7b";
+          search.focused_match.foreground = "#44475a";
+          search.focused_match.background = "#ffb86c";
+          footer_bar.foreground = "#f8f8f2";
+          footer_bar.background = "#282a36";
+          hints.start.foreground = "#282a36";
+          hints.start.background = "#f1fa8c";
+          hints.end.foreground = "#f1fa8c";
+          hints.end.background = "#282a36";
+        };
       };
     };
     zellij = {
