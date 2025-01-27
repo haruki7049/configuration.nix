@@ -42,6 +42,9 @@ in
         extraConfig = {
           init.defaultBranch = "main";
           pull.rebase = true;
+          commit.gpgsign = true;
+          gpg.format = "ssh";
+          user.signingkey = "~/.ssh/haruki7049";
         };
       };
       ssh = {
