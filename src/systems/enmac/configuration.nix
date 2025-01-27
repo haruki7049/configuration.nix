@@ -69,8 +69,9 @@
       "firefox"
       "brave-browser"
 
-      # Steam
+      # Game
       "steam"
+      "osu"
     ];
   };
 
