@@ -8,5 +8,6 @@
     ./bat
     ./eza
     ./fd
+    ./ripgrep
   ];
 }
