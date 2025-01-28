@@ -5,5 +5,6 @@
 {
   imports = [
     ./fzf
+    ./bat
   ];
 }
