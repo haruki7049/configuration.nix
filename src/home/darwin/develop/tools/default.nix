@@ -7,5 +7,6 @@
     ./fzf
     ./bat
     ./eza
+    ./fd
   ];
 }
