@@ -6,5 +6,6 @@
   imports = [
     ./fzf
     ./bat
+    ./eza
   ];
 }
