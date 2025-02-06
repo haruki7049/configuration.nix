@@ -4,6 +4,10 @@
 }:
 
 {
+  imports = [
+    ./nushell
+  ];
+
   programs = {
     bash = {
       enable = true;
@@ -11,7 +15,6 @@
         eval "$(${pkgs.direnv}/bin/direnv hook bash)"
       '';
     };
-    nushell.enable = true;
     fish.enable = true;
     zsh = {
       enable = true;
