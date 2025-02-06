@@ -3,5 +3,12 @@
 }:
 
 {
-  programs.fzf.enable = true;
+  imports = [
+    ./fzf
+    ./bat
+    ./eza
+    ./fd
+    ./ripgrep
+    ./zoxide
+  ];
 }
