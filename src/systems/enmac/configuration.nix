@@ -86,6 +86,9 @@
     stateVersion = 5;
 
     defaults = {
+      NSGlobalDomain = {
+        "com.apple.keyboard.fnState" = true;
+      };
       dock = {
         orientation = "bottom";
         tilesize = 40;
