@@ -75,7 +75,6 @@
       extraPackages = with pkgs; [ amdvlk ];
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
-    pulseaudio.enable = false;
     bluetooth = {
       enable = true;
     };
@@ -144,6 +143,7 @@
   };
 
   services = {
+    pulseaudio.enable = false;
     monado = {
       enable = true;
       defaultRuntime = true;

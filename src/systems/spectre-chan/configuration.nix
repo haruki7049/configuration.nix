@@ -40,7 +40,6 @@
   };
 
   hardware = {
-    pulseaudio.enable = false;
     bluetooth.enable = true;
     steam-hardware.enable = true;
   };
@@ -86,6 +85,7 @@
   };
 
   services = {
+    pulseaudio.enable = false;
     joycond.enable = true;
     openssh.enable = true;
     asterisk.enable = true;
