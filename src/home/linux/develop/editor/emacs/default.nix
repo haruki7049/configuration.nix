@@ -20,6 +20,6 @@ in
     enable = true;
     extraConfig = emacsConfig;
     extraPackages = emacsExtraPackages;
-    package = pkgs.emacs-nox;
+    package = pkgs.emacs-gtk;
   };
 }
