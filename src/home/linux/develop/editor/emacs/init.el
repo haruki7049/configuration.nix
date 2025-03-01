@@ -25,8 +25,7 @@
 (global-set-key "\C-x\C-j" 'skk-mode)
 
 ;; Delete scroll bar
-;; scroll-bar-mode is not used by emacs-nox
-					;(scroll-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Delete welcome message
 (setq inhibit-startup-message t)
