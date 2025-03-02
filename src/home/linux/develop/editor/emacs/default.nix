@@ -13,6 +13,7 @@ let
       envrc
       ddskk
       vertico
+      company
     ];
 in
 {

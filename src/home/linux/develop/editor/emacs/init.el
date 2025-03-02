@@ -79,6 +79,9 @@
 ;; Enable Vertico
 (vertico-mode)
 
+;; Enable company-mode
+(global-company-mode)
+
 ;; Direnv settings
 ;; This mode MUST be enabled after other global minor modes
 (add-hook 'after-init-hook 'envrc-global-mode)
