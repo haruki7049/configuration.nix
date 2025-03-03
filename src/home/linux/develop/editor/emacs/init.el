@@ -8,9 +8,10 @@
   :init
   ((with-eval-after-load 'eglot
      (add-to-list 'eglot-server-programs
-	       '(nix-mode . ("nil"))
-	       '(zig-mode . ("zls"))
-	       '(rust-mode . ("rust-analyzer"))))))
+                  '(typst-mode . ("tinymist"))
+                  '(nix-mode . ("nil"))
+                  '(zig-mode . ("zls"))
+                  '(rust-mode . ("rust-analyzer"))))))
 
 (use-package typst-mode
   ;;:straight (:type git :host github :repo "Ziqi-Yang/typst-mode.el")
