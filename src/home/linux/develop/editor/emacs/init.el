@@ -15,9 +15,10 @@
 
 (use-package typst-mode
   ;;:straight (:type git :host github :repo "Ziqi-Yang/typst-mode.el")
+  :config
+  (setq typst-indent-offset 2)
   :init
-  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-mode))
-  )
+  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-mode)))
 
 (use-package rust-mode)
 
@@ -48,7 +49,7 @@
 ;; FONT SETTING
 (set-face-attribute 'default nil
 		    :family "UDEV Gothic NF" ;;This point has a font dependency
-		    :height 140)
+		    :height 100)
 
 ;; Save history of mini-buffer and etc
 (savehist-mode 1)
