@@ -2,17 +2,6 @@
   :init
   (load-theme 'dracula t))
 
-(use-package eglot
-  :requires
-  (rust-mode zig-mode nix-mode)
-  :init
-  ((with-eval-after-load 'eglot
-     (add-to-list 'eglot-server-programs
-                  '(typst-mode . ("tinymist"))
-                  '(nix-mode . ("nil"))
-                  '(zig-mode . ("zls"))
-                  '(rust-mode . ("rust-analyzer"))))))
-
 (use-package typst-mode
   ;;:straight (:type git :host github :repo "Ziqi-Yang/typst-mode.el")
   :config
@@ -20,15 +9,17 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-mode)))
 
-(use-package rust-mode)
+(use-package rust-mode
+  :mode
+  ("\\.rs\\" . rust-mode))
 
 (use-package zig-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode)))
+  :mode
+  ("\\.zig\\" . zig-mode))
 
 (use-package nix-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))
+  :mode
+  ("\\.nix\\'" . nix-mode))
 
 (use-package envrc
   :init
