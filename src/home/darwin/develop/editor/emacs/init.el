@@ -15,9 +15,10 @@
 
 (use-package typst-mode
   ;;:straight (:type git :host github :repo "Ziqi-Yang/typst-mode.el")
+  :config
+  (setq typst-indent-offset 2)
   :init
-  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-mode))
-  )
+  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-mode)))
 
 (use-package rust-mode)
 
@@ -47,8 +48,8 @@
 
 ;; FONT SETTING
 (set-face-attribute 'default nil
-		    :family "UDEV Gothic NF" ;;This point has a font dependency
-		    :height 140)
+                    :family "UDEV Gothic NF" ;;This point has a font dependency
+                    :height 140)
 
 ;; Save history of mini-buffer and etc
 (savehist-mode 1)
@@ -72,12 +73,12 @@
 ;; Add News Feed to newsticker.el
 (setq newsticker-url-list
       '(("deno" "https://deno.com/feed")
-	("this week in rust" "https://this-week-in-rust.org/rss.xml")
-	("Rust-lang Main blog" "https://blog.rust-lang.org/feed.xml")
-	("Rust-lang 'Inside rust' blog" "https://blog.rust-lang.org/inside-rust/feed.xml")
-	("zenn.dev - webrtc" "https://zenn.dev/topics/webrtc/feed")
-	("zenn.dev - Rust" "https://zenn.dev/topics/rust/feed")
-	("zenn.dev - FreeBSD" "https://zenn.dev/topics/freebsd/feed")
-	("zenn.dev - TypeScript" "https://zenn.dev/topics/typescript/feed")
-	("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
-	("zenn.dev - React" "https://zenn.dev/topics/react/feed")))
+      ("this week in rust" "https://this-week-in-rust.org/rss.xml")
+      ("Rust-lang Main blog" "https://blog.rust-lang.org/feed.xml")
+      ("Rust-lang 'Inside rust' blog" "https://blog.rust-lang.org/inside-rust/feed.xml")
+      ("zenn.dev - webrtc" "https://zenn.dev/topics/webrtc/feed")
+      ("zenn.dev - Rust" "https://zenn.dev/topics/rust/feed")
+      ("zenn.dev - FreeBSD" "https://zenn.dev/topics/freebsd/feed")
+      ("zenn.dev - TypeScript" "https://zenn.dev/topics/typescript/feed")
+      ("zenn.dev - Deno" "https://zenn.dev/topics/deno/feed")
+      ("zenn.dev - React" "https://zenn.dev/topics/react/feed")))

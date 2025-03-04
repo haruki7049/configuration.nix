@@ -8,7 +8,7 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacs-unstable;
+      package = pkgs.emacs-nox;
       config = ./init.el;
       defaultInitFile = true;
       alwaysEnsure = true;
