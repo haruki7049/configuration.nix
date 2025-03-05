@@ -9,12 +9,20 @@
       pkgs ? import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [
+          inputs.emacs-overlay.overlays.default
+        ];
       },
       systemConfiguration,
       userhome-configs ? { },
     }:
     let
       users = import userhome-configs { inherit pkgs; };
+      overlay-settings = {
+        nixpkgs.overlays = [
+          inputs.emacs-overlay.overlays.default
+        ];
+      };
       home-manager-settings = {
         home-manager = {
           inherit users;
@@ -28,6 +36,7 @@
       modules = [
         home-manager-settings
         systemConfiguration
+        overlay-settings
         inputs.home-manager.nixosModules.home-manager
       ];
     };
@@ -38,12 +47,20 @@
       pkgs ? import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [
+          inputs.emacs-overlay.overlays.default
+        ];
       },
       systemConfiguration,
       userhome-configs ? null,
     }:
     let
       users = import userhome-configs { inherit pkgs; };
+      overlay-settings = {
+        nixpkgs.overlays = [
+          inputs.emacs-overlay.overlays.default
+        ];
+      };
       home-manager-settings = {
         home-manager = {
           inherit users;
@@ -57,6 +74,7 @@
       modules = [
         home-manager-settings
         systemConfiguration
+        overlay-settings
         inputs.home-manager.darwinModules.home-manager
       ];
     };
