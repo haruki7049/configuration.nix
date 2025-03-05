@@ -13,7 +13,7 @@ let
 
     Host gitlab.com
       User git
-            
+
     Host keyserver
       HostName keyserver.haruki7049.dev
       User haruki
@@ -30,6 +30,27 @@ in
     home = {
       username = "haruki";
       homeDirectory = lib.mkForce "/Users/haruki";
+      packages = [
+        pkgs.slack
+        pkgs.element-desktop
+        pkgs.discord
+        pkgs.spotify
+
+        pkgs.utm
+
+        # TODO: Blender is broken on aarch64-darwin
+        #pkgs.blender
+        pkgs.gimp
+
+        pkgs.alacritty
+        pkgs.kitty
+        pkgs.wezterm
+
+        pkgs.google-chrome
+        # TODO: Firefox on aarch64-darwin require pipewire...
+        #pkgs.firefox
+        pkgs.brave
+      ];
     };
 
     programs = {
