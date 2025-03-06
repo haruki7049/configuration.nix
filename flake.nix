@@ -67,6 +67,10 @@
             systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
             inherit userhome-configs;
           };
+          the-hp = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/the-hp/configuration.nix;
+            inherit userhome-configs;
+          };
         };
       };
 
