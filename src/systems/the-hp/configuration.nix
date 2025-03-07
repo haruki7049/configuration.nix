@@ -36,6 +36,8 @@
     rtkit.enable = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   services = {
     xserver.enable = true;
     xserver.xkb.layout = "us";
