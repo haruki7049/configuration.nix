@@ -56,6 +56,7 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
+      "audio"
     ];
   };
 
