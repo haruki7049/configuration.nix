@@ -226,6 +226,7 @@
       extraGroups = [
         "wheel"
         "wireshark"
+        "audio"
       ];
     };
   };
