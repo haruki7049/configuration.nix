@@ -34,7 +34,6 @@ in
 {
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     extraPackages = with pkgs; [
       deno
       typescript-language-server
