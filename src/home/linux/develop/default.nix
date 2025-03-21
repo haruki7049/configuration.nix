@@ -83,6 +83,8 @@
       24;
   home.sessionVariables = {
     EDITOR = "emacs -nw";
+    GUI_EDITOR = "emacs";
+    BROWSER = "firefox";
   };
 
   xresources = {

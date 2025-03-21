@@ -62,6 +62,10 @@
 
           "${modifier}+r" = "mode 'resize'";
 
+          "${modifier}+j" = "exec $GUI_EDITOR";
+          "${modifier}+l" = "exec i3lock";
+          "${modifier}+b" = "exec $BROWSER";
+
           "${modifier}+1" = "workspace number 1";
           "${modifier}+2" = "workspace number 2";
           "${modifier}+3" = "workspace number 3";
