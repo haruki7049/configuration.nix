@@ -26,7 +26,6 @@
       home-manager-settings = {
         home-manager = {
           inherit users;
-          useGlobalPkgs = true;
           useUserPackages = true;
         };
       };
@@ -64,7 +63,6 @@
       home-manager-settings = {
         home-manager = {
           inherit users;
-          useGlobalPkgs = true;
           useUserPackages = true;
         };
       };
