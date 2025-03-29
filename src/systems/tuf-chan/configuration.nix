@@ -298,5 +298,5 @@
     podman.enable = true;
   };
 
-  system.stateVersion = "unstable";
+  system.stateVersion = "25.05";
 }
