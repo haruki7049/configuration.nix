@@ -226,6 +226,9 @@ require("lspconfig").gopls.setup({
     },
   },
 })
+require("lspconfig").gleam.setup({
+  autostart = true,
+})
 require("lspconfig").zls.setup({
   settings = {
     diagnostics = false,
