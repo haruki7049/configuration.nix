@@ -172,7 +172,7 @@ require("lspconfig").denols.setup({
     },
   },
 })
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
   root_dir = require("lspconfig").util.root_pattern("package.json"),
 })
 require("lspconfig").ruff.setup({
@@ -182,19 +182,6 @@ require("lspconfig").ruff.setup({
         "ruff",
         "server",
         "--preview",
-      },
-      filetypes = {
-        "python",
-      },
-      single_file_support = true,
-    },
-  },
-})
-require("lspconfig").ruff_lsp.setup({
-  settings = {
-    ["ruff-lsp"] = {
-      cmd = {
-        "ruff-lsp",
       },
       filetypes = {
         "python",

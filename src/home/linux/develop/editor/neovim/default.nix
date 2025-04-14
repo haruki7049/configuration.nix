@@ -22,7 +22,7 @@ let
     vim.api.nvim_exec(
       [[
       call skkeleton#config({
-        \   'globalDictionaries': ['${pkgs.libskk}/share/skk/SKK-JISYO.L'],
+        \   'globalDictionaries': ['${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L'],
         \   'eggLikeNewline': v:true,
         \ })
     ]],
@@ -34,16 +34,8 @@ in
 {
   programs.neovim = {
     enable = true;
-    extraPackages = with pkgs; [
-      deno
-      typescript-language-server
-      rust-analyzer
-      lua53Packages.lua-lsp
-      rubyPackages.solargraph
-      ruff
-      ruff-lsp
-      gopls
-      zls
+    extraPackages = [
+      pkgs.deno
     ];
     plugins =
       (with pkgs.vimPlugins; [
@@ -68,8 +60,8 @@ in
       ])
       ++ [
         # skkeleton, Vim's SKK
-        (neovimPluginFromGitHub "438b9d22d926569db6e6034e0d333edce5f4d4cf" "vim-skk" "skkeleton"
-          "sha256-jXPMDxiyJ3w4cpRgonlXjdmSJHsnkLhG6NeBjYjeKeo="
+        (neovimPluginFromGitHub "cf385775279c0c7eed3fbebfac1022f1f05ea292" "vim-skk" "skkeleton"
+          "sha256-DA/k2KxGqxYtyJcnV1g2lLbMtNKBXpPGje5WeYYnbtQ="
         )
 
         # Comment out
