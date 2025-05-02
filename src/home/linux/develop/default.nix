@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
+
 {
   imports = [
     ./windowManager
@@ -9,6 +13,7 @@
     ./editor
     ./xdg
   ];
+
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
@@ -17,7 +22,9 @@
       fcitx5-gtk
     ];
   };
+
   home.packages = with pkgs; [
+    mpc-cli # MPD client
     mg
     your-editor
     #helix # Use github:helix-editor/helix 's flakes for master build
@@ -58,6 +65,7 @@
     bitwarden-desktop
     zulip
   ];
+
   home.pointerCursor =
     let
       getFrom = url: sha256: name: size: {
@@ -81,6 +89,7 @@
       "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU="
       "bibata"
       24;
+
   home.sessionVariables = {
     EDITOR = "emacs -nw";
     GUI_EDITOR = "emacs";
