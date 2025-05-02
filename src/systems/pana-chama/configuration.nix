@@ -1,9 +1,8 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
+
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -18,21 +17,7 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  i18n = {
-    defaultLocale = "ja_JP.UTF-8";
-    inputMethod = {
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-skk
-          fcitx5-gtk
-        ];
-        waylandFrontend = true;
-      };
-      type = "fcitx5";
-      enable = true;
-    };
-  };
+  i18n.defaultLocale = "en_US.UTF-8";
 
   console = {
     font = "Lat2-Terminus16";
@@ -72,45 +57,26 @@
     services.NetworkManager-wait-online.enable = false;
   };
 
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-  };
-
   services = {
     pulseaudio.enable = false;
     joycond.enable = true;
     openssh.enable = true;
-    asterisk.enable = true;
     blueman.enable = true;
-    udev.packages = with pkgs; [ gnome-settings-daemon ];
+    udev.packages = [ pkgs.gnome-settings-daemon ];
     libinput.enable = true;
-    displayManager = {
-      ly = {
-        enable = true;
-        settings = { };
-      };
-    };
+    displayManager.ly.enable = true;
     xserver = {
       enable = true;
       xkb.layout = "us";
       windowManager.i3 = {
         enable = true;
-        extraPackages = with pkgs; [
-          i3lock
-          i3status
-          i3blocks
-          rofi
-          dunst
-          pwvucontrol
-          pavucontrol
+        extraPackages = [
+          pkgs.i3lock
+          pkgs.i3status
+          pkgs.i3blocks
+          pkgs.rofi
+          pkgs.dunst
+          pkgs.pavucontrol
         ];
       };
       desktopManager.runXdgAutostartIfNone = true;
@@ -126,10 +92,6 @@
       extraConfig = ''
         HandleLidSwitch=ignore
       '';
-    };
-    clamav = {
-      updater.enable = true;
-      daemon.enable = true;
     };
   };
 
@@ -155,47 +117,19 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "wireshark"
     ];
   };
 
-  nixpkgs = {
-    config = {
-      permittedInsecurePackages = [
-        "electron-21.4.4"
-        "electron-27.3.11"
-      ];
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  environment = {
-    etc = {
-      "1password/custom_allowed_browsers" = {
-        text = ''
-          microsoft-edge-stable
-          google-chrome-stable
-        '';
-        mode = "0755";
-      };
-    };
-    systemPackages =
-      with pkgs;
-      [
-        mpc-cli
-        acpi
-      ]
-      ++ [
-        # for Hyprland
-        wofi
-        alacritty
-      ];
-  };
+  environment.systemPackages = [
+    pkgs.acpi
+  ];
 
   virtualisation = {
     docker.enable = true;
