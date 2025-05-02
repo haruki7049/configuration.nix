@@ -3,9 +3,5 @@
 }:
 
 {
-  services = {
-    mpd = {
-      enable = true;
-    };
-  };
+  services.mpd.enable = true;
 }
