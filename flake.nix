@@ -79,10 +79,23 @@
         {
           treefmt = {
             projectRootFile = "flake.nix";
+
+            # Nix
             programs.nixfmt.enable = true;
+
+            # Toml
             programs.taplo.enable = true;
+
+            # Lua
             programs.stylua.enable = true;
+
+            # ShellScripts
+            programs.shellcheck.enable = true;
+            programs.shfmt.enable = true;
+
+            # GitHub Actions
             programs.actionlint.enable = true;
+
             settings.formatter = {
               "stylua".options = [
                 "--indent-type"
