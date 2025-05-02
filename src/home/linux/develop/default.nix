@@ -56,10 +56,6 @@
     anki
     thunderbird
     spotify
-    #gns3-gui
-    #gns3-server
-    #ciscoPacketTracer8
-    wireshark
     lutris
     bitwarden-cli
     bitwarden-desktop
