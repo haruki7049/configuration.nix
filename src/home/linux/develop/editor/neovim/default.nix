@@ -68,6 +68,11 @@ in
         (neovimPluginFromGitHub "0236521ea582747b58869cb72f70ccfa967d2e89" "numToStr" "Comment.nvim"
           "sha256-+dF1ZombrlO6nQggufSb0igXW5zwU++o0W/5ZA07cdc="
         )
+
+        # janet-vim
+        (neovimPluginFromGitHub "67075b190a44310df356137e35cc1949782b20e0" "janet-lang" "janet.vim"
+          "sha256-TmbInorBSlKSK/D59izThad7PSfH2JmJdAnbOMhixHA="
+        )
       ];
     extraLuaConfig = lib.strings.concatStrings [
       (builtins.readFile ./init.lua)
