@@ -113,26 +113,6 @@ vim.keymap.set(
 )
 vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)")
 vim.keymap.set("c", "<C-j>", "<Plug>(skkeleton-enable)")
-vim.keymap.set("n", "<Leader><Leader>", require("Comment.api").toggle.linewise.current)
-vim.keymap.set("x", "<Leader><Leader>", function()
-    vim.api.nvim_feedkeys("<Esc>", "nx", false)
-    require("Comment.api").toggle.linewise(vim.fn.visualmode())
-end)
-
--- Comment out, by Comment.nvim
-require("Comment").setup({
-    padding = true,
-    sticky = true,
-    ignore = nil,
-
-    mappings = {
-        basic = false,
-        extra = false,
-    },
-
-    pre_hook = nil,
-    post_hook = nil,
-})
 
 -- LSPCONFIG
 require("lspconfig").rust_analyzer.setup({
