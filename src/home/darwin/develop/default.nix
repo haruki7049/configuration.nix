@@ -21,10 +21,13 @@
     pkgs.nixpkgs-fmt
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    accept-flake-config = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   programs = {
     direnv = {
