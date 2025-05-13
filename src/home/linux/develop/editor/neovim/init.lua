@@ -12,8 +12,6 @@ vim.opt.helplang = "ja", "en"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.formatoptions = vim.o.formatoptions .. "jql"
-vim.opt.laststatus = 0
-vim.opt.cmdheight = 0
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "*",
     command = "set formatoptions-=c",
