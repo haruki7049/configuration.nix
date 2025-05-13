@@ -8,7 +8,6 @@ vim.opt.swapfile = false
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
-vim.opt.helplang = "ja", "en"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.formatoptions = vim.o.formatoptions .. "jql"
