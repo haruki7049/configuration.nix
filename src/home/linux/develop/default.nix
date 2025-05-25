@@ -144,7 +144,7 @@
     alacritty = {
       enable = true;
       settings = {
-        font.size = 10.0;
+        font.size = 8.0;
         font.normal.family = "UDEV Gothic NF";
         colors = {
           # Dracula color theme
