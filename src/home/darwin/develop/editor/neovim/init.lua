@@ -105,7 +105,7 @@ vim.g.sh = "bash"
 -- KEYCONFIG
 vim.keymap.set(
     "n",
-    "<leader>q",
+    "<leader><leader>",
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>"
 )
 vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)")
@@ -217,3 +217,16 @@ vim.cmd("colorscheme base16-dracula")
 
 -- DON'T FORMAT ON SAVE, ZIGLANG!!
 vim.g.zig_fmt_autosave = false
+
+-- SKKELETON's JISYO
+vim.api.nvim_exec(
+    [[
+        call skkeleton#config({
+            \   'globalDictionaries': ['@skk-dictionaries-l@'],
+            \   'eggLikeNewline': v:true,
+            \ })
+    ]],
+    false
+)
+
+vim.g.deno = "@deno-bin@"

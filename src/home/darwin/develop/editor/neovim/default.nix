@@ -22,33 +22,20 @@ let
         sha256 = sha256;
       };
     };
-  skkeleton-jisyo = ''
-    -- SKKELETON's JISYO
-    vim.api.nvim_exec(
-      [[
-      call skkeleton#config({
-        \   'globalDictionaries': ['${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L'],
-        \   'eggLikeNewline': v:true,
-        \ })
-    ]],
-      false
-    )
-  '';
+  init-lua = pkgs.replaceVars ./init.lua {
+    skk-dictionaries-l = "${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L";
+    deno-bin = lib.getExe pkgs.deno;
+  };
 in
 
 {
   programs.neovim = {
     enable = true;
-    extraPackages = [
-      pkgs.deno
-    ];
+    extraLuaConfig = builtins.readFile init-lua;
     plugins =
       (with pkgs.vimPlugins; [
         # Colorscheme, nvim-base16
         base16-nvim
-
-        # plenary, A library for plugin creator
-        plenary-nvim
 
         # denops, A Deno-Vim library for plugin creator
         denops-vim
@@ -88,9 +75,5 @@ in
           sha256 = "sha256-EQcMSsKWtQvr0eQ6Hn0TtDA5Nc7VV0g2bnbx7i2B7u4=";
         })
       ];
-    extraLuaConfig = lib.strings.concatStrings [
-      (builtins.readFile ./init.lua)
-      skkeleton-jisyo
-    ];
   };
 }
