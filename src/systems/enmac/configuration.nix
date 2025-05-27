@@ -30,18 +30,5 @@
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
     stateVersion = 5;
-
-    defaults = {
-      NSGlobalDomain = {
-        "com.apple.keyboard.fnState" = true;
-      };
-      dock = {
-        orientation = "bottom";
-        tilesize = 40;
-      };
-      WindowManager = {
-        GloballyEnabled = true;
-      };
-    };
   };
 }
