@@ -37,21 +37,7 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    inputMethod = {
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-skk
-          fcitx5-gtk
-        ];
-        waylandFrontend = true;
-      };
-      type = "fcitx5";
-      enable = true;
-    };
-  };
+  i18n.defaultLocale = "en_US.UTF-8";
 
   console = {
     font = "Lat2-Terminus16";
