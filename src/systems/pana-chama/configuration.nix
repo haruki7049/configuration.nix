@@ -27,6 +27,9 @@
   hardware = {
     bluetooth.enable = true;
     steam-hardware.enable = true;
+    xone.enable = true;
+    xpadneo.enable = true;
+    xpad-noone.enable = true;
   };
 
   security = {
@@ -56,6 +59,8 @@
     };
     services.NetworkManager-wait-online.enable = false;
   };
+
+  programs.steam.enable = true;
 
   services = {
     pulseaudio.enable = false;
