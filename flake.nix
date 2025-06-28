@@ -55,6 +55,10 @@
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
             inherit userhome-configs;
           };
+          dospara-chan = x86_64-linux-pc {
+            systemConfiguration = ./src/systems/dospara-chan/configuration.nix;
+            inherit userhome-configs;
+          };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
             inherit userhome-configs;
