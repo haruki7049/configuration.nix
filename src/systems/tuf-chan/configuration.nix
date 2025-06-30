@@ -59,9 +59,7 @@
       extraPackages = with pkgs; [ amdvlk ];
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
-    bluetooth = {
-      enable = true;
-    };
+    bluetooth.enable = true;
     steam-hardware.enable = true;
     xone.enable = true;
     xpadneo.enable = true;
@@ -96,9 +94,6 @@
   };
 
   programs = {
-    dconf = {
-      enable = true;
-    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -109,10 +104,6 @@
         enable = true;
         enableSSHSupport = true;
       };
-    };
-    hyprland = {
-      enable = true;
-      xwayland.enable = false;
     };
     sway = {
       enable = true;
@@ -143,9 +134,7 @@
       enable = true;
       vSync = true;
     };
-    printing = {
-      enable = true;
-    };
+    printing.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -159,17 +148,13 @@
         accelProfile = "flat";
       };
     };
-    displayManager = {
-      ly = {
-        enable = true;
-        settings = { };
-      };
-    };
+    displayManager.ly.enable = true;
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
       xkb.layout = "us";
       desktopManager.runXdgAutostartIfNone = true;
+      windowManager.twm.enable = true;
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
@@ -185,23 +170,13 @@
           scrot
           feh
           gimp
-          immersed
-          (wrapOBS {
-            plugins = with obs-studio-plugins; [
-              wlrobs
-              obs-backgroundremoval
-              obs-pipewire-audio-capture
-            ];
-          })
         ];
       };
-      windowManager.twm.enable = true;
     };
   };
 
   users.users = {
     haruki = {
-      hashedPassword = "$y$j9T$gBae4PJgExCJFPlTGHHjk0$N9iA8TQMV/Y51x86oirBJjsDHn4bI5Wn1nYVo1ZViX8";
       isNormalUser = true;
       extraGroups = [
         "wheel"
@@ -211,31 +186,10 @@
     };
   };
 
-  environment = {
-    variables = {
-      VRCLIENT = "~/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrclient.so";
-    };
-    etc = {
-      "1password/custom_allowed_browsers" = {
-        text = ''
-          microsoft-edge
-          google-chrome-stable
-        '';
-        mode = "0755";
-      };
-    };
-    systemPackages =
-      with pkgs;
-      [
-        alsa-utils
-        xdg-utils
-      ]
-      ++ [
-        # for Hyprland
-        wofi
-        alacritty
-      ];
-  };
+  environment.systemPackages = [
+    pkgs.alsa-utils
+    pkgs.xdg-utils
+  ];
 
   fonts = {
     packages = with pkgs; [
