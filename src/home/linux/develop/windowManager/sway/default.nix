@@ -73,6 +73,7 @@
           style = "normal";
           size = 8.0;
         };
+        bars = [ ];
       };
   };
 }
