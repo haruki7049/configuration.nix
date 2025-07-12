@@ -115,7 +115,7 @@
       ];
       wrapperFeatures.base = true;
       wrapperFeatures.gtk = true;
-      xwayland.enable = false;
+      xwayland.enable = true;
     };
     waybar.enable = false;
   };
