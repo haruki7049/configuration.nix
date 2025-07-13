@@ -118,6 +118,7 @@
       xwayland.enable = true;
     };
     waybar.enable = false;
+    virt-manager.enable = true;
   };
 
   services = {
@@ -181,6 +182,7 @@
       extraGroups = [
         "wheel"
         "wireshark"
+        "libvirtd"
         "audio"
       ];
     };
@@ -232,6 +234,7 @@
   virtualisation = {
     docker.enable = true;
     podman.enable = true;
+    libvirtd.enable = true;
   };
 
   system.stateVersion = "25.11";
