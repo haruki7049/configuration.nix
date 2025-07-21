@@ -110,9 +110,12 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
+              # lsp
               pkgs.lua-language-server
               pkgs.nil
-              pkgs.sops
+
+              # Code formatter
+              pkgs.nixfmt-rfc-style
             ];
           };
         };
