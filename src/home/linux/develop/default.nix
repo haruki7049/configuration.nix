@@ -3,6 +3,45 @@
   ...
 }:
 
+let
+  cli-tools = [
+    pkgs.git
+    pkgs.wget
+    pkgs.curl
+    pkgs.unzip
+    pkgs.zip
+    pkgs.gzip
+    pkgs.mpc-cli
+    pkgs.htop
+    pkgs.nixfmt-rfc-style
+  ];
+
+  browsers = [
+    pkgs.brave
+    pkgs.google-chrome
+    pkgs.nyxt
+    pkgs.vivaldi
+  ];
+
+  sns = [
+    pkgs.discord
+    pkgs.element-desktop
+    pkgs.slack
+    pkgs.whalebird
+    pkgs.zulip
+  ];
+
+  desktop-apps = [
+    pkgs.anki
+    pkgs.spotify
+  ];
+
+  bitwarden = [
+    pkgs.bitwarden-cli
+    pkgs.bitwarden-desktop
+  ];
+in
+
 {
   imports = [
     ./windowManager
@@ -24,44 +63,7 @@
     ];
   };
 
-  home.packages = with pkgs; [
-    mpc-cli # MPD client
-    mg
-    your-editor
-    #helix # Use github:helix-editor/helix 's flakes for master build
-    bash
-    htop
-    wget
-    curl
-    unzip
-    gzip
-    git
-    nixpkgs-fmt
-    brave
-    google-chrome
-    nyxt
-    neovide
-    discord
-    element-desktop
-    slack
-    whalebird
-    #(osu-lazer.overrideAttrs (oldAttrs: rec {
-    #  version = "2024.625.3";
-    #  src = fetchFromGitHub {
-    #    owner = "ppy";
-    #    repo = "osu";
-    #    rev = version;
-    #    hash = "sha256-yZBE1mW9ZekW1JwrsF1QoeNH+D3BOilyQkrg9XE+fnY=";
-    #  };
-    #}))
-    anki
-    thunderbird
-    spotify
-    lutris
-    bitwarden-cli
-    bitwarden-desktop
-    zulip
-  ];
+  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
 
   home.pointerCursor =
     let
@@ -126,15 +128,7 @@
     ];
   };
 
-  nixpkgs = {
-    config = {
-      permittedInsecurePackages = [
-        "electron-21.4.4"
-        "electron-27.3.11"
-      ];
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   programs = {
     direnv = {
