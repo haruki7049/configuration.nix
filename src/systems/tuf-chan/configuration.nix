@@ -31,8 +31,7 @@
 
   networking = {
     hostName = "tuf-chan";
-    useDHCP = true;
-    nameservers = [ "192.168.0.1" ];
+    networkmanager.enable = true;
   };
 
   time.timeZone = "Asia/Tokyo";
