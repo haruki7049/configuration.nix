@@ -42,6 +42,7 @@
     xserver.enable = true;
     xserver.xkb.layout = "us";
     xserver.windowManager.i3.enable = true;
+    displayManager.ly.enable = true;
     libinput.enable = true;
     openssh.enable = true;
   };
