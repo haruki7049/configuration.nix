@@ -158,6 +158,7 @@
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
+          lutris
           arandr
           dunst
           rofi
