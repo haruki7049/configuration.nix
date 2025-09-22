@@ -6,17 +6,6 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
-    kernelPatches = [
-      {
-        name = "amdgpu-ignore-ctx-privileges";
-        patch = pkgs.fetchpatch {
-          name = "cap_sys_nice_begone.patch";
-          url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-          hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
-        };
-      }
-    ];
-    enableContainers = false;
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = with pkgs; [ linuxPackages.v4l2loopback ];
     extraModprobeConfig = ''
@@ -117,7 +106,6 @@
       xwayland.enable = true;
     };
     waybar.enable = false;
-    virt-manager.enable = true;
   };
 
   services = {
@@ -182,7 +170,6 @@
       extraGroups = [
         "wheel"
         "wireshark"
-        "libvirtd"
         "audio"
       ];
     };
@@ -234,7 +221,10 @@
   virtualisation = {
     docker.enable = true;
     podman.enable = true;
-    libvirtd.enable = true;
+    virtualbox = {
+      host.enable = true;
+      host.enableExtensionPack = true;
+    };
   };
 
   system.stateVersion = "25.11";
