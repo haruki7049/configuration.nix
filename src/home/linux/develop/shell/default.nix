@@ -16,9 +16,6 @@
       '';
     };
     fish.enable = true;
-    zsh = {
-      enable = true;
-      dotDir = ".config/zsh";
-    };
+    zsh.enable = true;
   };
 }

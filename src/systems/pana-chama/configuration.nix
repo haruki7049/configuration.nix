@@ -94,9 +94,9 @@
       jack.enable = true;
     };
     logind = {
-      extraConfig = ''
-        HandleLidSwitch=ignore
-      '';
+      settings.Login = {
+        HandleLidSwitch = "ignore";
+      };
     };
   };
 
