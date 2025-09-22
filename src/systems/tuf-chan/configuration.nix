@@ -109,6 +109,12 @@
   };
 
   services = {
+    ollama = {
+      enable = true;
+      loadModels = [
+        "gemma3:27b"
+      ];
+    };
     pulseaudio.enable = false;
     monado = {
       enable = true;
