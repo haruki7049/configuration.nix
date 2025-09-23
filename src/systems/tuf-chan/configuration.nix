@@ -115,7 +115,7 @@
       enable = true;
       acceleration = "rocm";
       loadModels = [
-        "gemma3:27b"
+        "gemma3:12b-it-q4_K_M"
       ];
       rocmOverrideGfx = "10.3.0";
     };
