@@ -11,7 +11,6 @@
     extraModprobeConfig = ''
       options v4l2loopback devices=1 video_nr=1 cardlabel="OBS_Camera" exclusive_caps=1
     '';
-    initrd.kernelModules = [ "amdgpu" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -41,11 +40,14 @@
   xdg.mime.enable = true;
 
   hardware = {
+    amdgpu = {
+      opencl.enable = true;
+      amdvlk.enable = true;
+      initrd.enable = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [ amdvlk ];
-      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
     bluetooth.enable = true;
     steam-hardware.enable = true;
@@ -111,9 +113,11 @@
   services = {
     ollama = {
       enable = true;
+      acceleration = "rocm";
       loadModels = [
         "gemma3:27b"
       ];
+      rocmOverrideGfx = "10.3.0";
     };
     pulseaudio.enable = false;
     monado = {
