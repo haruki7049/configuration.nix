@@ -10,15 +10,13 @@
     ./shell
   ];
   home.packages = [
-    pkgs.mg
-    pkgs.your-editor
     pkgs.htop
     pkgs.wget
     pkgs.curl
     pkgs.unzip
     pkgs.gzip
     pkgs.git
-    pkgs.nixpkgs-fmt
+    pkgs.deno # For Vim denops
   ];
 
   nix.settings = {
