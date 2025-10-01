@@ -28,6 +28,12 @@ in
     ];
 
     home = {
+      shell = {
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        enableZshIntegration = true;
+        enableNushellIntegration = true;
+      };
       username = "haruki";
       homeDirectory = lib.mkForce "/Users/haruki";
     };
