@@ -37,7 +37,11 @@
       userhome-configs = ./src/home;
 
       overlays = [
-        inputs.vim-overlay.overlays.default
+        (inputs.vim-overlay.overlays.features {
+          lua = true;
+          python3 = true;
+          ruby = true;
+        })
       ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
