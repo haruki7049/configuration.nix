@@ -42,7 +42,6 @@
   hardware = {
     amdgpu = {
       opencl.enable = true;
-      amdvlk.enable = true;
       initrd.enable = true;
     };
     graphics = {
