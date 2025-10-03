@@ -14,6 +14,7 @@ let
     pkgs.mpc-cli
     pkgs.htop
     pkgs.nixfmt-rfc-style
+    pkgs.deno # For denops.vim
   ];
 
   browsers = [
