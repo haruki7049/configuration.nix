@@ -1,5 +1,6 @@
 {
   pkgs,
+  overlays ? [ ],
   lib ? pkgs.lib,
 }:
 
@@ -26,6 +27,10 @@ in
     imports = [
       ./develop
     ];
+
+    nixpkgs = {
+      inherit overlays;
+    };
 
     home = {
       shell = {

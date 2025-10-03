@@ -1,5 +1,6 @@
 {
   pkgs,
+  overlays ? [ ],
   lib ? pkgs.lib,
   stdenv ? pkgs.stdenv,
 }:
@@ -9,5 +10,5 @@ let
 in
 
 import path {
-  inherit pkgs;
+  inherit pkgs overlays;
 }

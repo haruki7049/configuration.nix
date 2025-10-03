@@ -17,8 +17,8 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
+    vim-overlay = {
+      url = "github:kawarimidoll/vim-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -35,6 +35,10 @@
         ;
 
       userhome-configs = ./src/home;
+
+      overlays = [
+        inputs.vim-overlay.overlays.default
+      ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
@@ -47,33 +51,33 @@
         darwinConfigurations = {
           enmac = aarch64-darwin-pc {
             systemConfiguration = ./src/systems/enmac/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
         };
         nixosConfigurations = {
           tuf-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
           dospara-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/dospara-chan/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
           spectre-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
           latitude-chan = x86_64-linux-pc {
             systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
           the-hp = x86_64-linux-pc {
             systemConfiguration = ./src/systems/the-hp/configuration.nix;
-            inherit userhome-configs;
+            inherit userhome-configs overlays;
           };
         };
       };
