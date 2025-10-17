@@ -17,9 +17,7 @@
     let
       users = import userhome-configs { inherit pkgs overlays; };
       system-overlay-settings = {
-        nixpkgs.overlays = [
-          inputs.vim-overlay.overlays.default
-        ];
+        nixpkgs = { inherit overlays; };
       };
       home-manager-settings = {
         home-manager = {
@@ -52,9 +50,7 @@
     let
       users = import userhome-configs { inherit pkgs overlays; };
       system-overlay-settings = {
-        nixpkgs = {
-          inherit overlays;
-        };
+        nixpkgs = { inherit overlays; };
       };
       home-manager-settings = {
         home-manager = {
