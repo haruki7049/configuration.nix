@@ -31,7 +31,7 @@
         ;
 
       userhome-configs = ./src/home;
-      overlays = [];
+      overlays = [ ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
