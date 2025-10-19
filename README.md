@@ -1,4 +1,4 @@
-# my_nixos_config
+# configuration.nix
 
 ```bash
 sudo nixos-rebuild switch --flake .#tuf-chan
