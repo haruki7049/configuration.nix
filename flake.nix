@@ -94,9 +94,6 @@
             programs.shellcheck.enable = true;
             programs.shfmt.enable = true;
 
-            # GitHub Actions
-            programs.actionlint.enable = true;
-
             settings.formatter = {
               "stylua".options = [
                 "--indent-type"
