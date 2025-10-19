@@ -30,6 +30,7 @@
     pkgs.audacity
     pkgs.prismlauncher
     pkgs.kitty
+    pkgs.spotify
 
     #pkgs.google-chrome
   ];
