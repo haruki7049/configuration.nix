@@ -17,7 +17,7 @@
     pkgs.gzip
     pkgs.git
     pkgs.deno # For Vim denops
-    pkgs.vim
+    pkgs.vim-full
   ];
 
   nix.settings = {

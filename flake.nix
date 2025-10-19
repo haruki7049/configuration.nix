@@ -17,10 +17,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vim-overlay = {
-      url = "github:kawarimidoll/vim-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -35,14 +31,7 @@
         ;
 
       userhome-configs = ./src/home;
-
-      overlays = [
-        (inputs.vim-overlay.overlays.features {
-          lua = true;
-          python3 = true;
-          ruby = true;
-        })
-      ];
+      overlays = [];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;

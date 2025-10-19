@@ -15,7 +15,7 @@ let
     pkgs.htop
     pkgs.nixfmt-rfc-style
     pkgs.deno # For denops.vim
-    pkgs.vim
+    pkgs.vim-full
   ];
 
   browsers = [

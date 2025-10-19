@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1747046372,
-        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -33,28 +17,6 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "gitignore": {
-      "inputs": {
-        "nixpkgs": [
-          "vim-overlay",
-          "pre-commit-hooks",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1709087332,
-        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
         "type": "github"
       }
     },
@@ -128,29 +90,6 @@
         "type": "github"
       }
     },
-    "pre-commit-hooks": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "gitignore": "gitignore",
-        "nixpkgs": [
-          "vim-overlay",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759523803,
-        "narHash": "sha256-PTod9NG+i3XbbnBKMl/e5uHDBYpwIWivQ3gOWSEuIEM=",
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "rev": "cfc9f7bb163ad8542029d303e599c0f7eee09835",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -158,8 +97,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix",
-        "vim-overlay": "vim-overlay"
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "systems": {
@@ -194,44 +132,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "vim-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pre-commit-hooks": "pre-commit-hooks",
-        "vim-src": "vim-src"
-      },
-      "locked": {
-        "lastModified": 1759989174,
-        "narHash": "sha256-0UcSlv+2/9t/wFHq88vQ2wBbNWZLt2EwJJAmiyl7m7s=",
-        "owner": "kawarimidoll",
-        "repo": "vim-overlay",
-        "rev": "91de4fd8c8bb40157c87ccc162d5e201f23d3f90",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kawarimidoll",
-        "repo": "vim-overlay",
-        "type": "github"
-      }
-    },
-    "vim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759948273,
-        "narHash": "sha256-UgEP/q9h0OxFramsw+6pI8zTCyQtIT2lbmM2ZIIgjDM=",
-        "owner": "vim",
-        "repo": "vim",
-        "rev": "e7c765fe5997daa845222351e11400bd5c1d02d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vim",
-        "repo": "vim",
         "type": "github"
       }
     }
