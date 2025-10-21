@@ -31,6 +31,7 @@
     pkgs.prismlauncher
     pkgs.kitty
     pkgs.spotify
+    pkgs.slack
 
     #pkgs.google-chrome
   ];
