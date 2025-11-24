@@ -119,6 +119,7 @@
       enable = true;
       defaultRuntime = true;
     };
+    udev.enable = true;
     joycond.enable = true;
     pcscd.enable = true;
     blueman.enable = true;
@@ -182,6 +183,7 @@
         "wheel"
         "wireshark"
         "audio"
+        "input"
       ];
     };
   };
