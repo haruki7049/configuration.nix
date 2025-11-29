@@ -10,12 +10,7 @@
   ];
 
   programs = {
-    bash = {
-      enable = true;
-      bashrcExtra = ''
-        eval "$(${lib.getExe pkgs.direnv} hook bash)"
-      '';
-    };
+    bash.enable = true;
     fish.enable = true;
     zsh.enable = true;
   };
