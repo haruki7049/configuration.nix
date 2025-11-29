@@ -9,12 +9,7 @@
   ];
 
   programs = {
-    bash = {
-      enable = true;
-      bashrcExtra = ''
-        eval "$(${pkgs.direnv}/bin/direnv hook bash)"
-      '';
-    };
+    bash.enable = true;
     fish.enable = true;
     zsh.enable = true;
   };
