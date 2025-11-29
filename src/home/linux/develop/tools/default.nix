@@ -9,7 +9,6 @@
     ./eza
     ./fd
     ./ripgrep
-    ./zoxide
     ./spotifyd
   ];
 }

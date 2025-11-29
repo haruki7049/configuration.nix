@@ -9,6 +9,5 @@
     ./eza
     ./fd
     ./ripgrep
-    ./zoxide
   ];
 }
