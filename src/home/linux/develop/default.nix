@@ -140,7 +140,6 @@ in
       # Shell integrations
       enableBashIntegration = true;
       enableZshIntegration = true;
-      enableFishIntegration = true;
       enableNushellIntegration = true;
     };
     alacritty = {

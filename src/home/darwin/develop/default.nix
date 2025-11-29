@@ -36,7 +36,6 @@
       # Shell integration
       enableBashIntegration = true;
       enableZshIntegration = true;
-      enableFishIntegration = true;
       enableNushellIntegration = true;
     };
     zellij = {
