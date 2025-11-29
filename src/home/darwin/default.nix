@@ -4,24 +4,6 @@
   lib ? pkgs.lib,
 }:
 
-let
-  sshConfig = ''
-    Host *
-      IdentityFile ~/.ssh/haruki7049
-
-    Host github.com
-      User git
-
-    Host gitlab.com
-      User git
-
-    Host keyserver
-      HostName keyserver.haruki7049.dev
-      User haruki
-      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname keyserver.haruki7049.dev
-  '';
-in
-
 {
   haruki = {
     imports = [
@@ -48,9 +30,9 @@ in
       home-manager.enable = true;
       git = {
         enable = true;
-        userName = "haruki7049";
-        userEmail = "tontonkirikiri@gmail.com";
-        extraConfig = {
+        settings = {
+          user.name = "haruki7049";
+          user.email = "tontonkirikiri@gmail.com";
           init.defaultBranch = "main";
           pull.rebase = true;
           commit.gpgsign = true;
@@ -60,7 +42,18 @@ in
       };
       ssh = {
         enable = true;
-        extraConfig = sshConfig;
+        enableDefaultConfig = false;
+        matchBlocks = {
+          "*" = {
+            identityFile = [ "~/.ssh/haruki7049" ];
+          };
+          "github.com" = {
+            user = "git";
+          };
+          "gitlab.com" = {
+            user = "git";
+          };
+        };
       };
     };
 
