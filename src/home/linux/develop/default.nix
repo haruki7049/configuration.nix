@@ -11,7 +11,7 @@ let
     pkgs.unzip
     pkgs.zip
     pkgs.gzip
-    pkgs.mpc-cli
+    pkgs.mpc
     pkgs.htop
     pkgs.nixfmt-rfc-style
     pkgs.deno # For denops.vim

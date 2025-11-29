@@ -67,7 +67,7 @@
       ipaexfont
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       udev-gothic-nf
       liberation_ttf
       fira-code
@@ -99,11 +99,17 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    wget
-    curl
-  ];
+  environment = {
+    systemPackages = [
+      pkgs.git
+      pkgs.wget
+      pkgs.curl
+    ];
+    pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
+  };
 
   system.stateVersion = "25.11";
 }

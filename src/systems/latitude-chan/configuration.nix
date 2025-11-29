@@ -34,10 +34,16 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-  ];
+  environment = {
+    systemPackages = [
+      pkgs.wget
+      pkgs.git
+    ];
+    pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
+  };
 
   services = {
     openssh.enable = true;

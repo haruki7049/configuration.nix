@@ -199,7 +199,7 @@
       ipaexfont
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       udev-gothic-nf
       liberation_ttf
       fira-code
