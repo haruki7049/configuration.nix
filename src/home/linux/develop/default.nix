@@ -135,8 +135,13 @@ in
   programs = {
     direnv = {
       enable = true;
-      enableBashIntegration = true;
       nix-direnv.enable = true;
+
+      # Shell integrations
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
     alacritty = {
       enable = true;

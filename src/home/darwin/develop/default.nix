@@ -31,8 +31,13 @@
   programs = {
     direnv = {
       enable = true;
-      enableBashIntegration = true;
       nix-direnv.enable = true;
+
+      # Shell integration
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
     zellij = {
       enable = true;
