@@ -111,6 +111,7 @@
       defaultRuntime = true;
       openFirewall = true;
       steam.importOXRRuntimes = true;
+      autoStart = true;
     };
     ollama = {
       enable = true;
@@ -193,6 +194,7 @@
     pkgs.alsa-utils
     pkgs.xdg-utils
     pkgs.android-tools
+    pkgs.wlx-overlay-s
   ];
 
   fonts = {
