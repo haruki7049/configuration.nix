@@ -106,19 +106,20 @@
   };
 
   services = {
+    wivrn = {
+      enable = true;
+      defaultRuntime = true;
+      openFirewall = true;
+      steam.importOXRRuntimes = true;
+    };
     ollama = {
       enable = true;
-      acceleration = "rocm";
       loadModels = [
         "gemma3:12b-it-q4_K_M"
       ];
       rocmOverrideGfx = "10.3.0";
     };
     pulseaudio.enable = false;
-    monado = {
-      enable = true;
-      defaultRuntime = true;
-    };
     udev.enable = true;
     joycond.enable = true;
     pcscd.enable = true;
@@ -191,6 +192,7 @@
   environment.systemPackages = [
     pkgs.alsa-utils
     pkgs.xdg-utils
+    pkgs.android-tools
   ];
 
   fonts = {
