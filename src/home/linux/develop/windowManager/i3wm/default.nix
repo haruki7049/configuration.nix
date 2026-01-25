@@ -16,6 +16,7 @@ in
       modifier = "Mod4";
       floating.modifier = "Mod4";
       terminal = "alacritty";
+
       keybindings = {
         "${cfg.config.modifier}+Return" = "exec ${cfg.config.terminal}";
         "${cfg.config.modifier}+Shift+q" = "kill";
