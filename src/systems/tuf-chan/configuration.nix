@@ -74,11 +74,8 @@
     };
 
     # Hyprland (Wayland)
+    hyprland.enable = true;
     hyprlock.enable = true;
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
   };
 
   services = {
