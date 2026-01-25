@@ -5,16 +5,9 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  boot = {
-    kernelModules = [ "v4l2loopback" ];
-    extraModulePackages = with pkgs; [ linuxPackages.v4l2loopback ];
-    extraModprobeConfig = ''
-      options v4l2loopback devices=1 video_nr=1 cardlabel="OBS_Camera" exclusive_caps=1
-    '';
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
   networking = {
@@ -29,12 +22,6 @@
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "adwaita-dark";
   };
 
   xdg.mime.enable = true;
@@ -78,34 +65,14 @@
     };
   };
 
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-    gnupg = {
-      agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-    };
-    sway = {
-      enable = true;
-      extraPackages = with pkgs; [
-        swaylock
-        swayidle
-        alacritty
-        rofi
-      ];
-      wrapperFeatures.base = true;
-      wrapperFeatures.gtk = true;
-      xwayland.enable = true;
-    };
-    waybar.enable = false;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   services = {
+    # VR from Meta Quest series
     wivrn = {
       enable = true;
       defaultRuntime = true;
@@ -113,6 +80,8 @@
       steam.importOXRRuntimes = true;
       autoStart = true;
     };
+
+    # Ollama
     ollama = {
       enable = true;
       loadModels = [
@@ -120,17 +89,19 @@
       ];
       rocmOverrideGfx = "10.3.0";
     };
-    pulseaudio.enable = false;
+
+    # Devices
     udev.enable = true;
     joycond.enable = true;
-    pcscd.enable = true;
+
+    # Bluetooth manager
     blueman.enable = true;
+
+    # OpenSSH
     openssh.enable = true;
-    picom = {
-      enable = true;
-      vSync = true;
-    };
-    printing.enable = true;
+
+    # Audio (PulseAudio & PipeWire)
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -138,12 +109,14 @@
       pulse.enable = true;
       jack.enable = true;
     };
+
+    # Libinput
     libinput = {
       enable = true;
-      mouse = {
-        accelProfile = "flat";
-      };
+      mouse.accelProfile = "flat";
     };
+
+    # Desktop environments
     displayManager.ly.enable = true;
     desktopManager.gnome.enable = true;
     gnome = {
@@ -183,7 +156,6 @@
       isNormalUser = true;
       extraGroups = [
         "wheel"
-        "wireshark"
         "audio"
         "input"
       ];
@@ -191,10 +163,10 @@
   };
 
   environment.systemPackages = [
-    pkgs.alsa-utils
-    pkgs.xdg-utils
-    pkgs.android-tools
-    pkgs.wlx-overlay-s
+    pkgs.alsa-utils # ALSA
+    pkgs.xdg-utils # xdg-open and etc
+    pkgs.android-tools # adb (For Meta Quest connection via USB type-c cable)
+    pkgs.wlx-overlay-s # WiVRN's overlay
   ];
 
   fonts = {
@@ -225,15 +197,8 @@
     ];
   };
 
-  nixpkgs = {
-    config = {
-      permittedInsecurePackages = [
-        "electron-21.4.4"
-        "electron-27.3.11"
-      ];
-      allowUnfree = true;
-    };
-  };
+  # AllowUnfree
+  nixpkgs.config.allowUnfree = true;
 
   virtualisation = {
     docker.enable = true;
