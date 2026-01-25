@@ -96,19 +96,10 @@
           };
         };
         fonts = {
-          names = [ "monospace" ];
+          names = [ "UDEV Gothic NF" ];
           style = "normal";
           size = 8.0;
         };
-        bars = [
-          {
-            position = "bottom";
-            statusCommand = lib.strings.concatStringsSep " " [
-              (lib.getExe pkgs.i3status-rust)
-              "~/.config/i3status-rust/config-default.toml"
-            ];
-          }
-        ];
       };
   };
 }
