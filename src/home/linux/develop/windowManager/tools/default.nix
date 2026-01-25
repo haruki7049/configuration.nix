@@ -8,5 +8,6 @@
     ./hyprpaper
     ./i3status-rust
     ./waybar
+    ./swaylock
   ];
 }
