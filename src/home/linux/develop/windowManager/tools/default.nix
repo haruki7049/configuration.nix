@@ -5,9 +5,7 @@
 {
   imports = [
     ./fuzzel
+    ./hypridle
     ./hyprpaper
-    ./i3status-rust
-    ./waybar
-    ./swaylock
   ];
 }

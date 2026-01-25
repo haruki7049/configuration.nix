@@ -7,14 +7,16 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enableXdgAutostart = true;
+
     settings = {
       dwindle = {
         preserve_split = true;
       };
       general = {
         gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_out = 5;
+        border_size = 1;
         resize_on_border = false;
         allow_tearing = false;
       };
@@ -22,9 +24,6 @@
         rounding = 10;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
         blur = {
           enabled = true;
           size = 3;
@@ -43,11 +42,10 @@
         sensitivity = 0;
         touchpad.natural_scroll = false;
       };
-      gestures.workspace_swipe = false;
 
       "$mod" = "SUPER";
-      "$terminal" = lib.getExe pkgs.alacritty;
-      "$menu" = lib.getExe pkgs.fuzzel;
+      "$terminal" = "alacritty";
+      "$menu" = "fuzzel";
 
       bind = [
         "$mod, return, exec, $terminal"
