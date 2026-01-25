@@ -65,10 +65,20 @@
     };
   };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+  programs = {
+    # Steam
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+
+    # Hyprland (Wayland)
+    hyprlock.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
 
   services = {
