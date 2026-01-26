@@ -9,9 +9,16 @@
 
     settings = {
       modules = {
-        left = ["Workspaces"];
-        center = ["WindowTitle"];
-        right = ["Tray" ["Clock" "Privacy" "Settings"]];
+        left = [ "Workspaces" ];
+        center = [ "WindowTitle" ];
+        right = [
+          "Tray"
+          [
+            "Clock"
+            "Privacy"
+            "Settings"
+          ]
+        ];
       };
     };
   };

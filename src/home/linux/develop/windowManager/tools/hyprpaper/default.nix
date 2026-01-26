@@ -12,7 +12,7 @@ in
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [wallpaper-path];
+      preload = [ wallpaper-path ];
 
       wallpaper = {
         monitor = "";
