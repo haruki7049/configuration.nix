@@ -5,6 +5,8 @@
 {
   services.spotifyd = {
     enable = true;
-    settings = { };
+    settings = {
+      use_mpris = true;
+    };
   };
 }
