@@ -24,23 +24,11 @@
     useXkbConfig = true;
   };
 
-  hardware = {
-    bluetooth.enable = true;
-    steam-hardware.enable = true;
-    xone.enable = true;
-    xpadneo.enable = true;
-    xpad-noone.enable = true;
-  };
+  hardware.bluetooth.enable = true;
 
   security = {
     polkit.enable = true;
     rtkit.enable = true;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "adwaita-dark";
   };
 
   systemd = {
@@ -60,32 +48,9 @@
     services.NetworkManager-wait-online.enable = false;
   };
 
-  programs.steam.enable = true;
-
   services = {
+    # Audio
     pulseaudio.enable = false;
-    joycond.enable = true;
-    openssh.enable = true;
-    blueman.enable = true;
-    udev.packages = [ pkgs.gnome-settings-daemon ];
-    libinput.enable = true;
-    displayManager.ly.enable = true;
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = [
-          pkgs.i3lock
-          pkgs.i3status
-          pkgs.i3blocks
-          pkgs.rofi
-          pkgs.dunst
-          pkgs.pavucontrol
-        ];
-      };
-      desktopManager.runXdgAutostartIfNone = true;
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -93,6 +58,20 @@
       pulse.enable = true;
       jack.enable = true;
     };
+
+    # OpenSSH
+    openssh.enable = true;
+
+    # Bluetooth manager
+    blueman.enable = true;
+
+    udev.packages = [ pkgs.gnome-settings-daemon ];
+    libinput.enable = true;
+
+    # Login managers
+    displayManager.ly.enable = true;
+
+    # systemd-logind
     logind = {
       settings.Login = {
         HandleLidSwitch = "ignore";
@@ -138,15 +117,12 @@
     ];
   };
 
-  environment = {
-    systemPackages = [
-      pkgs.acpi
-    ];
-    pathsToLink = [
-      "/share/applications"
-      "/share/xdg-desktop-portal"
-    ];
-  };
+  environment.systemPackages = [
+    pkgs.acpi
+    pkgs.alsa-utils # ALSA
+    pkgs.xdg-utils # xdg-open and etc
+  ];
+
 
   virtualisation = {
     docker.enable = true;
