@@ -49,6 +49,7 @@
   };
 
   programs = {
+    # Hyprland (Wayland)
     hyprland.enable = true;
     hyprlock.enable = true;
   };
