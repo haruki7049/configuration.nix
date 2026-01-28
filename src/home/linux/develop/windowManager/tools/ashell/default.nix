@@ -9,7 +9,10 @@
 
     settings = {
       modules = {
-        left = [ "Workspaces" ];
+        left = [
+          "Workspaces"
+          "MediaPlayer"
+        ];
         center = [ "WindowTitle" ];
         right = [
           "Tray"
