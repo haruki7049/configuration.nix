@@ -81,6 +81,7 @@
           commit.gpgsign = true; # Signing (GPG/SSH)
           user.signingKey = "~/.ssh/haruki7049"; # Signing key (This is a SSH key)
           gpg.format = "ssh"; # I use SSH key
+          gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers"; # This file contains public keys
 
           credential."https://github.com" = {
             helper = "${pkgs.gh}/bin/gh auth git-credential";
