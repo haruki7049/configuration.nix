@@ -48,6 +48,11 @@
     services.NetworkManager-wait-online.enable = false;
   };
 
+  programs = {
+    hyprland.enable = true;
+    hyprlock.enable = true;
+  };
+
   services = {
     # Audio
     pulseaudio.enable = false;
