@@ -80,6 +80,7 @@
           pull.rebase = true; # I want to use pull with rebasing
           commit.gpgsign = true; # Signing (GPG/SSH)
           user.signingKey = "~/.ssh/haruki7049"; # Signing key (This is a SSH key)
+          gpg.format = "ssh"; # I use SSH key
 
           credential."https://github.com" = {
             helper = "${pkgs.gh}/bin/gh auth git-credential";
