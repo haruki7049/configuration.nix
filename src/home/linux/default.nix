@@ -70,13 +70,24 @@
       git = {
         enable = true;
         settings = {
+          # User's settings
           user.name = "haruki7049";
           user.email = "tontonkirikiri@gmail.com";
+
+          # default branch on initializing is "main"
           init.defaultBranch = "main";
-          pull.rebase = true;
-          commit.gpgsign = true;
-          gpg.format = "ssh";
-          user.signingkey = "~/.ssh/haruki7049";
+
+          pull.rebase = true; # I want to use pull with rebasing
+          commit.gpgsign = true; # Signing (GPG/SSH)
+          user.signingKey = "~/.ssh/haruki7049"; # Signing key (This is a SSH key)
+
+          credential."https://github.com" = {
+            helper = "${pkgs.gh}/bin/gh auth git-credential";
+          };
+
+          credential."https://gist.github.com" = {
+            helper = "${pkgs.gh}/bin/gh auth git-credential";
+          };
         };
       };
       ssh = {
