@@ -87,19 +87,9 @@
             # Toml
             programs.taplo.enable = true;
 
-            # Lua
-            programs.stylua.enable = true;
-
             # ShellScripts
             programs.shellcheck.enable = true;
             programs.shfmt.enable = true;
-
-            settings.formatter = {
-              "stylua".options = [
-                "--indent-type"
-                "Spaces"
-              ];
-            };
           };
 
           devShells.default = pkgs.mkShell {
