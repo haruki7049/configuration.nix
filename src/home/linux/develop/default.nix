@@ -58,12 +58,19 @@ in
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-skk
-      fcitx5-mozc
-      fcitx5-gtk
-    ];
+
+    # Fcitx5
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-skk
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
+
+  qt.enable = true;
 
   home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
 
