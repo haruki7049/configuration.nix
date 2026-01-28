@@ -117,12 +117,17 @@
     ];
   };
 
-  environment.systemPackages = [
-    pkgs.acpi
-    pkgs.alsa-utils # ALSA
-    pkgs.xdg-utils # xdg-open and etc
-  ];
-
+  environment = {
+    systemPackages = [
+      pkgs.acpi
+      pkgs.alsa-utils # ALSA
+      pkgs.xdg-utils # xdg-open and etc
+    ];
+    pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
+  };
 
   virtualisation = {
     docker.enable = true;
