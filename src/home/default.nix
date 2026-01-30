@@ -1,12 +1,10 @@
 {
   pkgs,
   overlays ? [ ],
-  lib ? pkgs.lib,
-  stdenv ? pkgs.stdenv,
 }:
 
 let
-  path = if stdenv.isLinux then ./linux else ./darwin;
+  path = if pkgs.stdenv.isLinux then ./linux else ./darwin;
 in
 
 import path {
