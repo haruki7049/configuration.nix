@@ -36,6 +36,7 @@ let
   desktop-apps = [
     pkgs.anki
     pkgs.spotify
+    pkgs.obsidian
   ];
 
   bitwarden = [
