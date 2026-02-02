@@ -37,6 +37,7 @@ let
     pkgs.anki
     pkgs.spotify
     pkgs.obsidian
+    pkgs.zotero
   ];
 
   bitwarden = [
