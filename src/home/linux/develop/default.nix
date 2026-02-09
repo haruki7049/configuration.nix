@@ -16,6 +16,10 @@ let
     pkgs.nixfmt-rfc-style
     pkgs.deno # For denops.vim
     pkgs.vim-full
+    pkgs.wl-clipboard
+    pkgs.unar
+    pkgs.file
+    pkgs.cmus
   ];
 
   browsers = [
@@ -38,6 +42,8 @@ let
     pkgs.spotify
     pkgs.obsidian
     pkgs.zotero
+    pkgs.vlc
+    pkgs.prismlauncher
   ];
 
   bitwarden = [
