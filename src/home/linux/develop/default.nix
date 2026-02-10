@@ -157,6 +157,8 @@ in
         font.size = 9.0;
         font.normal.family = "UDEV Gothic NF";
 
+        window.opacity = 0.7;
+
         colors = {
           # Dracula color theme
           # https://github.com/dracula/alacritty
