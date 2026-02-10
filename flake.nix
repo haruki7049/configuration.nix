@@ -94,8 +94,11 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
-              # lsp
+              # LSP
               pkgs.nil
+
+              # Encryption
+              pkgs.sops
             ];
           };
         };
