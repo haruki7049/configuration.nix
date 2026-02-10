@@ -1,0 +1,4 @@
+creation_rules:
+  - age:
+    # haruki7049's SSH pubkey
+    - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7Rjpnf4kB6UIILl8fohRn0Gz1aBYM59OHlEjdPd/gS
