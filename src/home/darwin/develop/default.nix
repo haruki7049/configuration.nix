@@ -18,6 +18,7 @@
     pkgs.git
     pkgs.deno # For Vim denops
     pkgs.vim-full
+    pkgs.gnupg # GPG
   ];
 
   nix.settings = {
