@@ -33,6 +33,7 @@
         systemConfiguration
         system-overlay-settings
         inputs.home-manager.nixosModules.home-manager
+        inputs.agenix.nixosModules.default
       ];
     };
 
@@ -66,6 +67,7 @@
         systemConfiguration
         system-overlay-settings
         inputs.home-manager.darwinModules.home-manager
+        inputs.agenix.darwinModules.default
       ];
     };
 }
