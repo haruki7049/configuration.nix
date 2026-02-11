@@ -71,12 +71,6 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    gnupg = {
-      agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-    };
     sway = {
       enable = true;
       extraPackages = with pkgs; [
