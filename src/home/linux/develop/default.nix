@@ -20,6 +20,7 @@ let
     pkgs.unar
     pkgs.file
     pkgs.cmus
+    pkgs.cyanrip
   ];
 
   browsers = [
