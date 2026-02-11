@@ -141,6 +141,18 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  services = {
+    gpg-agent = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+
+      pinentry.package = pkgs.pinentry-tty;
+    };
+  };
+
   programs = {
     gpg.enable = true;
     direnv = {
