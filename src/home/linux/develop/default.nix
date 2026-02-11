@@ -20,7 +20,6 @@ let
     pkgs.unar
     pkgs.file
     pkgs.cmus
-    pkgs.gnupg # GPG
   ];
 
   browsers = [
