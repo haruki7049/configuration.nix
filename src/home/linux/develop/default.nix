@@ -142,6 +142,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   programs = {
+    gpg.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
