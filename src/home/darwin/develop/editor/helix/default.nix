@@ -7,7 +7,6 @@
     enable = true;
     defaultEditor = false;
     settings = {
-      theme = "dracula";
       editor.lsp = {
         enable = true;
         display-messages = true;
