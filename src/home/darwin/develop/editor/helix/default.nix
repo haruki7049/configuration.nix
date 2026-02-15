@@ -7,6 +7,7 @@
     enable = true;
     defaultEditor = false;
     settings = {
+      theme = "dracula_transparency";
       editor.lsp = {
         enable = true;
         display-messages = true;
@@ -21,6 +22,10 @@
         normal = "block";
         insert = "bar";
       };
+    };
+    themes.dracula_transparency = {
+      inherits = "dracula";
+      "ui.background" = { };
     };
     languages = {
       language = [
