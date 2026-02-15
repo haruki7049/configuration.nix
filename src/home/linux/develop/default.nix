@@ -142,6 +142,10 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  services.easyeffects = {
+    enable = true;
+  };
+
   programs = {
     direnv = {
       enable = true;
