@@ -152,6 +152,10 @@ in
       enableZshIntegration = true;
       enableNushellIntegration = true;
     };
+    obs-studio = {
+      enable = true;
+      plugins = [ pkgs.obs-studio-plugins.wlrobs ];
+    };
     alacritty = {
       enable = true;
       settings = {
