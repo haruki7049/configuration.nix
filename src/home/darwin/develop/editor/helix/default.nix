@@ -45,6 +45,10 @@
           name = "nix";
           auto-format = true;
         }
+        {
+          name = "java";
+          auto-format = true;
+        }
       ];
     };
   };
