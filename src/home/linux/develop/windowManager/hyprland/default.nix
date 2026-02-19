@@ -84,6 +84,10 @@
         "$mod_SHIFT, 9, movetoworkspacesilent, 9"
         "$mod_SHIFT, 0, movetoworkspacesilent, 10"
       ];
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
       windowrulev2 = "suppressevent maximize, class:.*";
     };
   };
