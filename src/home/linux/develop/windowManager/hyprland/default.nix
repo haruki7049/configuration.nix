@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -54,10 +50,17 @@
         "$mod, SPACE, togglefloating,"
         "$mod, P, exec, $menu"
 
+        # Move focus
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        # Move active
+        "$mod_SHIFT, left, swapwindow, l"
+        "$mod_SHIFT, right, swapwindow, r"
+        "$mod_SHIFT, up, swapwindow, u"
+        "$mod_SHIFT, down, swapwindow, d"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
