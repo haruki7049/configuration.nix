@@ -80,14 +80,6 @@
         "$mod_SHIFT, 8, movetoworkspacesilent, 8"
         "$mod_SHIFT, 9, movetoworkspacesilent, 9"
         "$mod_SHIFT, 0, movetoworkspacesilent, 10"
-
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod_SHIFT, S, movetoworkspace, special:magic"
-
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-
-        "$mod, mouse:272, movewindow"
       ];
       windowrulev2 = "suppressevent maximize, class:.*";
     };
