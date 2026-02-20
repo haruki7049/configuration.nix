@@ -10,5 +10,6 @@
     ./fd
     ./ripgrep
     ./spotifyd
+    ./zoxide
   ];
 }
