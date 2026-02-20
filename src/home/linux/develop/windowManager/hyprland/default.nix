@@ -89,6 +89,13 @@
         "$mod, mouse:273, resizewindow"
       ];
       windowrulev2 = "suppressevent maximize, class:.*";
+
+      monitorv2 = {
+        output = "";
+        mode = "preffered";
+        position = "auto";
+        scale = "1.0";
+      };
     };
   };
 }
