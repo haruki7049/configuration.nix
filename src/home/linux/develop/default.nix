@@ -13,7 +13,7 @@ let
     pkgs.gzip
     pkgs.mpc
     pkgs.htop
-    pkgs.nixfmt-rfc-style
+    pkgs.nixfmt
     pkgs.deno # For denops.vim
     pkgs.vim-full
     pkgs.wl-clipboard
@@ -129,7 +129,7 @@ in
       "*.color7" = "#BFBFBF";
       "*.color15" = "#E6E6E6";
     };
-    extraConfig = '''';
+    extraConfig = "";
   };
 
   nix.settings = {
