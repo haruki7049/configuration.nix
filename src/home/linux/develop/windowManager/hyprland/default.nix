@@ -88,7 +88,11 @@
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
-      windowrulev2 = "suppressevent maximize, class:.*";
+      windowrule = {
+        "name" = "suppress windows' event";
+        "match:class" = "*";
+        "suppress_event" = "maximize";
+      };
 
       monitorv2 = {
         output = "";
