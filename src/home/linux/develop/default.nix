@@ -34,7 +34,6 @@ let
     pkgs.discord
     pkgs.element-desktop
     pkgs.slack
-    pkgs.whalebird
     pkgs.zulip
   ];
 
