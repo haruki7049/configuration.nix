@@ -215,10 +215,6 @@
   virtualisation = {
     docker.enable = true;
     podman.enable = true;
-    virtualbox = {
-      host.enable = true;
-      host.enableExtensionPack = true;
-    };
   };
 
   system.stateVersion = "25.11";
