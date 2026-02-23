@@ -49,6 +49,14 @@
           name = "java";
           auto-format = true;
         }
+        {
+          name = "cpp";
+          auto-format = true;
+        }
+        {
+          name = "c";
+          auto-format = true;
+        }
       ];
     };
   };
