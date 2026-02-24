@@ -6,6 +6,7 @@
 let
   cli-tools = [
     pkgs.git
+    pkgs.ghq # Local git repository management CLI tool
     pkgs.wget
     pkgs.curl
     pkgs.unzip

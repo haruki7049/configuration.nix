@@ -51,6 +51,9 @@
           credential."https://gist.github.com" = {
             helper = "${pkgs.gh}/bin/gh auth git-credential";
           };
+
+          # Some ghq settings
+          ghq.root = "~/program-dir";
         };
       };
       ssh = {

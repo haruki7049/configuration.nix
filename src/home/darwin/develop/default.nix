@@ -16,6 +16,7 @@
     pkgs.unzip
     pkgs.gzip
     pkgs.git
+    pkgs.ghq # Local git repository management CLI tool
     pkgs.deno # For Vim denops
     pkgs.vim-full
     pkgs.cyanrip # CD ripping tool
