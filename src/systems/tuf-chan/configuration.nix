@@ -24,7 +24,16 @@
     useXkbConfig = true;
   };
 
-  xdg.mime.enable = true;
+  xdg = {
+    mime.enable = true;
+
+    portal.enable = true;
+    portal.extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
 
   hardware = {
     amdgpu = {
