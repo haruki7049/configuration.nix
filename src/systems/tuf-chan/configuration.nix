@@ -21,7 +21,7 @@
 
   console = {
     font = "Lat2-Terminus16";
-    useXkbConfig = true;
+    keyMap = "us";
   };
 
   xdg = {
@@ -144,31 +144,6 @@
       core-apps.enable = false;
       core-developer-tools.enable = false;
       games.enable = false;
-    };
-    xserver = {
-      enable = true;
-      videoDrivers = [ "amdgpu" ];
-      xkb.layout = "us";
-      desktopManager.runXdgAutostartIfNone = true;
-      windowManager.twm.enable = true;
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          lutris
-          arandr
-          dunst
-          rofi
-          alacritty
-          i3status
-          i3blocks
-          i3lock
-          pwvucontrol
-          pavucontrol
-          scrot
-          feh
-          gimp
-        ];
-      };
     };
   };
 
