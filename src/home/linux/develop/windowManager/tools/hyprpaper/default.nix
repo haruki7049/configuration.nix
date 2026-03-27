@@ -5,7 +5,7 @@
 }:
 
 let
-  wallpaper-path = "${pkgs.callPackage ../../wallpapers/fanta-hhkb.nix { }}";
+  wallpaper-path = "${pkgs.callPackage ../../wallpapers/beef-bowl.nix { }}";
 in
 
 {
