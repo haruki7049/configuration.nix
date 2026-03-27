@@ -22,6 +22,8 @@ let
     pkgs.file
     pkgs.cmus
     pkgs.cyanrip
+    pkgs.alsa-utils # ALSA
+    pkgs.xdg-utils # xdg-open and etc
   ];
 
   browsers = [
@@ -45,6 +47,8 @@ let
     pkgs.zotero
     pkgs.vlc
     pkgs.prismlauncher
+    pkgs.pwvucontrol
+    pkgs.pavucontrol
   ];
 
   bitwarden = [
