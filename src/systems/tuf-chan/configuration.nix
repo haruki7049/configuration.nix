@@ -159,6 +159,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.lutris # Open Source gaming platform for GNU/Linux
     pkgs.android-tools # adb (For Meta Quest connection via USB type-c cable)
     pkgs.wayvr # A tool to access my Wayland/X11 desktop from OpenVR/OpenXR
   ];
