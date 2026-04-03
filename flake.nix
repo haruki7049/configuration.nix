@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    systems.url = "github:nix-systems/default";
     nix-darwin.url = "github:LnL7/nix-darwin";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -34,7 +33,11 @@
       overlays = [ ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
 
       imports = [
         inputs.treefmt-nix.flakeModule

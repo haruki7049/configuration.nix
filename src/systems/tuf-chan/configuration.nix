@@ -103,9 +103,9 @@
     # VR from Meta Quest series
     wivrn = {
       enable = true;
-      defaultRuntime = true;
       openFirewall = true;
       steam.importOXRRuntimes = true;
+      steam.enable = true;
       autoStart = true;
     };
 
