@@ -8,5 +8,6 @@
     ./fuzzel
     ./hypridle
     ./hyprpaper
+    ./mako
   ];
 }
