@@ -87,6 +87,13 @@
       dedicatedServer.openFirewall = true;
     };
 
+    # OBS studio
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = [ pkgs.obs-studio-plugins.wlrobs ];
+    };
+
     # Hyprland (Wayland)
     hyprland.enable = true;
     hyprlock.enable = true;
