@@ -94,6 +94,9 @@
       plugins = [ pkgs.obs-studio-plugins.wlrobs ];
     };
 
+    # Immersed
+    immersed.enable = true;
+
     # Hyprland (Wayland)
     hyprland.enable = true;
     hyprlock.enable = true;
@@ -117,6 +120,9 @@
       ];
       rocmOverrideGfx = "10.3.0";
     };
+
+    # open-webui (For ollama instance)
+    open-webui.enable = true;
 
     # Devices
     udev.enable = true;
