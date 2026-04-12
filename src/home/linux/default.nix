@@ -31,32 +31,32 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
-          "x-scheme-handler/http" = "google-chrome.desktop";
-          "x-scheme-handler/https" = "google-chrome.desktop";
-          "x-scheme-handler/about" = "google-chrome.desktop";
-          "x-scheme-handler/unknown" = "google-chrome.desktop";
-          "text/html" = "google-chrome.desktop";
-          "application/x-extension-htm" = "google-chrome.desktop";
-          "application/x-extension-html" = "google-chrome.desktop";
-          "application/x-extension-shtml" = "google-chrome.desktop";
-          "application/xhtml+xml" = "google-chrome.desktop";
-          "application/x-extension-xhtml" = "google-chrome.desktop";
-          "application/x-extension-xht" = "google-chrome.desktop";
+          "x-scheme-handler/http" = "vivaldi-stable.desktop";
+          "x-scheme-handler/https" = "vivaldi-stable.desktop";
+          "x-scheme-handler/about" = "vivaldi-stable.desktop";
+          "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+          "text/html" = "vivaldi-stable.desktop";
+          "application/x-extension-htm" = "vivaldi-stable.desktop";
+          "application/x-extension-html" = "vivaldi-stable.desktop";
+          "application/x-extension-shtml" = "vivaldi-stable.desktop";
+          "application/xhtml+xml" = "vivaldi-stable.desktop";
+          "application/x-extension-xhtml" = "vivaldi-stable.desktop";
+          "application/x-extension-xht" = "vivaldi-stable.desktop";
         };
 
         associations = {
           added = {
-            "x-scheme-handler/http" = "google-chrome.desktop";
-            "x-scheme-handler/https" = "google-chrome.desktop";
-            "x-scheme-handler/about" = "google-chrome.desktop";
-            "x-scheme-handler/unknown" = "google-chrome.desktop";
-            "text/html" = "google-chrome.desktop";
-            "application/x-extension-htm" = "google-chrome.desktop";
-            "application/x-extension-html" = "google-chrome.desktop";
-            "application/x-extension-shtml" = "google-chrome.desktop";
-            "application/xhtml+xml" = "google-chrome.desktop";
-            "application/x-extension-xhtml" = "google-chrome.desktop";
-            "application/x-extension-xht" = "google-chrome.desktop";
+            "x-scheme-handler/http" = "vivaldi-stable.desktop";
+            "x-scheme-handler/https" = "vivaldi-stable.desktop";
+            "x-scheme-handler/about" = "vivaldi-stable.desktop";
+            "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+            "text/html" = "vivaldi-stable.desktop";
+            "application/x-extension-htm" = "vivaldi-stable.desktop";
+            "application/x-extension-html" = "vivaldi-stable.desktop";
+            "application/x-extension-shtml" = "vivaldi-stable.desktop";
+            "application/xhtml+xml" = "vivaldi-stable.desktop";
+            "application/x-extension-xhtml" = "vivaldi-stable.desktop";
+            "application/x-extension-xht" = "vivaldi-stable.desktop";
           };
 
           removed = { };
