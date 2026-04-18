@@ -127,7 +127,6 @@
     systemPackages = [
       pkgs.acpi
       pkgs.alsa-utils # ALSA
-      pkgs.xdg-utils # xdg-open and etc
     ];
     pathsToLink = [
       # For xdg.portal.enable option in home-manager
