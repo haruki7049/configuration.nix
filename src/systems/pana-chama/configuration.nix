@@ -130,6 +130,7 @@
       pkgs.xdg-utils # xdg-open and etc
     ];
     pathsToLink = [
+      # For xdg.portal.enable option in home-manager
       "/share/applications"
       "/share/xdg-desktop-portal"
     ];
