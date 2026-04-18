@@ -27,6 +27,7 @@
         })
         x86_64-linux-pc
         aarch64-darwin-pc
+        home-configuration
         ;
 
       userhome-configs = ./src/home;
@@ -59,6 +60,19 @@
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
             inherit userhome-configs overlays;
           };
+        };
+
+        homeConfigurations.x86_64-linux = home-configuration {
+          system = "x86_64-linux";
+          inherit userhome-configs;
+        };
+        homeConfigurations.aarch64-linux = home-configuration {
+          system = "aarch64-linux";
+          inherit userhome-configs;
+        };
+        homeConfigurations.aarch64-darwin = home-configuration {
+          system = "aarch64-darwin";
+          inherit userhome-configs;
         };
       };
 

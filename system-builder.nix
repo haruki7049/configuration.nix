@@ -12,7 +12,7 @@
         config.allowUnfree = true;
       },
       systemConfiguration,
-      userhome-configs ? { },
+      userhome-configs,
     }:
     let
       users = import userhome-configs { inherit pkgs overlays; };
@@ -45,7 +45,7 @@
         config.allowUnfree = true;
       },
       systemConfiguration,
-      userhome-configs ? null,
+      userhome-configs,
     }:
     let
       users = import userhome-configs { inherit pkgs overlays; };
@@ -66,6 +66,29 @@
         systemConfiguration
         system-overlay-settings
         inputs.home-manager.darwinModules.home-manager
+      ];
+    };
+
+  home-configuration =
+    {
+      system,
+      overlays ? [ ],
+      pkgs ? import inputs.nixpkgs {
+        inherit system overlays;
+        config.allowUnfree = true;
+      },
+      userhome-configs,
+    }:
+    let
+      system-overlay-settings = {
+        nixpkgs = { inherit overlays; };
+      };
+    in
+    inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        userhome-configs
+        system-overlay-settings
       ];
     };
 }
