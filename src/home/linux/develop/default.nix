@@ -149,6 +149,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  services.polkit-gnome.enable = true;
   services.easyeffects = {
     enable = true;
   };
