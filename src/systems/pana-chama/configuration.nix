@@ -31,23 +31,6 @@
     rtkit.enable = true;
   };
 
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-    services.NetworkManager-wait-online.enable = false;
-  };
-
   programs = {
     # Hyprland (Wayland)
     hyprland.enable = true;
@@ -71,7 +54,7 @@
     # Bluetooth manager
     blueman.enable = true;
 
-    udev.packages = [ pkgs.gnome-settings-daemon ];
+    # Touchpad & Mouse
     libinput.enable = true;
 
     # Login managers
