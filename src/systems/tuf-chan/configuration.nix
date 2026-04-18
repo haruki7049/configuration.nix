@@ -40,11 +40,6 @@
     xpad-noone.enable = true;
   };
 
-  qt = {
-    enable = true;
-    style = "adwaita-dark";
-  };
-
   security = {
     polkit.enable = true;
     rtkit.enable = true;

@@ -4,6 +4,17 @@
 }:
 
 let
+  imports = [
+    ./windowManager
+    ./browser
+    ./editor
+    ./mpd
+    ./qt
+    ./shell
+    ./tools
+    ./xdg
+  ];
+
   cli-tools = [
     pkgs.git
     pkgs.ghq # Local git repository management CLI tool
@@ -58,15 +69,7 @@ let
 in
 
 {
-  imports = [
-    ./windowManager
-    ./browser
-    ./mpd
-    ./shell
-    ./tools
-    ./editor
-    ./xdg
-  ];
+  inherit imports;
 
   i18n.inputMethod = {
     enable = true;
