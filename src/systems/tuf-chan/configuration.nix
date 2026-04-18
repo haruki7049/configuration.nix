@@ -24,17 +24,6 @@
     keyMap = "us";
   };
 
-  xdg = {
-    mime.enable = true;
-
-    portal.enable = true;
-    portal.extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-  };
-
   hardware = {
     amdgpu = {
       opencl.enable = true;
@@ -179,6 +168,11 @@
     pkgs.lutris # Open Source gaming platform for GNU/Linux
     pkgs.android-tools # adb (For Meta Quest connection via USB type-c cable)
     pkgs.wayvr # A tool to access my Wayland/X11 desktop from OpenVR/OpenXR
+  ];
+  environment.pathsToLink = [
+    # For xdg.portal.enable option in home-manager
+    "/share/xdg-desktop-portal"
+    "/share/applications"
   ];
 
   fonts = {
