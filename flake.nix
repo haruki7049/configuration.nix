@@ -55,24 +55,8 @@
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
             inherit userhome-configs overlays;
           };
-          dospara-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/dospara-chan/configuration.nix;
-            inherit userhome-configs overlays;
-          };
           pana-chama = x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
-            inherit userhome-configs overlays;
-          };
-          spectre-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/spectre-chan/configuration.nix;
-            inherit userhome-configs overlays;
-          };
-          latitude-chan = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/latitude-chan/configuration.nix;
-            inherit userhome-configs overlays;
-          };
-          the-hp = x86_64-linux-pc {
-            systemConfiguration = ./src/systems/the-hp/configuration.nix;
             inherit userhome-configs overlays;
           };
         };
