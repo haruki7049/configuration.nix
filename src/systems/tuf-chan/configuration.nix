@@ -122,12 +122,9 @@
 
     # Desktop environments
     displayManager.ly.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome = {
-      core-apps.enable = false;
-      core-developer-tools.enable = false;
-      games.enable = false;
-    };
+    xserver.enable = true;
+    xserver.xkb.layout = "us";
+    xserver.windowManager.twm.enable = true;
   };
 
   users.users = {
