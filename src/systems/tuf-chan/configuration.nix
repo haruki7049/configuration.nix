@@ -124,7 +124,7 @@
     displayManager.ly.enable = true;
     xserver.enable = true;
     xserver.xkb.layout = "us";
-    xserver.windowManager.twm.enable = true;
+    xserver.windowManager.i3.enable = true;
   };
 
   users.users = {
