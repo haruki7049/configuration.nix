@@ -167,7 +167,7 @@ in
     alacritty = {
       enable = true;
       settings = {
-        font.size = 9.0;
+        font.size = 8.0;
         font.normal.family = "UDEV Gothic NF";
 
         window.opacity = 0.7;
