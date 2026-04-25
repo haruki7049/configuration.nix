@@ -26,16 +26,6 @@
     pkgs.udev-gothic
   ];
 
-  environment.systemPackages = [
-    pkgs.audacity
-    pkgs.prismlauncher
-    pkgs.kitty
-    pkgs.spotify
-    pkgs.slack
-
-    #pkgs.google-chrome
-  ];
-
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
