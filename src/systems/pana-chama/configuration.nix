@@ -4,124 +4,29 @@
 }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../common/configuration.nix
+  ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.enableContainers = false;
+  # Host name
+  networking.hostName = "pana-chama";
 
-  networking = {
-    hostName = "pana-chama";
-    networkmanager.enable = true;
-  };
-
+  # Time zone
   time.timeZone = "Asia/Tokyo";
 
+  # Locale
   i18n.defaultLocale = "en_US.UTF-8";
 
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true;
-  };
-
-  hardware.bluetooth.enable = true;
-
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
-  };
-
-  programs = {
-    # Hyprland (Wayland)
-    hyprland.enable = true;
-    hyprlock.enable = true;
-  };
-
   services = {
-    # Audio
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
-
-    # OpenSSH
-    openssh.enable = true;
-
-    # Bluetooth manager
-    blueman.enable = true;
-
-    # Touchpad & Mouse
-    libinput.enable = true;
-
-    # Login managers
-    displayManager.ly.enable = true;
-
     # systemd-logind
-    logind = {
-      settings.Login = {
-        HandleLidSwitch = "ignore";
-      };
+    logind.settings.Login = {
+      HandleLidSwitch = "ignore";
     };
   };
 
-  fonts = {
-    packages = with pkgs; [
-      ipafont
-      ipaexfont
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      udev-gothic-nf
-      dejavu_fonts
-    ];
-  };
-
-  users.users.haruki = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-    ];
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings = {
-    trusted-users = [
-      "root"
-      "@wheel"
-    ];
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-  };
-
-  environment = {
-    systemPackages = [
-      pkgs.acpi
-      pkgs.alsa-utils # ALSA
-    ];
-    pathsToLink = [
-      # For xdg.portal.enable option in home-manager
-      "/share/applications"
-      "/share/xdg-desktop-portal"
-    ];
-  };
-
-  virtualisation = {
-    docker.enable = true;
-    podman.enable = true;
-  };
-
-  system.stateVersion = "25.11";
+  environment.systemPackages = [
+    pkgs.acpi # CLI Battery checker
+    pkgs.alsa-utils # ALSA
+  ];
 }
