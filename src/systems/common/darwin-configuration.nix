@@ -44,4 +44,12 @@
 
   # AllowUnfree for nixpkgs
   nixpkgs.config.allowUnfree = true;
+
+  # ----- Darwin options -----
+
+  system = {
+    # Used for backwards compatibility, please read the changelog before changing.
+    # $ darwin-rebuild changelog
+    stateVersion = 5;
+  };
 }

@@ -6,7 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../common/configuration.nix
+    ../common/linux-configuration.nix
   ];
 
   # Systemd-boot
