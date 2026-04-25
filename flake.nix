@@ -21,15 +21,7 @@
   outputs =
     inputs:
     let
-      inherit
-        (import ./system-builder.nix {
-          inherit inputs;
-        })
-        x86_64-linux-pc
-        aarch64-darwin-pc
-        home-configuration
-        ;
-
+      utils = import ./src/utils { inherit inputs; };
       userhome-configs = ./src/home;
       overlays = [ ];
     in
@@ -46,31 +38,31 @@
 
       flake = {
         darwinConfigurations = {
-          enmac = aarch64-darwin-pc {
+          enmac = utils.system-builder.aarch64-darwin-pc {
             systemConfiguration = ./src/systems/enmac/configuration.nix;
             inherit userhome-configs overlays;
           };
         };
         nixosConfigurations = {
-          tuf-chan = x86_64-linux-pc {
+          tuf-chan = utils.system-builder.x86_64-linux-pc {
             systemConfiguration = ./src/systems/tuf-chan/configuration.nix;
             inherit userhome-configs overlays;
           };
-          pana-chama = x86_64-linux-pc {
+          pana-chama = utils.system-builder.x86_64-linux-pc {
             systemConfiguration = ./src/systems/pana-chama/configuration.nix;
             inherit userhome-configs overlays;
           };
         };
 
-        homeConfigurations.x86_64-linux = home-configuration {
+        homeConfigurations.x86_64-linux = utils.system-builder.home-configuration {
           system = "x86_64-linux";
           inherit userhome-configs;
         };
-        homeConfigurations.aarch64-linux = home-configuration {
+        homeConfigurations.aarch64-linux = utils.system-builder.home-configuration {
           system = "aarch64-linux";
           inherit userhome-configs;
         };
-        homeConfigurations.aarch64-darwin = home-configuration {
+        homeConfigurations.aarch64-darwin = utils.system-builder.home-configuration {
           system = "aarch64-darwin";
           inherit userhome-configs;
         };
