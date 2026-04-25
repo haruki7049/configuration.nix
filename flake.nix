@@ -71,7 +71,7 @@
       };
 
       perSystem =
-        { pkgs, ... }:
+        { config, pkgs, ... }:
         {
           treefmt = {
             projectRootFile = "flake.nix";
@@ -88,10 +88,11 @@
           };
 
           devShells.default = pkgs.mkShell {
-            packages = [
-              # lsp
-              pkgs.nil
+            nativeBuildInputs = [
+              pkgs.nil # Nix LSP
             ];
+
+            inputsFrom = [ config.treefmt.build.devShell ];
           };
         };
     };
