@@ -3,13 +3,8 @@
   ...
 }:
 
-{
-  imports = [
-    ./editor
-    ./tools
-    ./shell
-  ];
-  home.packages = [
+let
+  cli-apps = [
     pkgs.htop
     pkgs.wget
     pkgs.curl
@@ -22,6 +17,23 @@
     pkgs.cyanrip # CD ripping tool
   ];
 
+  # desktop-apps = [
+  #   pkgs.audacity
+  #   pkgs.prismlauncher
+  #   pkgs.kitty
+  #   pkgs.spotify
+  # ];
+in
+
+{
+  imports = [
+    ./editor
+    ./tools
+    ./shell
+  ];
+
+  home.packages = cli-apps;
+
   nix.settings = {
     accept-flake-config = true;
     experimental-features = [
@@ -29,6 +41,8 @@
       "flakes"
     ];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   programs = {
     direnv = {

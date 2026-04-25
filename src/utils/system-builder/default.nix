@@ -109,9 +109,9 @@ in
     {
       system,
       overlays ? [ ],
-      configs ? { },
+      config ? { },
       pkgs ? import inputs.nixpkgs {
-        inherit system overlays configs;
+        inherit system overlays config;
       },
       userhome-configuration,
     }:

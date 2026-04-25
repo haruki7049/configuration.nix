@@ -22,6 +22,7 @@
     inputs:
     let
       utils = import ./src/utils { inherit inputs; };
+      config.allowUnfree = true;
       userhome-configuration = ./src/home;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -40,33 +41,33 @@
           enmac = utils.system-builder.build-system {
             system = "aarch64-darwin";
             system-configuration = ./src/systems/enmac/configuration.nix;
-            inherit userhome-configuration;
+            inherit userhome-configuration config;
           };
         };
         nixosConfigurations = {
           tuf-chan = utils.system-builder.build-system {
             system = "x86_64-linux";
             system-configuration = ./src/systems/tuf-chan/configuration.nix;
-            inherit userhome-configuration;
+            inherit userhome-configuration config;
           };
           pana-chama = utils.system-builder.build-system {
             system = "x86_64-linux";
             system-configuration = ./src/systems/pana-chama/configuration.nix;
-            inherit userhome-configuration;
+            inherit userhome-configuration config;
           };
         };
 
         homeConfigurations.x86_64-linux = utils.system-builder.home-configuration {
           system = "x86_64-linux";
-          inherit userhome-configuration;
+          inherit userhome-configuration config;
         };
         homeConfigurations.aarch64-linux = utils.system-builder.home-configuration {
           system = "aarch64-linux";
-          inherit userhome-configuration;
+          inherit userhome-configuration config;
         };
         homeConfigurations.aarch64-darwin = utils.system-builder.home-configuration {
           system = "aarch64-darwin";
-          inherit userhome-configuration;
+          inherit userhome-configuration config;
         };
       };
 

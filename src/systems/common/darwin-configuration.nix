@@ -32,6 +32,7 @@
   # Nix settings
   nix.package = pkgs.nix;
   nix.settings = {
+    sandbox = true;
     trusted-users = [
       "root"
       "@wheel"
