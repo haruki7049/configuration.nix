@@ -2,22 +2,21 @@
   inputs,
 }:
 
-{
-  x86_64-linux-pc =
+let
+  build-x86_64-linux-system =
     {
-      system ? "x86_64-linux",
-      overlays ? [ ],
-      pkgs ? import inputs.nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
-      },
-      systemConfiguration,
-      userhome-configs,
+      system,
+      overlays,
+      pkgs,
+      system-configuration,
+      userhome-configuration,
     }:
     let
-      users = import userhome-configs { inherit pkgs overlays; };
+      users = import userhome-configuration {
+        inherit pkgs overlays;
+      };
       system-overlay-settings = {
-        nixpkgs = { inherit overlays; };
+        nixpkgs.overlays = overlays;
       };
       home-manager-settings = {
         home-manager = {
@@ -30,27 +29,26 @@
       inherit system;
       modules = [
         home-manager-settings
-        systemConfiguration
+        system-configuration
         system-overlay-settings
         inputs.home-manager.nixosModules.home-manager
       ];
     };
 
-  aarch64-darwin-pc =
+  build-aarch64-darwin-system =
     {
-      system ? "aarch64-darwin",
-      overlays ? [ ],
-      pkgs ? import inputs.nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
-      },
-      systemConfiguration,
-      userhome-configs,
+      system,
+      overlays,
+      pkgs,
+      system-configuration,
+      userhome-configuration,
     }:
     let
-      users = import userhome-configs { inherit pkgs overlays; };
+      users = import userhome-configuration {
+        inherit pkgs overlays;
+      };
       system-overlay-settings = {
-        nixpkgs = { inherit overlays; };
+        nixpkgs.overlays = overlays;
       };
       home-manager-settings = {
         home-manager = {
@@ -63,32 +61,62 @@
       inherit system;
       modules = [
         home-manager-settings
-        systemConfiguration
+        system-configuration
         system-overlay-settings
         inputs.home-manager.darwinModules.home-manager
       ];
     };
 
-  home-configuration =
+in
+
+{
+  build-system =
     {
       system,
       overlays ? [ ],
+      config ? { },
       pkgs ? import inputs.nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
+        inherit system overlays config;
       },
-      userhome-configs,
+
+      system-configuration,
+      userhome-configuration,
     }:
-    let
-      system-overlay-settings = {
-        nixpkgs = { inherit overlays; };
-      };
-    in
+    if system == "x86_64-linux" then
+      build-x86_64-linux-system {
+        inherit
+          system
+          overlays
+          pkgs
+          system-configuration
+          userhome-configuration
+          ;
+      }
+    else if system == "aarch64-darwin" then
+      build-aarch64-darwin-system {
+        inherit
+          system
+          overlays
+          pkgs
+          system-configuration
+          userhome-configuration
+          ;
+      }
+    else
+      throw "Unsupported system: " + system;
+
+  build-home-manager =
+    {
+      system,
+      overlays ? [ ],
+      configs ? { },
+      pkgs ? import inputs.nixpkgs {
+        inherit system overlays configs;
+      },
+      userhome-configuration,
+    }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [
-        userhome-configs
-        system-overlay-settings
-      ];
+      modules = [ userhome-configuration ];
     };
 }
