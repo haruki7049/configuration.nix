@@ -60,6 +60,9 @@
   hardware = {
     # Bluetooth
     bluetooth.enable = true;
+    bluetooth.settings = {
+      General.Enable = "Source,Sink,Media,Socket";
+    };
 
     # Controllers
     steam-hardware.enable = true;
