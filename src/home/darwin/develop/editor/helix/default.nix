@@ -60,28 +60,40 @@
         {
           name = "typescript";
           auto-format = true;
-          language-servers = ["deno-lsp" "typescript-language-server"];
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
         }
         {
           name = "tsx";
           auto-format = true;
-          language-servers = ["deno-lsp" "typescript-language-server"];
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
         }
         {
           name = "javascript";
           auto-format = true;
-          language-servers = ["deno-lsp" "typescript-language-server"];
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
         }
         {
           name = "jsx";
           auto-format = true;
-          language-servers = ["deno-lsp" "typescript-language-server"];
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
         }
       ];
 
       language-server.deno-lsp = {
         command = "deno";
-        args = ["lsp"];
+        args = [ "lsp" ];
         config.deno.enable = true;
       };
     };
