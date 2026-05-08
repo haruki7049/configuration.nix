@@ -87,6 +87,14 @@ in
         style = "normal";
         size = 8.0;
       };
+
+      startup = [
+        {
+          command = "${pkgs.feh}/bin/feh --bg-fill ${pkgs.callPackage ../wallpapers/fanta-hhkb.nix { }}";
+          always = true;
+          notification = false;
+        }
+      ];
     };
   };
 }
