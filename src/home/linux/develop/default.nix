@@ -5,13 +5,14 @@
 
 let
   imports = [
-    ./windowManager
     ./browser
     ./editor
     ./mpd
     ./qt
     ./shell
+    ./synthesizers
     ./tools
+    ./windowManager
     ./xdg
   ];
 
@@ -53,6 +54,7 @@ let
 
   desktop-apps = [
     pkgs.anki
+    pkgs.audacity
     pkgs.spotify
     pkgs.obsidian
     pkgs.zotero
@@ -60,6 +62,7 @@ let
     pkgs.prismlauncher
     pkgs.pwvucontrol
     pkgs.pavucontrol
+    pkgs.qjackctl
   ];
 
   bitwarden = [
