@@ -30,6 +30,7 @@
       home-manager.enable = true;
       git = {
         enable = true;
+        lfs.enable = true;
         settings = {
           # User's settings
           user.name = "haruki7049";
@@ -54,6 +55,12 @@
 
           # Some ghq settings
           ghq.root = "~/program-dir";
+
+          # Git LFS
+          filter.lfs.clean = "git-lfs clean -- %f";
+          filter.lfs.smudge = "git-lfs smudge -- %f";
+          filter.lfs.process = "git-lfs filter-process";
+          filter.lfs.required = true;
         };
       };
       ssh = {
