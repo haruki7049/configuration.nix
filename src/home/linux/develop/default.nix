@@ -157,9 +157,16 @@ in
 
   # QT theme
   qt.enable = true;
-  qt.platformTheme = "gnome";
+  qt.platformTheme.name = "adwaita";
+  qt.platformTheme.package = [
+    pkgs.adwaita-qt
+    pkgs.adwaita-qt6
+  ];
   qt.style.name = "adwaita-dark";
-  qt.style.package = pkgs.adwaita-qt;
+  qt.style.package = [
+    pkgs.adwaita-qt
+    pkgs.adwaita-qt6
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
