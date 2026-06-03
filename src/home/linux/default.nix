@@ -99,15 +99,15 @@
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "*" = {
-            identityFile = [ "~/.ssh/haruki7049" ];
+            IdentityFile = [ "~/.ssh/haruki7049" ];
           };
           "github.com" = {
-            user = "git";
+            User = "git";
           };
           "gitlab.com" = {
-            user = "git";
+            User = "git";
           };
         };
       };
