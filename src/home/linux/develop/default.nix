@@ -8,7 +8,6 @@ let
     ./browser
     ./editor
     ./mpd
-    ./qt
     ./shell
     ./synthesizers
     ./tools
@@ -90,8 +89,6 @@ in
     };
   };
 
-  qt.enable = true;
-
   home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
 
   home.pointerCursor =
@@ -150,6 +147,19 @@ in
       "flakes"
     ];
   };
+
+  # GTK theme
+  gtk.enable = true;
+  gtk.theme.name = "Adwaita-dark";
+  gtk.theme.package = pkgs.gnome-themes-extra;
+  gtk.iconTheme.name = "Adwaita-dark";
+  gtk.iconTheme.package = pkgs.adwaita-icon-theme;
+
+  # QT theme
+  qt.enable = true;
+  qt.platformTheme = "gnome";
+  qt.style.name = "adwaita-dark";
+  qt.style.package = pkgs.adwaita-qt;
 
   nixpkgs.config.allowUnfree = true;
 
