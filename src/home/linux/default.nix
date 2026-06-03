@@ -94,12 +94,6 @@
 
           # Some ghq settings
           ghq.root = "~/program-dir";
-
-          # Git LFS
-          filter.lfs.clean = "git-lfs clean -- %f";
-          filter.lfs.smudge = "git-lfs smudge -- %f";
-          filter.lfs.process = "git-lfs filter-process";
-          filter.lfs.required = true;
         };
       };
       ssh = {
