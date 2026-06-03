@@ -123,7 +123,7 @@
   # Users settings
   users.users = {
     haruki = {
-      shell = pkgs.zsh;
+      shell = pkgs.bash;
       isNormalUser = true;
       extraGroups = [
         "wheel"
