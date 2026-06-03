@@ -162,6 +162,9 @@ in
   qt.style.package = pkgs.adwaita-qt;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10" # pkgs.zulip, pkgs.bitwarden-desktop and etc...
+  ];
 
   services.polkit-gnome.enable = true;
   services.easyeffects = {
