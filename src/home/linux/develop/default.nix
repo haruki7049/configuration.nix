@@ -65,10 +65,10 @@ let
     pkgs.qjackctl
   ];
 
-  bitwarden = [
-    pkgs.bitwarden-cli
-    pkgs.bitwarden-desktop
-  ];
+  # bitwarden = [
+  #   pkgs.bitwarden-cli
+  #   pkgs.bitwarden-desktop
+  # ];
 in
 
 {
@@ -89,7 +89,7 @@ in
     };
   };
 
-  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
+  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps;
 
   home.pointerCursor =
     let
