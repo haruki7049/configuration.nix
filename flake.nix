@@ -10,6 +10,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-compat.url = "github:edolstra/flake-compat";
     nix-darwin.url = "github:LnL7/nix-darwin";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
