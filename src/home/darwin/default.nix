@@ -66,7 +66,7 @@
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "*" = {
             identityFile = [ "~/.ssh/haruki7049" ];
           };
