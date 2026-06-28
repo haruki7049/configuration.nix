@@ -94,26 +94,20 @@
 
           # Some ghq settings
           ghq.root = "~/program-dir";
-
-          # Git LFS
-          filter.lfs.clean = "git-lfs clean -- %f";
-          filter.lfs.smudge = "git-lfs smudge -- %f";
-          filter.lfs.process = "git-lfs filter-process";
-          filter.lfs.required = true;
         };
       };
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "*" = {
-            identityFile = [ "~/.ssh/haruki7049" ];
+            IdentityFile = [ "~/.ssh/haruki7049" ];
           };
           "github.com" = {
-            user = "git";
+            User = "git";
           };
           "gitlab.com" = {
-            user = "git";
+            User = "git";
           };
         };
       };
@@ -123,7 +117,7 @@
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
   };
 
   root = {
@@ -141,6 +135,6 @@
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
   };
 }

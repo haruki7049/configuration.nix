@@ -1,6 +1,13 @@
 {
   description = "My NixOS's configuration for haruki7049";
 
+  nixConfig = {
+    extra-substituters = [ "https://haruki7049.cachix.org" ];
+    extra-trusted-public-keys = [
+      "haruki7049.cachix.org-1:Hd6hnIsYnpDDNhg/ZX06QkLBaCgDoatgNPqrFnUqhMk="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -72,6 +79,13 @@
 
       perSystem =
         { config, pkgs, ... }:
+        let
+          nativeBuildInputs = [
+            pkgs.nil # Nix LSP
+            pkgs.nushell # Script runner
+            pkgs.cachix # cachix CLI
+          ];
+        in
         {
           treefmt = {
             projectRootFile = "flake.nix";
@@ -88,10 +102,7 @@
           };
 
           devShells.default = pkgs.mkShell {
-            nativeBuildInputs = [
-              pkgs.nil # Nix LSP
-            ];
-
+            inherit nativeBuildInputs;
             inputsFrom = [ config.treefmt.build.devShell ];
           };
         };

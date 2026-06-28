@@ -48,23 +48,6 @@
       steam.enable = true;
       autoStart = true;
     };
-
-    # Ollama
-    ollama = {
-      enable = true;
-      package = pkgs.ollama-rocm;
-      loadModels = [
-        "gemma3:12b-it-q4_K_M"
-      ];
-      rocmOverrideGfx = "10.3.1";
-    };
-
-    # open-webui (For ollama instance)
-    open-webui.enable = true;
-    open-webui.environment = {
-      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
-      WEBUI_AUTH = "False";
-    };
   };
 
   environment.systemPackages = [
