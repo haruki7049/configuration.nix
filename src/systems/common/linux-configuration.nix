@@ -91,6 +91,9 @@
     udev.enable = true;
     joycond.enable = true;
 
+    # Dbus
+    dbus.implementation = "dbus"; # Uses the classic dbus daemon, not dbus-broker
+
     # OpenSSH
     openssh.enable = true;
 

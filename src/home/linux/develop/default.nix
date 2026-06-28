@@ -65,10 +65,10 @@ let
     pkgs.qjackctl
   ];
 
-  bitwarden = [
-    pkgs.bitwarden-cli
-    pkgs.bitwarden-desktop
-  ];
+  # bitwarden = [
+  #   pkgs.bitwarden-cli
+  #   pkgs.bitwarden-desktop
+  # ];
 in
 
 {
@@ -89,7 +89,7 @@ in
     };
   };
 
-  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
+  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps;
 
   home.pointerCursor =
     let
@@ -157,11 +157,21 @@ in
 
   # QT theme
   qt.enable = true;
-  qt.platformTheme = "gnome";
+  qt.platformTheme.name = "adwaita";
+  qt.platformTheme.package = [
+    pkgs.adwaita-qt
+    pkgs.adwaita-qt6
+  ];
   qt.style.name = "adwaita-dark";
-  qt.style.package = pkgs.adwaita-qt;
+  qt.style.package = [
+    pkgs.adwaita-qt
+    pkgs.adwaita-qt6
+  ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10" # pkgs.zulip, pkgs.bitwarden-desktop and etc...
+  ];
 
   services.polkit-gnome.enable = true;
   services.easyeffects = {

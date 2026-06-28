@@ -5,6 +5,7 @@
     enable = true;
     systemd.enable = true;
     systemd.enableXdgAutostart = true;
+    configType = "hyprlang";
 
     settings = {
       dwindle = {

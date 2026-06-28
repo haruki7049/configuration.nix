@@ -28,6 +28,11 @@
     programs = {
       # Enable home-manager
       home-manager.enable = true;
+
+      # man
+      man.man-db.enable = true;
+
+      # Git
       git = {
         enable = true;
         lfs.enable = true;
@@ -55,18 +60,14 @@
 
           # Some ghq settings
           ghq.root = "~/program-dir";
-
-          # Git LFS
-          filter.lfs.clean = "git-lfs clean -- %f";
-          filter.lfs.smudge = "git-lfs smudge -- %f";
-          filter.lfs.process = "git-lfs filter-process";
-          filter.lfs.required = true;
         };
       };
+
+      # SSH
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "*" = {
             identityFile = [ "~/.ssh/haruki7049" ];
           };
@@ -81,6 +82,6 @@
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
   };
 }
