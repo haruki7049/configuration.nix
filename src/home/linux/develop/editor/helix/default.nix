@@ -46,6 +46,13 @@
           auto-format = true;
         }
         {
+          name = "haskell";
+          auto-format = true;
+        }
+        {
+          name = "cabal";
+        }
+        {
           name = "java";
           auto-format = true;
         }
