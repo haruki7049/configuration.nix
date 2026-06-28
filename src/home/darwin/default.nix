@@ -28,6 +28,11 @@
     programs = {
       # Enable home-manager
       home-manager.enable = true;
+
+      # man
+      man.man-db.enable = true;
+
+      # Git
       git = {
         enable = true;
         lfs.enable = true;
@@ -57,6 +62,8 @@
           ghq.root = "~/program-dir";
         };
       };
+
+      # SSH
       ssh = {
         enable = true;
         enableDefaultConfig = false;
