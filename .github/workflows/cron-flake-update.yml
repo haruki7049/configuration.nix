@@ -1,4 +1,4 @@
-name: "cachix-push"
+name: "cron-flake-update"
   
 on:
   schedule:
