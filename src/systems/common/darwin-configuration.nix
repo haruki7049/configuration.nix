@@ -35,7 +35,7 @@
     sandbox = true;
     trusted-users = [
       "root"
-      "@wheel"
+      "haruki"
     ];
     experimental-features = [
       "nix-command"
