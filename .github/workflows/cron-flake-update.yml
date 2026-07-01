@@ -18,6 +18,10 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - name: Run `nix flake update`
       run: nix flake update
-    - uses: stefanzweifel/git-auto-commit-action@v7.1.0
-      with:
-        commit_message: "build: nix flake update"
+    - name: Commit changes
+      run: |
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        git add .
+        git commit -m "build: nix flake update"
+        git push origin HEAD
