@@ -48,6 +48,14 @@
       steam.enable = true;
       autoStart = true;
     };
+
+    # Ollama
+    ollama.enable = true;
+    ollama.loadModels = [ "deepseek-coder:6.7b" ];
+    ollama.syncModels = true;
+
+    # nextjs-ollama-llm-ui
+    nextjs-ollama-llm-ui.enable = true;
   };
 
   environment.systemPackages = [
