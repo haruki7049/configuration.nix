@@ -5,7 +5,7 @@
 {
   programs.helix = {
     enable = true;
-    defaultEditor = false;
+    defaultEditor = true;
     settings = {
       theme = "dracula_transparency";
       editor.lsp = {
