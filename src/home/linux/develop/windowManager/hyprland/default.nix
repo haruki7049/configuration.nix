@@ -1,4 +1,7 @@
-{ ... }:
+{
+  lib,
+  ...
+}:
 
 {
   # Hyprlock
@@ -51,102 +54,147 @@
     enable = true;
     systemd.enable = true;
     systemd.enableXdgAutostart = true;
-    configType = "hyprlang";
 
     settings = {
-      dwindle = {
-        preserve_split = true;
-      };
-      general = {
-        gaps_in = 5;
-        gaps_out = 5;
-        border_size = 1;
-        resize_on_border = false;
-        allow_tearing = false;
-      };
-      decoration = {
-        rounding = 10;
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
+      config = {
+        animations.enabled = false;
+
+        general = {
+          gaps_in = 5;
+          gaps_out = 5;
+          border_size = 1;
+          resize_on_border = false;
+          allow_tearing = false;
+        };
+
+        decoration = {
+          rounding = 10;
+          active_opacity = 1.0;
+          inactive_opacity = 1.0;
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+            vibrancy = 0.1696;
+          };
+        };
+
+        dwindle = {
+          preserve_split = true;
+        };
+
+        misc = {
+          force_default_wallpaper = -1;
+          disable_hyprland_logo = false;
+        };
+
+        input = {
+          kb_layout = "us";
+          follow_mouse = 1;
+          sensitivity = 0;
+          touchpad.natural_scroll = false;
         };
       };
-      animations.enabled = false;
-      misc = {
-        force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
-      };
-      input = {
-        kb_layout = "us";
-        follow_mouse = 1;
-        sensitivity = 0;
-        touchpad.natural_scroll = false;
-      };
 
-      "$mod" = "SUPER";
-      "$terminal" = "alacritty";
-      "$menu" = "fuzzel";
+      mod._var = "SUPER";
+      terminal._var = "alacritty";
+      menu._var = "fuzzel";
 
       bind = [
-        "$mod, return, exec, $terminal"
-        "$mod_SHIFT, Q, killactive,"
-        "$mod_SHIFT, E, exit,"
-        "$mod, SPACE, togglefloating,"
-        "$mod, P, exec, $menu"
+        {
+          #"$mod_SHIFT, Q, killactive,"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \"+ SHIFT + Q\"")
+            (lib.generators.mkLuaInline "hl.dsp.window.close()")
+            { locked = true; }
+          ];
+        }
 
-        # Move focus
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
+        {
+          #"$mod_SHIFT, E, exit,"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \"+ SHIFT + E\"")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"command -v hyprshutdown >/dev/null 2>&1 && || hyprctl dispatch 'hl.dsp.exit()'\")")
+            { locked = true; }
+          ];
+        }
 
-        # Move active
-        "$mod_SHIFT, left, swapwindow, l"
-        "$mod_SHIFT, right, swapwindow, r"
-        "$mod_SHIFT, up, swapwindow, u"
-        "$mod_SHIFT, down, swapwindow, d"
+        {
+          # "$mod, return, exec, $terminal"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \"+ return\"")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(terminal)")
+            { locked = true; }
+          ];
+        }
 
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 10"
+        {
+          # "$mod, P, exec, $menu"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \"+ P\"")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(menu)")
+            { locked = true; }
+          ];
+        }
 
-        "$mod_SHIFT, 1, movetoworkspacesilent, 1"
-        "$mod_SHIFT, 2, movetoworkspacesilent, 2"
-        "$mod_SHIFT, 3, movetoworkspacesilent, 3"
-        "$mod_SHIFT, 4, movetoworkspacesilent, 4"
-        "$mod_SHIFT, 5, movetoworkspacesilent, 5"
-        "$mod_SHIFT, 6, movetoworkspacesilent, 6"
-        "$mod_SHIFT, 7, movetoworkspacesilent, 7"
-        "$mod_SHIFT, 8, movetoworkspacesilent, 8"
-        "$mod_SHIFT, 9, movetoworkspacesilent, 9"
-        "$mod_SHIFT, 0, movetoworkspacesilent, 10"
+        # "$mod, SPACE, togglefloating,"
+
+        # # Move focus
+        # "$mod, left, movefocus, l"
+        # "$mod, right, movefocus, r"
+        # "$mod, up, movefocus, u"
+        # "$mod, down, movefocus, d"
+
+        # # Move active
+        # "$mod_SHIFT, left, swapwindow, l"
+        # "$mod_SHIFT, right, swapwindow, r"
+        # "$mod_SHIFT, up, swapwindow, u"
+        # "$mod_SHIFT, down, swapwindow, d"
+
+        # "$mod, 1, workspace, 1"
+        # "$mod, 2, workspace, 2"
+        # "$mod, 3, workspace, 3"
+        # "$mod, 4, workspace, 4"
+        # "$mod, 5, workspace, 5"
+        # "$mod, 6, workspace, 6"
+        # "$mod, 7, workspace, 7"
+        # "$mod, 8, workspace, 8"
+        # "$mod, 9, workspace, 9"
+        # "$mod, 0, workspace, 10"
+
+        # "$mod_SHIFT, 1, movetoworkspacesilent, 1"
+        # "$mod_SHIFT, 2, movetoworkspacesilent, 2"
+        # "$mod_SHIFT, 3, movetoworkspacesilent, 3"
+        # "$mod_SHIFT, 4, movetoworkspacesilent, 4"
+        # "$mod_SHIFT, 5, movetoworkspacesilent, 5"
+        # "$mod_SHIFT, 6, movetoworkspacesilent, 6"
+        # "$mod_SHIFT, 7, movetoworkspacesilent, 7"
+        # "$mod_SHIFT, 8, movetoworkspacesilent, 8"
+        # "$mod_SHIFT, 9, movetoworkspacesilent, 9"
+        # "$mod_SHIFT, 0, movetoworkspacesilent, 10"
+
+        {
+          # "$mod, mouse:272, movewindow"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \" + mouse:272\"")
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            { mouse = true; }
+          ];
+        }
+
+        {
+          # "$mod, mouse:273, resizewindow"
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \" + mouse:273\"")
+            (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+            { mouse = true; }
+          ];
+        }
       ];
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-      windowrule = {
-        "name" = "suppress windows' event";
-        "match:class" = "*";
-        "suppress_event" = "maximize";
-      };
-
-      monitorv2 = {
-        output = "";
-        mode = "preffered";
-        position = "auto";
-        scale = "1.0";
+      window_rule = {
+        name = "suppress windows' event";
+        match.class = "*";
+        suppress_event = "maximize";
       };
     };
   };
