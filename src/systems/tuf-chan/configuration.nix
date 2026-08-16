@@ -17,11 +17,14 @@
   networking.hostName = "tuf-chan";
 
   hardware = {
-    # AMD
+    # AMD GPU
     amdgpu = {
       opencl.enable = true;
       initrd.enable = true;
     };
+
+    # AMD CPU
+    cpu.amd.updateMicrocode = true;
 
     # OpenGL
     graphics = {
