@@ -91,29 +91,14 @@ in
 
   home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps;
 
-  home.pointerCursor =
-    let
-      getFrom = url: sha256: name: size: {
-        gtk.enable = true;
-        x11.enable = true;
-        name = name;
-        size = size;
-        package = pkgs.runCommand "moveUp" { } ''
-          mkdir -p $out/share/icons
-          ln -s ${
-            builtins.fetchTarball {
-              url = url;
-              sha256 = sha256;
-            }
-          } $out/share/icons/${name}
-        '';
-      };
-    in
-    getFrom
-      "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
-      "sha256-jpEuovyLr9HBDsShJo1efRxd21Fxi7HIjXtPJmLQaCU="
-      "bibata"
-      24;
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.bibata-cursors;
+    size = 24;
+    hyprcursor.enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   xresources = {
     properties = {
