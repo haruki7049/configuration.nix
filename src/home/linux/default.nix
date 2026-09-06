@@ -28,40 +28,44 @@
     xdg = {
       enable = true;
       mime.enable = true;
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "x-scheme-handler/http" = "vivaldi-stable.desktop";
-          "x-scheme-handler/https" = "vivaldi-stable.desktop";
-          "x-scheme-handler/about" = "vivaldi-stable.desktop";
-          "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
-          "text/html" = "vivaldi-stable.desktop";
-          "application/x-extension-htm" = "vivaldi-stable.desktop";
-          "application/x-extension-html" = "vivaldi-stable.desktop";
-          "application/x-extension-shtml" = "vivaldi-stable.desktop";
-          "application/xhtml+xml" = "vivaldi-stable.desktop";
-          "application/x-extension-xhtml" = "vivaldi-stable.desktop";
-          "application/x-extension-xht" = "vivaldi-stable.desktop";
-        };
-
-        associations = {
-          added = {
-            "x-scheme-handler/http" = "vivaldi-stable.desktop";
-            "x-scheme-handler/https" = "vivaldi-stable.desktop";
-            "x-scheme-handler/about" = "vivaldi-stable.desktop";
-            "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
-            "text/html" = "vivaldi-stable.desktop";
-            "application/x-extension-htm" = "vivaldi-stable.desktop";
-            "application/x-extension-html" = "vivaldi-stable.desktop";
-            "application/x-extension-shtml" = "vivaldi-stable.desktop";
-            "application/xhtml+xml" = "vivaldi-stable.desktop";
-            "application/x-extension-xhtml" = "vivaldi-stable.desktop";
-            "application/x-extension-xht" = "vivaldi-stable.desktop";
+      mimeApps =
+        let
+          BROWSER_DESKTOP = "vivaldi-stable.desktop";
+        in
+        {
+          enable = true;
+          defaultApplications = {
+            "x-scheme-handler/http" = BROWSER_DESKTOP;
+            "x-scheme-handler/https" = BROWSER_DESKTOP;
+            "x-scheme-handler/about" = BROWSER_DESKTOP;
+            "x-scheme-handler/unknown" = BROWSER_DESKTOP;
+            "text/html" = BROWSER_DESKTOP;
+            "application/x-extension-htm" = BROWSER_DESKTOP;
+            "application/x-extension-html" = BROWSER_DESKTOP;
+            "application/x-extension-shtml" = BROWSER_DESKTOP;
+            "application/xhtml+xml" = BROWSER_DESKTOP;
+            "application/x-extension-xhtml" = BROWSER_DESKTOP;
+            "application/x-extension-xht" = BROWSER_DESKTOP;
           };
 
-          removed = { };
+          associations = {
+            added = {
+              "x-scheme-handler/http" = BROWSER_DESKTOP;
+              "x-scheme-handler/https" = BROWSER_DESKTOP;
+              "x-scheme-handler/about" = BROWSER_DESKTOP;
+              "x-scheme-handler/unknown" = BROWSER_DESKTOP;
+              "text/html" = BROWSER_DESKTOP;
+              "application/x-extension-htm" = BROWSER_DESKTOP;
+              "application/x-extension-html" = BROWSER_DESKTOP;
+              "application/x-extension-shtml" = BROWSER_DESKTOP;
+              "application/xhtml+xml" = BROWSER_DESKTOP;
+              "application/x-extension-xhtml" = BROWSER_DESKTOP;
+              "application/x-extension-xht" = BROWSER_DESKTOP;
+            };
+
+            removed = { };
+          };
         };
-      };
     };
 
     programs = {
