@@ -93,6 +93,7 @@ in
 
   home.pointerCursor = {
     enable = true;
+    name = pkgs.bibata-cursors.name;
     package = pkgs.bibata-cursors;
     size = 24;
     hyprcursor.enable = true;
