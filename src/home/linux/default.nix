@@ -30,7 +30,7 @@
       mime.enable = true;
       mimeApps =
         let
-          BROWSER_DESKTOP = "vivaldi-stable.desktop";
+          BROWSER_DESKTOP = "com.google.Chrome.desktop";
         in
         {
           enable = true;
