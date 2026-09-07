@@ -17,6 +17,9 @@
   networking.hostName = "tuf-chan";
 
   hardware = {
+    # Firmwares
+    enableAllFirmware = true;
+
     # AMD GPU
     amdgpu = {
       opencl.enable = true;
