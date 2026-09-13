@@ -57,7 +57,7 @@
 
     # Ollama
     ollama.enable = true;
-    ollama.loadModels = [ "deepseek-coder:6.7b" ];
+    ollama.loadModels = [ "qwen3-coder:30b" ];
     ollama.syncModels = true;
 
     # nextjs-ollama-llm-ui
