@@ -57,7 +57,8 @@
 
     # Ollama
     ollama.enable = true;
-    ollama.loadModels = [ "qwen3-coder:30b" ];
+    ollama.package = pkgs.ollama-vulkan;
+    ollama.loadModels = [ "gemma4:12b" "gemma4:31b" ];
     ollama.syncModels = true;
 
     # nextjs-ollama-llm-ui
