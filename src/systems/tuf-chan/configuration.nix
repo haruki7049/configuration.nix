@@ -58,14 +58,6 @@
     # Ollama
     ollama.enable = true;
     ollama.package = pkgs.ollama-vulkan;
-    ollama.loadModels = [
-      "gemma4:12b"
-      "gemma4:31b"
-    ];
-    ollama.syncModels = true;
-    ollama.environmentVariables.OLLAMA_DEBUG = "1";
-    ollama.environmentVariables.OLLAMA_FLASH_ATTENTION = "1";
-    ollama.environmentVariables.OLLAMA_KV_CACHE_TYPE = "q8_0";
 
     # nextjs-ollama-llm-ui
     nextjs-ollama-llm-ui.enable = true;
