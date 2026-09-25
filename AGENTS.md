@@ -31,8 +31,8 @@ The user applies configurations themselves (e.g. `sudo nixos-rebuild switch --fl
 The flake outputs are generated from the directory layout by [numtide/blueprint](https://github.com/numtide/blueprint)
 (see its `docs/content/getting-started/folder_structure.md` in the locked source for the full mapping).
 
-- `flake.nix` / `flake.lock`: Inputs (`nixpkgs` unstable, `blueprint`, `home-manager`, `nix-darwin`, `treefmt-nix`,
-  `flake-compat`). `outputs` only calls blueprint (and drops the per-host closures blueprint adds to `checks`).
+- `flake.nix` / `flake.lock`: Inputs (`nixpkgs` unstable, `blueprint`, `home-manager`, `nix-darwin`, `treefmt-nix`).
+  `outputs` only calls blueprint (and drops the per-host closures blueprint adds to `checks`).
 - `hosts/<host>/configuration.nix` (NixOS) / `hosts/<host>/darwin-configuration.nix` (nix-darwin): Host-specific system
   settings → `nixosConfigurations.<host>` / `darwinConfigurations.<host>`. Modules receive `flake`, `inputs`, `perSystem`
   and `hostName`.
@@ -48,7 +48,7 @@ The flake outputs are generated from the directory layout by [numtide/blueprint]
 - `scripts/`: Nushell scripts used by CI (pushing to Cachix).
 - `.github/workflows/`: `nix-checker.yml` (`nix flake check --all-systems` on every push), `cron-flake-update.yml`
   (commits `build: nix flake update` to `main` every 12 hours), `cachix-push.yml` (pushes closures on `main`).
-- **Development Environment**: `nix develop` / direnv (`.envrc`) / `shell.nix`. Formatting is `nix fmt` (treefmt-nix:
+- **Development Environment**: `nix develop` / direnv (`.envrc`). Formatting is `nix fmt` (treefmt-nix:
   nixfmt, taplo, shellcheck, shfmt).
 
 ### Host-specific home-manager settings
