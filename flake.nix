@@ -12,9 +12,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-compat.url = "github:edolstra/flake-compat";
     nix-darwin.url = "github:LnL7/nix-darwin";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+    blueprint = {
+      url = "github:numtide/blueprint";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -26,86 +26,27 @@
     };
   };
 
+  # The outputs are generated from the directory layout by blueprint:
+  # https://github.com/numtide/blueprint
   outputs =
     inputs:
     let
-      utils = import ./src/utils { inherit inputs; };
-      config.allowUnfree = true;
-      userhome-configuration = ./src/home;
-    in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
-
-      imports = [
-        inputs.treefmt-nix.flakeModule
-      ];
-
-      flake = {
-        darwinConfigurations = {
-          enmac = utils.system-builder.build-system {
-            system = "aarch64-darwin";
-            system-configuration = ./src/systems/enmac/configuration.nix;
-            inherit userhome-configuration config;
-          };
-        };
-        nixosConfigurations = {
-          tuf-chan = utils.system-builder.build-system {
-            system = "x86_64-linux";
-            system-configuration = ./src/systems/tuf-chan/configuration.nix;
-            inherit userhome-configuration config;
-          };
-          pana-chama = utils.system-builder.build-system {
-            system = "x86_64-linux";
-            system-configuration = ./src/systems/pana-chama/configuration.nix;
-            inherit userhome-configuration config;
-          };
-        };
-
-        homeConfigurations.x86_64-linux = utils.system-builder.home-configuration {
-          system = "x86_64-linux";
-          inherit userhome-configuration config;
-        };
-        homeConfigurations.aarch64-linux = utils.system-builder.home-configuration {
-          system = "aarch64-linux";
-          inherit userhome-configuration config;
-        };
-        homeConfigurations.aarch64-darwin = utils.system-builder.home-configuration {
-          system = "aarch64-darwin";
-          inherit userhome-configuration config;
-        };
+      inherit (inputs.nixpkgs) lib;
+      outputs = inputs.blueprint {
+        inherit inputs;
+        systems = [
+          "x86_64-linux"
+          "aarch64-darwin"
+        ];
       };
-
-      perSystem =
-        { config, pkgs, ... }:
-        let
-          nativeBuildInputs = [
-            pkgs.nil # Nix LSP
-            pkgs.nushell # Script runner
-            pkgs.cachix # cachix CLI
-          ];
-        in
-        {
-          treefmt = {
-            projectRootFile = "flake.nix";
-
-            # Nix
-            programs.nixfmt.enable = true;
-
-            # Toml
-            programs.taplo.enable = true;
-
-            # ShellScripts
-            programs.shellcheck.enable = true;
-            programs.shfmt.enable = true;
-          };
-
-          devShells.default = pkgs.mkShell {
-            inherit nativeBuildInputs;
-            inputsFrom = [ config.treefmt.build.devShell ];
-          };
-        };
+    in
+    outputs
+    // {
+      # blueprint adds every host's system closure to `checks` (`nixos-<host>`, `darwin-<host>`),
+      # which would make `nix flake check` build them. The closures are built by cachix-push.yml
+      # instead, and `nix flake check` still evaluates nixosConfigurations / darwinConfigurations.
+      checks = lib.mapAttrs (
+        _: lib.filterAttrs (name: _: !(lib.hasPrefix "nixos-" name || lib.hasPrefix "darwin-" name))
+      ) outputs.checks;
     };
 }

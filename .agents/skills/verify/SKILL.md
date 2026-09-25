@@ -12,8 +12,8 @@ Do not run broad, slow, or destructive verification without approval. Never acti
 Prefer the narrowest check that matches the change:
 
 - Any `.nix` change: `nix fmt -- --fail-on-change`, then evaluate the affected hosts
-- Host config (`src/systems/<host>/`): evaluate that host
-- Shared config (`src/home/`, `src/systems/common/`): evaluate every host of that platform
+- Host config (`hosts/<host>/`, including `hosts/<host>/users/`): evaluate that host
+- Shared config (`modules/`): evaluate every host of that platform
 - Generated config file (Hyprland Lua, dotfiles via `xdg.configFile` / `home.file`): build that single file and read it
 - Behaviour change: compare the generated output before and after, not only that evaluation succeeds
 - Documentation change: check that commands and paths in the text exist and are correct

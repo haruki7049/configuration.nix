@@ -13,9 +13,9 @@ Before committing or opening a PR, execute the following commands and ensure all
 | **Evaluate tuf-chan** | `nix build .#nixosConfigurations.tuf-chan.config.system.build.toplevel --dry-run` | Evaluates the desktop without building |
 | **Evaluate pana-chama** | `nix build .#nixosConfigurations.pana-chama.config.system.build.toplevel --dry-run` | Evaluates the laptop without building |
 | **Evaluate enmac** | `nix eval .#darwinConfigurations.enmac.config.system.build.toplevel.drvPath` | Darwin host; evaluation only when on Linux |
-| **Nix Flake Check** | `nix flake check --all-systems` | Mirrors `nix-checker.yml` CI; run when `flake.nix`/`flake.lock`/`src/utils` change |
+| **Nix Flake Check** | `nix flake check --all-systems` | Mirrors `nix-checker.yml` CI; run when `flake.nix`/`flake.lock`/`treefmt.nix`/`formatter.nix`/`devshell.nix`/`checks/` change |
 
-Evaluate every host the change can reach: a change under `src/home/` or `src/systems/common/` affects all hosts of that platform. See `.agents/skills/verify/SKILL.md` for inspecting generated files.
+Evaluate every host the change can reach: a change under `modules/` affects all hosts of that platform. See `.agents/skills/verify/SKILL.md` for inspecting generated files.
 
 ## 2. Commit & PR Title Conventions
 
@@ -23,7 +23,7 @@ Use Conventional Commits style prefixes, optionally with a scope:
 
 - `feat:` New program, service, or setting.
 - `fix:` Fixes to broken or wrong settings.
-- `build:` Updates to `flake.nix`, `flake.lock`, `src/utils`, CI workflows, or `scripts/`.
+- `build:` Updates to `flake.nix`, `flake.lock`, `treefmt.nix`, `formatter.nix`, `devshell.nix`, `checks/`, CI workflows, or `scripts/`.
 - `refactor:` Restructuring without changing the resulting configuration.
 - `docs:` Updates to README, AGENTS.md, skills, or comments.
 - `style:` Formatting only (`nix fmt`).

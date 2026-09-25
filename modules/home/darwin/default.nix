@@ -1,0 +1,87 @@
+{
+  lib,
+  perSystem,
+  ...
+}:
+
+let
+  # nix-darwin evaluates with its own locked nixpkgs (it does not follow this flake's `nixpkgs`),
+  # so take gh from this flake's nixpkgs, as the git credential helper always did.
+  inherit (perSystem.nixpkgs) gh;
+in
+
+{
+  imports = [
+    ./develop
+  ];
+
+  home = {
+    shell = {
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+    };
+    username = "haruki";
+    homeDirectory = lib.mkForce "/Users/haruki";
+  };
+
+  programs = {
+    # Enable home-manager
+    home-manager.enable = true;
+
+    # man
+    man.man-db.enable = true;
+
+    # Git
+    git = {
+      enable = true;
+      lfs.enable = true;
+      settings = {
+        # User's settings
+        user.name = "haruki7049";
+        user.email = "tontonkirikiri@gmail.com";
+
+        # default branch on initializing is "main"
+        init.defaultBranch = "main";
+
+        pull.rebase = true; # I want to use pull with rebasing
+        commit.gpgsign = true; # Signing (GPG/SSH)
+        user.signingKey = "~/.ssh/haruki7049"; # Signing key (This is a SSH key)
+        gpg.format = "ssh"; # I use SSH key
+        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers"; # This file contains public keys
+
+        credential."https://github.com" = {
+          helper = "${gh}/bin/gh auth git-credential";
+        };
+
+        credential."https://gist.github.com" = {
+          helper = "${gh}/bin/gh auth git-credential";
+        };
+
+        # Some ghq settings
+        ghq.root = "~/program-dir";
+      };
+    };
+
+    # SSH
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      settings = {
+        "*" = {
+          identityFile = [ "~/.ssh/haruki7049" ];
+        };
+        "github.com" = {
+          user = "git";
+        };
+        "gitlab.com" = {
+          user = "git";
+        };
+      };
+    };
+  };
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "26.05";
+}

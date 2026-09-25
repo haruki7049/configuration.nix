@@ -38,7 +38,7 @@ the repo from a blank slate, then reconciling their findings.
    > (GitHub: `<owner/repo>`). It is a personal NixOS / nix-darwin / home-manager flake. You have no
    > prior context — investigate it as if you just cloned it.
    >
-   > 1. Explore the repo structure (`flake.nix`, `src/utils`, `src/systems`, `src/home`) and read the
+   > 1. Explore the repo structure (`flake.nix`, `hosts/`, `modules/`) and read the
    >    modules relevant to how hosts and users are assembled.
    > 1. Confirm the current state without side effects: `nix fmt -- --fail-on-change` and, for each
    >    host in `nixosConfigurations`, `nix eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath`.

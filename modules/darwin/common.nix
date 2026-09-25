@@ -43,6 +43,11 @@
     ];
   };
 
+  # home-manager (wired in by blueprint for the users under hosts/<host>/users/).
+  # The home modules configure their own nixpkgs (allowUnfree, permittedInsecurePackages),
+  # so keep a separate pkgs instance instead of blueprint's default `useGlobalPkgs = true`.
+  home-manager.useGlobalPkgs = false;
+
   # AllowUnfree for nixpkgs
   nixpkgs.config.allowUnfree = true;
 

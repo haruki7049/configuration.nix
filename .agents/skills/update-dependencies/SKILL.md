@@ -25,4 +25,4 @@ Only when the user asks, or when a fix exists upstream that CI has not picked up
 
 ## `stateVersion`
 
-`home.stateVersion` (`src/home/linux/default.nix`, `src/home/darwin/default.nix`) and `system.stateVersion` (`src/systems/common/linux-configuration.nix`, `src/systems/common/darwin-configuration.nix`) are **not** routine updates. Changing them switches option defaults (e.g. home-manager's `mkStateVersionOptionDefault`) and may trigger data migrations. Treat as irreversible (`.agents/skills/irreversible/SKILL.md`): list the defaults that change, and confirm with the user first.
+`home.stateVersion` (`modules/home/linux/default.nix`, `modules/home/darwin/default.nix`, `modules/home/root.nix`) and `system.stateVersion` (`modules/nixos/common.nix`, `modules/darwin/common.nix`) are **not** routine updates. Changing them switches option defaults (e.g. home-manager's `mkStateVersionOptionDefault`) and may trigger data migrations. Treat as irreversible (`.agents/skills/irreversible/SKILL.md`): list the defaults that change, and confirm with the user first.
