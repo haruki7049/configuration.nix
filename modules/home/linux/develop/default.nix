@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -126,6 +127,9 @@ in
     extraConfig = "";
   };
 
+  # Inside NixOS / nix-darwin, home-manager sets nix.package from the system; this default only
+  # applies to the standalone homeConfigurations, where nix.settings would otherwise have no package.
+  nix.package = lib.mkDefault pkgs.nix;
   nix.settings = {
     accept-flake-config = true;
     experimental-features = [
