@@ -63,6 +63,22 @@
     nextjs-ollama-llm-ui.enable = true;
   };
 
+  # Hyprland monitors for this host
+  home-manager.users.haruki.wayland.windowManager.hyprland.settings.monitor = [
+    {
+      output = "HDMI-A-1";
+      mode = "1920x1080@60.0";
+      position = "auto-right";
+      scale = 1.0;
+    }
+    {
+      output = "DP-2";
+      mode = "1920x1080@60.00";
+      position = "auto-left";
+      scale = 1.0;
+    }
+  ];
+
   environment.systemPackages = [
     pkgs.lutris # Open Source gaming platform for GNU/Linux
     pkgs.android-tools # adb (For Meta Quest connection via USB type-c cable)
