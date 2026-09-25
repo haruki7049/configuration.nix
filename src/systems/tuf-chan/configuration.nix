@@ -17,11 +17,17 @@
   networking.hostName = "tuf-chan";
 
   hardware = {
-    # AMD
+    # Firmwares
+    enableAllFirmware = true;
+
+    # AMD GPU
     amdgpu = {
       opencl.enable = true;
       initrd.enable = true;
     };
+
+    # AMD CPU
+    cpu.amd.updateMicrocode = true;
 
     # OpenGL
     graphics = {
@@ -51,8 +57,7 @@
 
     # Ollama
     ollama.enable = true;
-    ollama.loadModels = [ "deepseek-coder:6.7b" ];
-    ollama.syncModels = true;
+    ollama.package = pkgs.ollama-vulkan;
 
     # nextjs-ollama-llm-ui
     nextjs-ollama-llm-ui.enable = true;

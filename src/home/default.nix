@@ -4,7 +4,7 @@
 }:
 
 let
-  path = if pkgs.stdenv.isLinux then ./linux else ./darwin;
+  path = if pkgs.stdenv.hostPlatform.isLinux then ./linux else ./darwin;
 in
 
 import path {
