@@ -1,14 +1,8 @@
 {
   lib,
-  perSystem,
+  pkgs,
   ...
 }:
-
-let
-  # nix-darwin evaluates with its own locked nixpkgs (it does not follow this flake's `nixpkgs`),
-  # so take gh from this flake's nixpkgs, as the git credential helper always did.
-  inherit (perSystem.nixpkgs) gh;
-in
 
 {
   imports = [
@@ -52,11 +46,11 @@ in
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers"; # This file contains public keys
 
         credential."https://github.com" = {
-          helper = "${gh}/bin/gh auth git-credential";
+          helper = "${pkgs.gh}/bin/gh auth git-credential";
         };
 
         credential."https://gist.github.com" = {
-          helper = "${gh}/bin/gh auth git-credential";
+          helper = "${pkgs.gh}/bin/gh auth git-credential";
         };
 
         # Some ghq settings
