@@ -32,7 +32,9 @@
   # Nix settings
   nix.package = pkgs.nix;
   nix.settings = {
-    sandbox = true;
+    # "relaxed" instead of true: some nixpkgs derivations set `__noChroot` on Darwin
+    # (e.g. claude-code), which strict sandboxing refuses to build. Everything else stays sandboxed.
+    sandbox = "relaxed";
     trusted-users = [
       "root"
       "haruki"
