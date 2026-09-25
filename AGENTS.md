@@ -1,81 +1,88 @@
 # AGENTS.md
 
-haruki7049 個人の NixOS / nix-darwin / home-manager 設定リポジトリ。エントリポイントは `flake.nix`。
+Personal NixOS / nix-darwin / home-manager configuration of haruki7049. The entry point is `flake.nix`.
 
-## ホスト
+## Language
 
-| 名前 | 種別 | 設定 |
+- Always respond to the user in **Japanese**, regardless of the language of this file or of the user's message.
+- Code, comments, commit messages, and documentation in the repository stay in English unless told otherwise.
+
+## Hosts
+
+| Name | Kind | Config |
 | --- | --- | --- |
-| `tuf-chan` | x86_64-linux デスクトップ (AMD GPU, マルチモニタ) | `src/systems/tuf-chan/` |
-| `pana-chama` | x86_64-linux ノートPC | `src/systems/pana-chama/` |
+| `tuf-chan` | x86_64-linux desktop (AMD GPU, multi-monitor) | `src/systems/tuf-chan/` |
+| `pana-chama` | x86_64-linux laptop | `src/systems/pana-chama/` |
 | `enmac` | aarch64-darwin (nix-darwin) | `src/systems/enmac/` |
 
-適用はユーザーが行う（例: `sudo nixos-rebuild switch --flake .#tuf-chan --print-build-logs`）。
-エージェントは `nixos-rebuild switch` / `darwin-rebuild switch` を実行しないこと。
+The user applies configurations themselves (e.g. `sudo nixos-rebuild switch --flake .#tuf-chan --print-build-logs`).
+Agents must not run `nixos-rebuild switch` / `darwin-rebuild switch`.
 
-## ディレクトリ構成
+## Layout
 
-- `src/utils/system-builder/` — `build-system` / `build-home-manager`。home-manager は NixOS / nix-darwin モジュールとして組み込まれる。
-- `src/systems/common/` — Linux / Darwin 共通のシステム設定。
-- `src/systems/<host>/configuration.nix` — ホスト固有のシステム設定。
-- `src/home/` — home-manager 設定。`linux/` と `darwin/` に分かれ、`src/home/linux/default.nix` がユーザー (`haruki`, `root`) を定義する。
-  - `src/home/linux/develop/` 以下に機能ごとのモジュール (`editor`, `shell`, `windowManager`, `xdg` など)。
-- `scripts/` — CI 用 Nushell スクリプト（Cachix へのプッシュ）。
+- `src/utils/system-builder/` — `build-system` / `build-home-manager`. home-manager is wired in as a NixOS / nix-darwin module.
+- `src/systems/common/` — system settings shared across Linux / Darwin hosts.
+- `src/systems/<host>/configuration.nix` — host-specific system settings.
+- `src/home/` — home-manager settings, split into `linux/` and `darwin/`. `src/home/linux/default.nix` defines the users (`haruki`, `root`).
+  - Feature modules live under `src/home/linux/develop/` (`editor`, `shell`, `windowManager`, `xdg`, ...).
+- `scripts/` — Nushell scripts used by CI (pushing to Cachix).
 
-## ホスト固有の home-manager 設定
+## Host-specific home-manager settings
 
-`src/home/` の設定は全ホスト共通で、ホスト名を知らない。特定ホストだけに効かせたい値（モニター構成など）は
-共通モジュールに書かず、そのホストの `configuration.nix` から NixOS オプション経由で注入する:
+Everything under `src/home/` is shared by all hosts and does not know the hostname. Values that should only apply
+to a particular host (monitor layout, etc.) must not go into the shared modules; inject them from that host's
+`configuration.nix` through the NixOS option instead:
 
 ```nix
 # src/systems/tuf-chan/configuration.nix
 home-manager.users.haruki.wayland.windowManager.hyprland.settings.monitor = [ ... ];
 ```
 
-こうすると他のホストや standalone の `homeConfigurations` には影響しない。
+This leaves other hosts and the standalone `homeConfigurations` untouched.
 
 ## Hyprland
 
-- NixOS 側: `src/systems/common/linux-configuration.nix` の `programs.hyprland.enable`。
-- home-manager 側: `src/home/linux/develop/windowManager/hyprland/default.nix`。
-- 周辺ツール: `src/home/linux/develop/windowManager/tools/` (hypridle, hyprpaper)。
-- home-manager の Hyprland モジュールは `configType = "lua"` で `~/.config/hypr/hyprland.lua` を生成できる。
-  - `settings.<name>` → `hl.<name>(...)`。リストは要素ごとに 1 呼び出し。
-  - `{ _var = ...; }` → `local <name> = ...`。
-  - `{ _args = [ ... ]; }` → 複数引数呼び出し。
-  - `lib.generators.mkLuaInline "..."` → 生の Lua 式。
-  - `systemd.enable` で起動/終了フックが自動生成される。
-- スキーマは推測せず、ロックされた home-manager のソースを読んで確認する:
+- NixOS side: `programs.hyprland.enable` in `src/systems/common/linux-configuration.nix`.
+- home-manager side: `src/home/linux/develop/windowManager/hyprland/default.nix`.
+- Related tools: `src/home/linux/develop/windowManager/tools/` (hypridle, hyprpaper).
+- The home-manager Hyprland module can generate `~/.config/hypr/hyprland.lua` with `configType = "lua"`:
+  - `settings.<name>` → `hl.<name>(...)`. A list value produces one call per element.
+  - `{ _var = ...; }` → `local <name> = ...`.
+  - `{ _args = [ ... ]; }` → a multi-argument call.
+  - `lib.generators.mkLuaInline "..."` → a raw Lua expression.
+  - `systemd.enable` generates the start/shutdown hooks automatically.
+- Do not guess the schema; read the source of the locked home-manager:
 
 ```bash
 nix flake archive --json | nix run nixpkgs#jq -- -r '.inputs["home-manager"].path'
 # → <path>/modules/services/window-managers/hyprland/{default.nix,lib.nix}
 ```
 
-- 既存の手書き設定を移植するときは、生成物を実際にビルドして元ファイルと突き合わせる（下記「検証」）。
+- When porting an existing hand-written config, build the generated file and compare it with the original (see "Verification").
 
-## 検証
+## Verification
 
-変更後は少なくとも以下を実行する。すべて副作用なし。
+Run at least the following after a change. None of them have side effects.
 
 ```bash
 nix fmt   # nixfmt / taplo / shellcheck / shfmt (treefmt)
 
-# システム全体の評価
+# Evaluate whole systems
 nix build .#nixosConfigurations.tuf-chan.config.system.build.toplevel --dry-run
 nix eval  .#nixosConfigurations.pana-chama.config.system.build.toplevel.drvPath
 
-# home-manager が生成する個別ファイルの中身を確認する例
+# Example: inspect a single file generated by home-manager
 nix build '.#nixosConfigurations.tuf-chan.config.home-manager.users.haruki.xdg.configFile."hypr/hyprland.lua".source' -o result-hypr
 cat result-hypr
 ```
 
-共通モジュールを変更した場合は全ホストで評価すること。Darwin (`enmac`) は Linux 上では評価しか確認できない。
+When a shared module changes, evaluate every host. Darwin (`enmac`) can only be evaluated, not built, on Linux.
 
 ## Git
 
-- `main` には CI (`cron-flake-update`) が 12 時間ごとに `build: nix flake update` をコミットする。作業ブランチは古くなりやすいので、
-  最新の `flake.lock` が必要なら `main` をマージする（リモートにあるブランチは rebase + force push しない）。
-- コミットメッセージは Conventional Commits 風 (`feat(hyprland): ...`, `fix: ...`, `style: nix fmt`, `build: ...`)。
-- ブランチを切ってコミットする。`main` へ直接コミットしない。プッシュは指示されたときだけ。
-- ユーザーが参照用に置いたファイル（リポジトリ直下の未追跡ファイルなど）は変更・コミットしない。
+- CI (`cron-flake-update`) commits `build: nix flake update` to `main` every 12 hours, so work branches go stale
+  quickly. If the latest `flake.lock` is needed, merge `main` into the branch (do not rebase + force-push branches
+  that exist on the remote).
+- Commit messages follow a Conventional Commits style (`feat(hyprland): ...`, `fix: ...`, `style: nix fmt`, `build: ...`).
+- Work on a branch; never commit directly to `main`. Push only when asked.
+- Do not modify or commit files the user placed for reference (e.g. untracked files in the repository root).
