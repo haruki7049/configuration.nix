@@ -13,6 +13,9 @@ let
     pkgs.gzip
     pkgs.git
     pkgs.ghq # Local git repository management CLI tool
+    pkgs.gh # GitHub CLI
+    pkgs.claude-code
+    pkgs.antigravity-cli
     pkgs.deno # For Vim denops
     pkgs.vim-full
     pkgs.cyanrip # CD ripping tool

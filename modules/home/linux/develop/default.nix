@@ -19,6 +19,9 @@ let
   cli-tools = [
     pkgs.git
     pkgs.ghq # Local git repository management CLI tool
+    pkgs.gh # GitHub CLI
+    pkgs.claude-code
+    pkgs.antigravity-cli
     pkgs.wget
     pkgs.curl
     pkgs.unzip
@@ -30,6 +33,8 @@ let
     pkgs.deno # For denops.vim
     pkgs.vim-full
     pkgs.wl-clipboard
+    pkgs.grim # Wayland screenshot tool
+    pkgs.slurp # Wayland region selector (for grim)
     pkgs.unar
     pkgs.file
     pkgs.cmus
@@ -64,6 +69,7 @@ let
     pkgs.pwvucontrol
     pkgs.pavucontrol
     pkgs.qjackctl
+    pkgs.sonata # MPD client
   ];
 
   # bitwarden = [
