@@ -1,4 +1,5 @@
 {
+  flake,
   pkgs,
   ...
 }:
@@ -6,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../common/linux-configuration.nix
+    flake.nixosModules.common
   ];
 
   # Systemd-boot

@@ -96,7 +96,7 @@
         mod._var = "SUPER";
         lock_cmd._var = "hyprlock";
 
-        # Monitors are host specific, see src/systems/<host>/configuration.nix
+        # Monitors are host specific, see hosts/<host>/users/haruki.nix
 
         config = {
           animations = {

@@ -20,21 +20,31 @@ ______________________________________________________________________
 
 | Name | Kind | Config |
 | --- | --- | --- |
-| `tuf-chan` | x86_64-linux desktop (AMD GPU, multi-monitor) | `src/systems/tuf-chan/` |
-| `pana-chama` | x86_64-linux laptop | `src/systems/pana-chama/` |
-| `enmac` | aarch64-darwin (nix-darwin) | `src/systems/enmac/` |
+| `tuf-chan` | x86_64-linux desktop (AMD GPU, multi-monitor) | `hosts/tuf-chan/` |
+| `pana-chama` | x86_64-linux laptop | `hosts/pana-chama/` |
+| `enmac` | aarch64-darwin (nix-darwin) | `hosts/enmac/` |
 
 The user applies configurations themselves (e.g. `sudo nixos-rebuild switch --flake .#tuf-chan --print-build-logs`).
 
 ### Layout
 
-- `flake.nix` / `flake.lock`: Inputs (`nixpkgs` unstable, `home-manager`, `nix-darwin`, `flake-parts`, `treefmt-nix`) and outputs
-  (`nixosConfigurations`, `darwinConfigurations`, `homeConfigurations`, `formatter`, `checks`, `devShells`).
-- `src/utils/system-builder/`: `build-system` / `build-home-manager`. home-manager is wired in as a NixOS / nix-darwin module.
-- `src/systems/common/`: System settings shared across Linux / Darwin hosts.
-- `src/systems/<host>/configuration.nix`: Host-specific system settings.
-- `src/home/`: home-manager settings, split into `linux/` and `darwin/`. `src/home/linux/default.nix` defines the users
-  (`haruki`, `root`). Feature modules live under `src/home/linux/develop/` (`editor`, `shell`, `windowManager`, `xdg`, ...).
+The flake outputs are generated from the directory layout by [numtide/blueprint](https://github.com/numtide/blueprint)
+(see its `docs/content/getting-started/folder_structure.md` in the locked source for the full mapping).
+
+- `flake.nix` / `flake.lock`: Inputs (`nixpkgs` unstable, `blueprint`, `home-manager`, `nix-darwin`, `treefmt-nix`,
+  `flake-compat`). `outputs` only calls blueprint (and drops the per-host closures blueprint adds to `checks`).
+- `hosts/<host>/configuration.nix` (NixOS) / `hosts/<host>/darwin-configuration.nix` (nix-darwin): Host-specific system
+  settings → `nixosConfigurations.<host>` / `darwinConfigurations.<host>`. Modules receive `flake`, `inputs`, `perSystem`
+  and `hostName`.
+- `hosts/<host>/users/<user>.nix`: home-manager configuration of `<user>` on `<host>`. blueprint wires home-manager in as a
+  NixOS / nix-darwin module and also exposes each user as a standalone `legacyPackages.<system>.homeConfigurations."<user>@<host>"`.
+- `modules/nixos/common.nix`, `modules/darwin/common.nix` → `nixosModules.common` / `darwinModules.common`: System settings
+  shared across Linux / Darwin hosts.
+- `modules/home/` → `homeModules.*`: home-manager settings shared by all hosts: `linux/` and `darwin/` (user `haruki`),
+  `root.nix` (user `root`). Feature modules live under `modules/home/linux/develop/` (`editor`, `shell`, `windowManager`,
+  `xdg`, ...).
+- `treefmt.nix`: treefmt-nix configuration, used by `formatter.nix` (`nix fmt`), `devshell.nix` (`nix develop`) and
+  `checks/treefmt.nix` (`checks.<system>.treefmt`).
 - `scripts/`: Nushell scripts used by CI (pushing to Cachix).
 - `.github/workflows/`: `nix-checker.yml` (`nix flake check --all-systems` on every push), `cron-flake-update.yml`
   (commits `build: nix flake update` to `main` every 12 hours), `cachix-push.yml` (pushes closures on `main`).
@@ -43,16 +53,20 @@ The user applies configurations themselves (e.g. `sudo nixos-rebuild switch --fl
 
 ### Host-specific home-manager settings
 
-Everything under `src/home/` is shared by all hosts and does not know the hostname. Values that should only apply
-to a particular host (monitor layout, etc.) must not go into the shared modules; inject them from that host's
-`configuration.nix` through the NixOS option instead:
+Everything under `modules/home/` is shared by all hosts and does not know the hostname. Values that should only apply
+to a particular host (monitor layout, etc.) must not go into the shared modules; put them in that host's user file,
+next to the import of the shared module:
 
 ```nix
-# src/systems/tuf-chan/configuration.nix
-home-manager.users.haruki.wayland.windowManager.hyprland.settings.monitor = [ ... ];
+# hosts/tuf-chan/users/haruki.nix
+{ flake, ... }:
+{
+  imports = [ flake.homeModules.linux ];
+  wayland.windowManager.hyprland.settings.monitor = [ ... ];
+}
 ```
 
-This leaves other hosts and the standalone `homeConfigurations` untouched.
+This leaves other hosts untouched.
 
 Do not guess option schemas; read the locked source (see [`investigate`](.agents/skills/investigate/SKILL.md)).
 
