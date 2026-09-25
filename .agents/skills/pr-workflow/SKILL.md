@@ -44,8 +44,7 @@ Ensure the PR description includes:
 
 ## 4. Strict Safety & Approval Rules
 
-- **NEVER AUTO-MERGE TO MAIN**: AI agents **MUST NEVER** merge PRs, merge into `main`, or push commits directly to `main`.
+- **NEVER MERGE PULL REQUESTS**: AI agents **MUST NEVER** merge PRs.
 - **NEVER PROPOSE COMMITS OR PUSHES UNPROMPTED**: AI agents **MUST NEVER** prompt the user to commit or push unprompted. When instructed by the user or when preparing pull requests on topic branches, agents may execute `git commit` and `git push` directly.
 - **NEVER APPLY CONFIGURATIONS**: No `nixos-rebuild switch` / `darwin-rebuild switch` / `home-manager switch`.
-- **Mandatory Human Approval**: AI agents may create branches, create commits, push topic branches, propose PRs, format code, and evaluate configurations, but merging into `main` and activating configurations rest strictly with the human maintainer.
-- **Explicit Milestone Assignment Only**: AI agents **MUST NEVER** automatically attach or set GitHub Milestones on Pull Requests or Issues unless explicitly requested or instructed by the user.
+- **Mandatory Human Approval**: AI agents may create branches, create commits, push topic branches, propose PRs, format code, and evaluate configurations, but merging PRs and activating configurations rest strictly with the human maintainer.

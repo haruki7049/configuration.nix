@@ -54,18 +54,7 @@ home-manager.users.haruki.wayland.windowManager.hyprland.settings.monitor = [ ..
 
 This leaves other hosts and the standalone `homeConfigurations` untouched.
 
-### Hyprland
-
-- NixOS side: `programs.hyprland.enable` in `src/systems/common/linux-configuration.nix`.
-- home-manager side: `src/home/linux/develop/windowManager/hyprland/default.nix`, using `configType = "lua"`
-  (generates `~/.config/hypr/hyprland.lua`).
-  - `settings.<name>` → `hl.<name>(...)`. A list value produces one call per element.
-  - `{ _var = ...; }` → `local <name> = ...`.
-  - `{ _args = [ ... ]; }` → a multi-argument call.
-  - `lib.generators.mkLuaInline "..."` → a raw Lua expression.
-  - `systemd.enable` generates the start/shutdown hooks automatically.
-- Related tools: `src/home/linux/develop/windowManager/tools/` (hypridle, hyprpaper).
-- Do not guess option schemas; read the locked source (see [`investigate`](.agents/skills/investigate/SKILL.md)).
+Do not guess option schemas; read the locked source (see [`investigate`](.agents/skills/investigate/SKILL.md)).
 
 ______________________________________________________________________
 
@@ -73,8 +62,7 @@ ______________________________________________________________________
 
 - **NEVER APPLY CONFIGURATIONS**: AI agents **MUST NEVER** run `nixos-rebuild switch|boot|test`, `darwin-rebuild switch`,
   `home-manager switch`, or anything else that activates a configuration on the machine. Applying is the user's job.
-- **NEVER AUTO-MERGE TO MAIN**: AI agents **MUST NEVER** merge PRs, merge into `main`, or push commits directly to `main`.
-  Merging `main` *into a topic branch* to pick up a newer `flake.lock` is allowed.
+- **NEVER MERGE PULL REQUESTS**: Merging PRs rests strictly with the human maintainer.
 - **NEVER PROPOSE COMMITS OR PUSHES UNPROMPTED**: Do not prompt the user to commit or push, nor propose commit messages
   unprompted. When instructed by the user or when creating/updating pull requests on topic branches, agents may execute
   `git commit` and `git push` directly without seeking confirmation.
@@ -88,7 +76,6 @@ ______________________________________________________________________
   (see [`irreversible`](.agents/skills/irreversible/SKILL.md)).
 - **Targeted Edits**: Make minimal, logical changes strictly necessary for the request. Do not modify unrelated files,
   and do not modify or commit files the user placed for reference (e.g. untracked files in the repository root).
-- **Explicit Milestone Assignment Only**: Never attach GitHub Milestones to PRs or Issues unless explicitly requested.
 
 ______________________________________________________________________
 
