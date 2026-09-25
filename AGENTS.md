@@ -4,7 +4,9 @@ Personal NixOS / nix-darwin / home-manager configuration of haruki7049. The entr
 
 ## Language
 
-- Always respond to the user in **Japanese**, regardless of the language of this file or of the user's message.
+- Always respond to the user in **Japanese**, regardless of the language of this file or of the user's message,
+  because the owner of this repository, [@haruki7049](https://github.com/haruki7049), is a Japanese speaker.
+  If you clone or reuse this repository, change this rule to suit yourself.
 - Code, comments, commit messages, and documentation in the repository stay in English unless told otherwise.
 
 ## Hosts
