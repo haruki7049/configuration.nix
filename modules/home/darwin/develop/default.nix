@@ -21,12 +21,12 @@ let
     pkgs.cyanrip # CD ripping tool
   ];
 
-  # desktop-apps = [
-  #   pkgs.audacity
-  #   pkgs.prismlauncher
-  #   pkgs.kitty
-  #   pkgs.spotify
-  # ];
+  desktop-apps = [
+    pkgs.audacity
+    pkgs.prismlauncher
+    pkgs.kitty
+    pkgs.spotify
+  ];
 in
 
 {
@@ -36,7 +36,7 @@ in
     ./shell
   ];
 
-  home.packages = cli-apps;
+  home.packages = cli-apps ++ desktop-apps;
 
   # Inside NixOS / nix-darwin, home-manager sets nix.package from the system; this default only
   # applies to the standalone homeConfigurations, where nix.settings would otherwise have no package.
