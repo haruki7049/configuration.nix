@@ -28,6 +28,10 @@ let
     pkgs.spotify
     pkgs.google-chrome
     pkgs.brave
+    pkgs.bitwarden-desktop
+    pkgs.discord
+    pkgs.obsidian
+    pkgs.slack
   ];
 in
 
