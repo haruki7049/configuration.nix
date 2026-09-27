@@ -27,7 +27,13 @@ let
   ];
 
   communication = [
-    pkgs.discord
+    # pkgs.discord # 2026-09-27: launching shows "Discord is damaged and can't be
+    # opened" on enmac (aarch64-darwin). `codesign --verify --deep --strict` reports
+    # the bundle as valid, so this isn't a local signature corruption; it's likely
+    # caused by nixpkgs' fixDistroSymlinks step during the darwin build altering the
+    # bundle enough that Gatekeeper flags the stapled notarization ticket as tampered.
+    # Re-signing ad-hoc (codesign --remove-signature && codesign --force --deep --sign -)
+    # did not fix it. Re-enable once this is resolved upstream in nixpkgs.
     pkgs.slack
   ];
 
