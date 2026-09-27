@@ -21,17 +21,26 @@ let
     pkgs.cyanrip # CD ripping tool
   ];
 
-  desktop-apps = [
-    pkgs.audacity
-    pkgs.prismlauncher
-    pkgs.kitty
-    pkgs.spotify
+  browsers = [
     pkgs.google-chrome
     pkgs.brave
-    pkgs.bitwarden-desktop
+  ];
+
+  communication = [
     pkgs.discord
-    pkgs.obsidian
     pkgs.slack
+  ];
+
+  productivity = [
+    pkgs.obsidian
+    pkgs.bitwarden-desktop
+    pkgs.kitty
+  ];
+
+  media-and-games = [
+    pkgs.audacity
+    pkgs.spotify
+    pkgs.prismlauncher
   ];
 in
 
@@ -42,7 +51,7 @@ in
     ./shell
   ];
 
-  home.packages = cli-apps ++ desktop-apps;
+  home.packages = cli-apps ++ browsers ++ communication ++ productivity ++ media-and-games;
 
   # Inside NixOS / nix-darwin, home-manager sets nix.package from the system; this default only
   # applies to the standalone homeConfigurations, where nix.settings would otherwise have no package.
