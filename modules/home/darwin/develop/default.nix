@@ -26,6 +26,8 @@ let
     pkgs.prismlauncher
     pkgs.kitty
     pkgs.spotify
+    pkgs.google-chrome
+    pkgs.brave
   ];
 in
 
