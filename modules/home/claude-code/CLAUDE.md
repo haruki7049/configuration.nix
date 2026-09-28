@@ -5,7 +5,8 @@ of them; when both cover the same topic, follow the repository's rule.
 
 ## Language
 
-- Always respond to the user in **Japanese**, regardless of the language of the instructions or of the user's message.
+- Respond to the user in **Japanese** by default, regardless of the language of the instructions or of the user's
+  message. Use another language only when the user asks for it or the repository's instructions specify one.
 - Write repository documentation, agent skills, code comments, commit messages, pull request descriptions and issues in
   English.
 
