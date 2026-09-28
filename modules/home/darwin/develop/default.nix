@@ -1,4 +1,5 @@
 {
+  flake,
   lib,
   pkgs,
   ...
@@ -14,7 +15,6 @@ let
     pkgs.git
     pkgs.ghq # Local git repository management CLI tool
     pkgs.gh # GitHub CLI
-    pkgs.claude-code
     pkgs.antigravity-cli
     pkgs.deno # For Vim denops
     pkgs.vim-full
@@ -52,6 +52,7 @@ in
 
 {
   imports = [
+    flake.homeModules.claude-code
     ./editor
     ./tools
     ./shell
