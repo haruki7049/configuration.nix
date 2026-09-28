@@ -47,8 +47,9 @@ The flake outputs are generated from the directory layout by [numtide/blueprint]
   `checks/treefmt.nix` (`checks.<system>.treefmt`).
 - `scripts/`: Nushell scripts used by CI (pushing to Cachix).
 - `.github/workflows/`: `nix-checker.yml` (`nix flake check --all-systems` on every push), `cachix-push.yml`
-  (pushes closures on `main`).
-- `.github/dependabot.yml`: Dependabot opens a daily `build(deps):` pull request per outdated `flake.lock` input.
+  (pushes closures on `main`), `dependabot-auto-merge.yml` (enables auto-merge on Dependabot pull requests).
+- `.github/dependabot.yml`: Dependabot opens a daily `build(deps):` pull request per outdated `flake.lock` input,
+  which GitHub squash-merges once `nix-checker` passes.
 - **Development Environment**: `nix develop` / direnv (`.envrc`). Formatting is `nix fmt` (treefmt-nix:
   nixfmt, taplo, shellcheck, shfmt).
 
