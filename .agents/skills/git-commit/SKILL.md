@@ -1,22 +1,21 @@
-# Git Commit Policy & Conventions
+# Git Commit Conventions
 
-Read this to understand the commit policy and message conventions for `configuration.nix`.
+Read this for the commit conventions specific to `configuration.nix`. The general commit and push policy (no unprompted
+proposals, Conventional Commits, staging only the files you changed, never rewriting pushed history) is in
+[`modules/home/claude-code/CLAUDE.md`](../../../modules/home/claude-code/CLAUDE.md).
 
-## Prohibition on Unprompted Commit/Push Proposals
+## Stale Branches
 
-- **Execution is allowed**: When instructed by the user, or when creating and updating pull requests on topic branches, AI agents may execute `git commit` and `git push` directly.
-- **Do NOT propose or prompt for commits or pushes**: AI agents must never prompt the user to commit or push unprompted, nor ask for confirmation (e.g., do NOT ask "Would you like me to commit and push?").
-- **Do NOT include unprompted commit message proposals**: Do NOT append "Proposed commit message" or commit/push suggestion sections at the end of a response unless explicitly asked by the user.
-- **Stale branches**: Dependabot `flake.lock` updates are merged into `main` regularly. If a topic branch needs a newer `flake.lock`, merge `main` into it. Never rebase + force-push a branch that exists on the remote.
+Dependabot `flake.lock` updates are merged into `main` regularly. If a topic branch needs a newer `flake.lock`, merge
+`main` into it.
 
-## Commit Message Conventions
+## Commit Messages
 
-Follow the repository convention (see `.agents/skills/pr-workflow/SKILL.md`):
-
-- Use Conventional Commits style prefixes (`feat:`, `fix:`, `build:`, `refactor:`, `docs:`, `style:`), optionally with a scope such as `feat(hyprland):` or `fix(tuf-chan):`.
-- English, imperative mood, short summary, under 72 characters, no trailing period.
-- **Do NOT include issue numbers (e.g., `(#24)` or `#24`) in the commit summary.** Issue linkage must be done exclusively in the PR description using explicit issue-closing keywords (e.g. `Closes #24`).
-- Stage only the files you changed for the task (`git add <path>`), never `git add -A` — the user may keep untracked reference files in the working tree.
+- Prefixes and what they cover are listed in `.agents/skills/pr-workflow/SKILL.md`. Scope with the program or host
+  where it helps, such as `feat(hyprland):` or `fix(tuf-chan):`.
+- **Do NOT include issue numbers (e.g., `(#24)` or `#24`) anywhere in the commit message**, summary or body. Squash
+  merges copy every commit message into `main`, so a `Closes #24` in a commit body can close the wrong issue. Link
+  issues only from the PR description.
 
 Examples:
 

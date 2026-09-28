@@ -19,7 +19,7 @@ These are never run by an agent, even with a confirmation prompt. Tell the user 
 Confirm before operations that may:
 
 - delete or overwrite user-authored files
-- change git history or push to remote (other than topic-branch pushes allowed by `.agents/skills/git-commit/SKILL.md`)
+- change git history or push to remote (other than topic-branch pushes allowed by `modules/home/claude-code/CLAUDE.md`)
 - modify files outside the repository (e.g. `~/.config/**`, `/etc/**`)
 - change `home.stateVersion` / `system.stateVersion` (can change defaults and migrate data)
 - touch secrets, SSH keys, or credentials referenced by the config

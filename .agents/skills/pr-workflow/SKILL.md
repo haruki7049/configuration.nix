@@ -30,8 +30,6 @@ Use Conventional Commits style prefixes, optionally with a scope:
 
 **Do NOT include issue numbers (e.g., `(#24)` or `#24`) in commit messages or PR titles.** Issue linkage must be done exclusively in the PR description using explicit issue-closing keywords (e.g. `Closes #24`).
 
-**Language**: Write all commit messages, PR titles, PR descriptions, and repository documentation in English.
-
 ## 3. PR Description Requirements
 
 Ensure the PR description includes:
@@ -42,9 +40,7 @@ Ensure the PR description includes:
 - **Verification**: Explicitly list executed verification commands and their success status. State that nothing was activated (`nixos-rebuild switch` is left to the user).
 - **Manual steps**: Anything the user must do when switching (e.g. move a hand-placed file out of `~/.config` so home-manager can take it over).
 
-## 4. Strict Safety & Approval Rules
+## 4. Safety
 
-- **NEVER MERGE PULL REQUESTS**: AI agents **MUST NEVER** merge PRs.
-- **NEVER PROPOSE COMMITS OR PUSHES UNPROMPTED**: AI agents **MUST NEVER** prompt the user to commit or push unprompted. When instructed by the user or when preparing pull requests on topic branches, agents may execute `git commit` and `git push` directly.
-- **NEVER APPLY CONFIGURATIONS**: No `nixos-rebuild switch` / `darwin-rebuild switch` / `home-manager switch`.
-- **Mandatory Human Approval**: AI agents may create branches, create commits, push topic branches, propose PRs, format code, and evaluate configurations, but merging PRs and activating configurations rest strictly with the human maintainer.
+Merging PRs (including enabling auto-merge) and activating configurations rest strictly with the human maintainer. See
+`AGENTS.md` §2.
