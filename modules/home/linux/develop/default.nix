@@ -1,4 +1,5 @@
 {
+  flake,
   lib,
   pkgs,
   ...
@@ -6,6 +7,7 @@
 
 let
   imports = [
+    flake.homeModules.claude-code
     ./browser
     ./editor
     ./mpd
@@ -20,7 +22,6 @@ let
     pkgs.git
     pkgs.ghq # Local git repository management CLI tool
     pkgs.gh # GitHub CLI
-    pkgs.claude-code
     pkgs.antigravity-cli
     pkgs.wget
     pkgs.curl

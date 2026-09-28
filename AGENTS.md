@@ -41,7 +41,8 @@ The flake outputs are generated from the directory layout by [numtide/blueprint]
 - `modules/nixos/common.nix`, `modules/darwin/common.nix` → `nixosModules.common` / `darwinModules.common`: System settings
   shared across Linux / Darwin hosts.
 - `modules/home/` → `homeModules.*`: home-manager settings shared by all hosts: `linux/` and `darwin/` (user `haruki`),
-  `root.nix` (user `root`). Feature modules live under `modules/home/linux/develop/` (`editor`, `shell`, `windowManager`,
+  `root.nix` (user `root`), `claude-code/` (Claude Code with the global `~/.claude/CLAUDE.md`, imported by `linux/`
+  and `darwin/`). Feature modules live under `modules/home/linux/develop/` (`editor`, `shell`, `windowManager`,
   `xdg`, ...).
 - `treefmt.nix`: treefmt-nix configuration, used by `formatter.nix` (`nix fmt`), `devshell.nix` (`nix develop`) and
   `checks/treefmt.nix` (`checks.<system>.treefmt`).
