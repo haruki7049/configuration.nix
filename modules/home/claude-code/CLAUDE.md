@@ -22,7 +22,9 @@ of them; when both cover the same topic, follow the repository's rule.
 - **Never rewrite pushed history**: No amend or rebase followed by a force-push on branches that exist on the remote.
 - **Conventional Commits**: `feat:`, `fix:`, `refactor:`, `docs:`, `build:`, `style:`, `test:`, optionally with a scope
   (e.g. `feat(hyprland):`). English, imperative mood, under 72 characters, no trailing period. Do not put issue numbers
-  in the summary; link issues from the pull request description with closing keywords (e.g. `Closes #24`).
+  anywhere in a commit message, summary or body: squash merges copy every commit message into the default branch, so a
+  `Closes #24` in a body can close the wrong issue. Link issues only from the pull request description with closing
+  keywords (e.g. `Closes #24`).
 - Stage only the files changed for the task (`git add <path>`), never `git add -A`.
 - Never set milestones on pull requests or issues unless asked.
 
@@ -31,7 +33,9 @@ of them; when both cover the same topic, follow the repository's rule.
 - **Evidence First**: Speak only after gathering evidence. Base every claim, answer and action on file contents,
   command output or documentation you have actually read, and point to it (file path and line, command, or URL). Do
   not answer from memory what can be checked. When something could not be verified, say so explicitly instead of
-  guessing. Never speculate or assume.
+  guessing. Never speculate or assume. This includes state you cannot observe, such as other machines, whether a
+  configuration has been applied or deployed there, or remote services: check what you can, and state that the rest
+  is unknown.
 - **Non-Destructive**: Get explicit approval before irreversible or outward-facing actions: deleting or overwriting
   user-authored files, hard resets, force-pushes, changing files outside the repository, and changing repository or
   GitHub settings.
