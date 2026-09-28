@@ -1,6 +1,6 @@
 # Update Workflow: Nix Inputs and State Versions
 
-All dependencies of `configuration.nix` are flake inputs pinned in `flake.lock`. CI (`cron-flake-update.yml`) already runs `nix flake update` on `main` every 12 hours, so manual updates are rarely needed.
+All dependencies of `configuration.nix` are flake inputs pinned in `flake.lock`. Dependabot (`.github/dependabot.yml`) opens a daily pull request per outdated input, so manual updates are rarely needed.
 
 ## Picking up the latest `flake.lock` on a topic branch
 
@@ -11,7 +11,7 @@ Prefer merging `main` into the branch over running `nix flake update` yourself â
 
 ## Updating inputs manually
 
-Only when the user asks, or when a fix exists upstream that CI has not picked up yet.
+Only when the user asks, or when a fix exists upstream that Dependabot has not picked up yet.
 
 1. Update the narrowest scope: `nix flake update <input>` (e.g. `nix flake update home-manager`) instead of all inputs.
 1. Evaluate every host (`.agents/skills/verify/SKILL.md`). Read evaluation warnings â€” renamed/deprecated options show up there first.

@@ -46,8 +46,9 @@ The flake outputs are generated from the directory layout by [numtide/blueprint]
 - `treefmt.nix`: treefmt-nix configuration, used by `formatter.nix` (`nix fmt`), `devshell.nix` (`nix develop`) and
   `checks/treefmt.nix` (`checks.<system>.treefmt`).
 - `scripts/`: Nushell scripts used by CI (pushing to Cachix).
-- `.github/workflows/`: `nix-checker.yml` (`nix flake check --all-systems` on every push), `cron-flake-update.yml`
-  (commits `build: nix flake update` to `main` every 12 hours), `cachix-push.yml` (pushes closures on `main`).
+- `.github/workflows/`: `nix-checker.yml` (`nix flake check --all-systems` on every push), `cachix-push.yml`
+  (pushes closures on `main`).
+- `.github/dependabot.yml`: Dependabot opens a daily `build(deps):` pull request per outdated `flake.lock` input.
 - **Development Environment**: `nix develop` / direnv (`.envrc`). Formatting is `nix fmt` (treefmt-nix:
   nixfmt, taplo, shellcheck, shfmt).
 
@@ -98,7 +99,7 @@ ______________________________________________________________________
 When asked to check status, assess the situation, or understand workspace context:
 
 1. **Local Git State**: Inspect working tree (`git status -s -b`) and recent commits (`git log -n 5 --oneline`).
-   Note how far the current branch is behind `origin/main` (CI commits flake updates there every 12 hours).
+   Note how far the current branch is behind `origin/main` (merged Dependabot `flake.lock` updates land there).
 1. **GitHub PRs (always display)**: List **all** open PRs (`gh pr list`) and check the current branch's PR (`gh pr status`).
    Never skip this step, even when the local state is clean.
 1. **GitHub Issues (always display)**: List **all** open issues (`gh issue list`). Never skip this step.
