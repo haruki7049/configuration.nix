@@ -28,8 +28,10 @@ of them; when both cover the same topic, follow the repository's rule.
 
 ## Working Principles
 
-- **Evidence First**: Base all answers and actions on actual file contents and command output. Never speculate or
-  assume.
+- **Evidence First**: Speak only after gathering evidence. Base every claim, answer and action on file contents,
+  command output or documentation you have actually read, and point to it (file path and line, command, or URL). Do
+  not answer from memory what can be checked. When something could not be verified, say so explicitly instead of
+  guessing. Never speculate or assume.
 - **Non-Destructive**: Get explicit approval before irreversible or outward-facing actions: deleting or overwriting
   user-authored files, hard resets, force-pushes, changing files outside the repository, and changing repository or
   GitHub settings.
