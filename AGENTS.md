@@ -3,14 +3,10 @@
 This document defines core principles, repository layout, and non-negotiable safety rules for AI agents working on
 the personal NixOS / nix-darwin / home-manager configuration of haruki7049. The entry point is `flake.nix`.
 
-______________________________________________________________________
-
-## 0. Language
-
-- Always respond to the user in **Japanese**, regardless of the language of this file or of the user's message,
-  because the owner of this repository, [@haruki7049](https://github.com/haruki7049), is a Japanese speaker.
-  If you clone or reuse this repository, change this rule to suit yourself.
-- Repository documentation, agent skills, code comments, commit messages, and PR descriptions are written in English.
+Rules shared by all of haruki7049's repositories (language, Git & GitHub, working principles, status assessment) live
+in [`modules/home/claude-code/CLAUDE.md`](modules/home/claude-code/CLAUDE.md), installed as `~/.claude/CLAUDE.md`.
+Agents that do not load that file automatically must read it before working here. This document adds the rules
+specific to this repository; where the two overlap, this document wins.
 
 ______________________________________________________________________
 
@@ -79,35 +75,23 @@ ______________________________________________________________________
 
 - **NEVER APPLY CONFIGURATIONS**: AI agents **MUST NEVER** run `nixos-rebuild switch|boot|test`, `darwin-rebuild switch`,
   `home-manager switch`, or anything else that activates a configuration on the machine. Applying is the user's job.
-- **NEVER MERGE PULL REQUESTS**: Merging PRs rests strictly with the human maintainer.
-- **NEVER PROPOSE COMMITS OR PUSHES UNPROMPTED**: Do not prompt the user to commit or push, nor propose commit messages
-  unprompted. When instructed by the user or when creating/updating pull requests on topic branches, agents may execute
-  `git commit` and `git push` directly without seeking confirmation.
-- **Never rewrite pushed history**: No rebase + force-push on branches that exist on the remote.
+- **NEVER MERGE PULL REQUESTS**: Merging PRs, including enabling auto-merge (`gh pr merge --auto`), rests strictly with
+  the human maintainer. Only Dependabot pull requests are auto-merged, by `dependabot-auto-merge.yml`.
 - **Verification Before Submitting**: All changes must pass `nix fmt -- --fail-on-change` and evaluate for every affected
   host (see [`verify`](.agents/skills/verify/SKILL.md)).
-- **Conventional Commits**: Use conventional commit prefixes (`feat:`, `fix:`, `refactor:`, `docs:`, `build:`, `style:`),
-  optionally with a scope (e.g. `feat(hyprland):`).
-- **Evidence First**: Base all answers and actions on actual file contents and command output. Never speculate or assume.
-- **Non-Destructive**: Never perform irreversible actions without explicit user approval
-  (see [`irreversible`](.agents/skills/irreversible/SKILL.md)).
-- **Targeted Edits**: Make minimal, logical changes strictly necessary for the request. Do not modify unrelated files,
-  and do not modify or commit files the user placed for reference (e.g. untracked files in the repository root).
+- **Irreversible operations**: See [`irreversible`](.agents/skills/irreversible/SKILL.md) for what is never run by an
+  agent here (activation, garbage collection, Cachix pushes) and what needs confirmation.
 
 ______________________________________________________________________
 
 ## 3. Status Assessment Workflow
 
-When asked to check status, assess the situation, or understand workspace context:
+Follow the status assessment in the shared rules, with these repository specifics:
 
-1. **Local Git State**: Inspect working tree (`git status -s -b`) and recent commits (`git log -n 5 --oneline`).
-   Note how far the current branch is behind `origin/main` (merged Dependabot `flake.lock` updates land there).
-1. **GitHub PRs (always display)**: List **all** open PRs (`gh pr list`) and check the current branch's PR (`gh pr status`).
-   Never skip this step, even when the local state is clean.
-1. **GitHub Issues (always display)**: List **all** open issues (`gh issue list`). Never skip this step.
-1. **Environment Health**: `nix fmt -- --fail-on-change` and evaluation of each host (see [`verify`](.agents/skills/verify/SKILL.md)).
-1. **Synthesis**: Report a concise, structured status covering local state, remote GitHub state, and environment health.
-   The report **must** include the open PR and Issue lists (number, title, and state), or explicitly state that there are none.
+- **Local Git State**: Note how far the current branch is behind `origin/main` (merged Dependabot `flake.lock` updates
+  land there).
+- **Environment Health**: `nix fmt -- --fail-on-change` and evaluation of each host (see
+  [`verify`](.agents/skills/verify/SKILL.md)).
 
 ______________________________________________________________________
 
@@ -118,7 +102,7 @@ Detailed runbooks and procedural workflows are maintained as workspace skills un
 | Trigger / Context | Skill to Read | Purpose |
 | :--- | :--- | :--- |
 | Deep investigation, option schema lookup, complex code search | [`investigate`](.agents/skills/investigate/SKILL.md) | Non-destructive investigation guidelines |
-| Commit conventions & policies | [`git-commit`](.agents/skills/git-commit/SKILL.md) | Commit conventions and prohibition of unprompted commit/push proposals |
+| Commit conventions & policies | [`git-commit`](.agents/skills/git-commit/SKILL.md) | Commit scopes, examples and handling of stale branches |
 | Deleting files, overwriting, git push/reset, activating configs | [`irreversible`](.agents/skills/irreversible/SKILL.md) | Pre-checks and confirmation prompts |
 | Testing, verifying evaluation or generated files | [`verify`](.agents/skills/verify/SKILL.md) | Minimal, high-signal verification steps |
 | Bumping `flake.lock`, adding inputs, `stateVersion` | [`update-dependencies`](.agents/skills/update-dependencies/SKILL.md) | Procedures for Nix input updates |
