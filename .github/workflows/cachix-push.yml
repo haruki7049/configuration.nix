@@ -1,6 +1,7 @@
 name: "cachix-push"
 
 on:
+  pull_request:
   push:
     branches:
       - "main"
