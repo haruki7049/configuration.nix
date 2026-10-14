@@ -13,7 +13,9 @@ def push-or [ability_cachix_auth_token: bool, is_pull_request: bool] {
   if ($ability_cachix_auth_token and not $is_pull_request) {
     $in | cachix push haruki7049
   } else {
-    print "Skipping 'cachix push haruki7049'..."
+    # Drain the input so the producer (e.g. `nix build --print-out-paths`) does not hit a broken pipe
+    let paths = $in | collect | str trim
+    print $"Skipping 'cachix push haruki7049' for:\n($paths)"
   }
 }
 
