@@ -44,6 +44,7 @@ let
   ];
 
   media-and-games = [
+    pkgs.iina
     pkgs.audacity
     pkgs.spotify
     pkgs.prismlauncher
