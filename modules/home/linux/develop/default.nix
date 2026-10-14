@@ -64,7 +64,7 @@ let
     pkgs.audacity
     pkgs.spotify
     pkgs.obsidian
-    pkgs.zotero
+    # pkgs.zotero
     pkgs.vlc
     pkgs.prismlauncher
     pkgs.pwvucontrol
