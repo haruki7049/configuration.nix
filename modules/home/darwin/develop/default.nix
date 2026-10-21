@@ -39,7 +39,6 @@ let
 
   productivity = [
     pkgs.obsidian
-    pkgs.bitwarden-desktop
     pkgs.kitty
   ];
 
