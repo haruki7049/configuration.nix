@@ -53,6 +53,7 @@ in
 {
   imports = [
     flake.homeModules.claude-code
+    flake.homeModules.obsidian
     ./editor
     ./tools
     ./shell
