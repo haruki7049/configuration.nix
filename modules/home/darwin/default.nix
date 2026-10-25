@@ -34,7 +34,7 @@
       settings = {
         # User's settings
         user.name = "haruki7049";
-        user.email = "tontonkirikiri@gmail.com";
+        user.email = "haruki7049+git@mail.haruki7049.dev";
 
         # default branch on initializing is "main"
         init.defaultBranch = "main";
