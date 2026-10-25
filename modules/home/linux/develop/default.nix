@@ -73,10 +73,10 @@ let
     pkgs.sonata # MPD client
   ];
 
-  # bitwarden = [
-  #   pkgs.bitwarden-cli
-  #   pkgs.bitwarden-desktop
-  # ];
+  bitwarden = [
+    pkgs.bitwarden-cli
+    pkgs.bitwarden-desktop
+  ];
 in
 
 {
@@ -97,8 +97,7 @@ in
     };
   };
 
-  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps;
-
+  home.packages = cli-tools ++ browsers ++ sns ++ desktop-apps ++ bitwarden;
   home.pointerCursor = {
     enable = true;
     name = "Bibata-Modern-Classic";
