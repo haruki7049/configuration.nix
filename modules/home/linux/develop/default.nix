@@ -147,9 +147,10 @@ in
 
   # GTK theme
   gtk.enable = true;
-  gtk.theme.name = "Adwaita-dark";
+  gtk.colorScheme = "dark";
+  gtk.theme.name = "Adwaita";
   gtk.theme.package = pkgs.gnome-themes-extra;
-  gtk.iconTheme.name = "Adwaita-dark";
+  gtk.iconTheme.name = "Adwaita";
   gtk.iconTheme.package = pkgs.adwaita-icon-theme;
 
   # QT theme
