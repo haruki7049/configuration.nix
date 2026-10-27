@@ -54,6 +54,7 @@ in
   imports = [
     flake.homeModules.claude-code
     flake.homeModules.obsidian
+    flake.homeModules.himalaya
     ./editor
     ./tools
     ./shell
