@@ -9,6 +9,7 @@ let
   imports = [
     flake.homeModules.claude-code
     flake.homeModules.obsidian
+    flake.homeModules.himalaya
     ./browser
     ./editor
     ./mpd
