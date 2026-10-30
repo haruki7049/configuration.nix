@@ -7,7 +7,10 @@
     enable = true;
     defaultEditor = true;
     settings = {
+      # Theme name
       theme = "dracula_transparency";
+
+      # LSP
       editor.lsp = {
         enable = true;
         display-messages = true;
@@ -18,15 +21,19 @@
         goto-reference-include-declaration = true;
       };
 
+      # Cursor shape
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
       };
     };
+
+    # Themes
     themes.dracula_transparency = {
       inherits = "dracula";
       "ui.background" = { };
     };
+
     languages = {
       language = [
         {
