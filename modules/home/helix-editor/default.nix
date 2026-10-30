@@ -1,0 +1,115 @@
+{
+  ...
+}:
+
+{
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    settings = {
+      # Theme name
+      theme = "dracula_transparency";
+
+      # LSP
+      editor.lsp = {
+        enable = true;
+        display-messages = true;
+        auto-signature-help = true;
+        display-inlay-hints = true;
+        display-signature-help-docs = true;
+        snippets = true;
+        goto-reference-include-declaration = true;
+      };
+
+      # Cursor shape
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+      };
+    };
+
+    # Themes
+    themes.dracula_transparency = {
+      inherits = "dracula";
+      "ui.background" = { };
+    };
+
+    languages = {
+      language = [
+        {
+          name = "rust";
+          auto-format = true;
+        }
+        {
+          name = "zig";
+          auto-format = true;
+        }
+        {
+          name = "perl";
+          auto-format = true;
+        }
+        {
+          name = "nix";
+          auto-format = true;
+        }
+        {
+          name = "haskell";
+          auto-format = true;
+        }
+        {
+          name = "cabal";
+        }
+        {
+          name = "java";
+          auto-format = true;
+        }
+        {
+          name = "cpp";
+          auto-format = true;
+        }
+        {
+          name = "c";
+          auto-format = true;
+        }
+        {
+          name = "typescript";
+          auto-format = true;
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
+        }
+        {
+          name = "tsx";
+          auto-format = true;
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
+        }
+        {
+          name = "javascript";
+          auto-format = true;
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
+        }
+        {
+          name = "jsx";
+          auto-format = true;
+          language-servers = [
+            "deno-lsp"
+            "typescript-language-server"
+          ];
+        }
+      ];
+
+      language-server.deno-lsp = {
+        command = "deno";
+        args = [ "lsp" ];
+        config.deno.enable = true;
+      };
+    };
+  };
+}
