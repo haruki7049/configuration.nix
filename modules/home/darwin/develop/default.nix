@@ -55,7 +55,7 @@ in
     flake.homeModules.claude-code
     flake.homeModules.obsidian
     flake.homeModules.himalaya
-    ./editor
+    flake.homeModules.helix-editor
     ./tools
     ./shell
   ];
