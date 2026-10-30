@@ -10,8 +10,8 @@ let
     flake.homeModules.claude-code
     flake.homeModules.obsidian
     flake.homeModules.himalaya
+    flake.homeModules.helix-editor
     ./browser
-    ./editor
     ./mpd
     ./shell
     ./synthesizers

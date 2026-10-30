@@ -5,7 +5,6 @@
 {
   imports = [
     ./emacs
-    ./helix
     ./vscode
   ];
 }
