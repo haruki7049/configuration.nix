@@ -12,6 +12,7 @@ let
     flake.homeModules.himalaya
     flake.homeModules.helix-editor
     flake.homeModules.nyxt
+    flake.homeModules.firefox
     ./mpd
     ./shell
     ./synthesizers
