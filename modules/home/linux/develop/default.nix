@@ -15,7 +15,6 @@ let
     flake.homeModules.firefox
     ./mpd
     ./shell
-    ./synthesizers
     ./tools
     ./windowManager
     ./xdg
