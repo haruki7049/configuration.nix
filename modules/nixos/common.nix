@@ -146,6 +146,9 @@
     "/share/xdg-desktop-portal"
     "/share/applications"
   ];
+  environment.systemPackages = [
+    pkgs.alsa-utils # ALSA utilities
+  ];
 
   # Container runtime
   virtualisation.docker.enable = true;
