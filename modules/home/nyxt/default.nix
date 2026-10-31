@@ -1,4 +1,4 @@
-{ }:
+{ ... }:
 
 {
   programs.nyxt.enable = true;
