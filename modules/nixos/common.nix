@@ -148,6 +148,8 @@
   ];
   environment.systemPackages = [
     pkgs.alsa-utils # ALSA utilities
+    pkgs.pwvucontrol # Pipewire control panel via GUI
+    pkgs.pavucontrol # PulseAudio control panel via GUI
   ];
 
   # Container runtime
