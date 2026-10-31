@@ -1,5 +1,4 @@
 {
-  flake,
   lib,
   pkgs,
   ...
@@ -7,13 +6,6 @@
 
 let
   imports = [
-    flake.homeModules.claude-code
-    flake.homeModules.obsidian
-    flake.homeModules.himalaya
-    flake.homeModules.helix-editor
-    flake.homeModules.nyxt
-    flake.homeModules.firefox
-    flake.homeModules.fluidsynth
     ./mpd
     ./shell
     ./tools

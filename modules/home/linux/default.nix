@@ -1,7 +1,12 @@
-{ ... }:
+{
+  flake,
+  ...
+}:
 
 {
   imports = [
+    flake.homeModules.nyxt
+    flake.homeModules.fluidsynth
     ./develop
   ];
 
