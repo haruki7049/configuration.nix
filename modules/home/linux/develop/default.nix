@@ -13,9 +13,9 @@ let
     flake.homeModules.helix-editor
     flake.homeModules.nyxt
     flake.homeModules.firefox
+    flake.homeModules.fluidsynth
     ./mpd
     ./shell
-    ./synthesizers
     ./tools
     ./windowManager
     ./xdg
