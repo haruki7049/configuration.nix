@@ -43,7 +43,6 @@ let
     pkgs.file
     pkgs.cmus
     pkgs.cyanrip
-    pkgs.alsa-utils # ALSA
     pkgs.xdg-utils # xdg-open and etc
   ];
 
