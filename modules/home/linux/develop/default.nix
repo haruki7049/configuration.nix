@@ -49,7 +49,6 @@ let
   browsers = [
     pkgs.brave
     pkgs.google-chrome
-    pkgs.nyxt
     pkgs.microsoft-edge
     pkgs.vivaldi
   ];
