@@ -11,6 +11,7 @@ let
     flake.homeModules.obsidian
     flake.homeModules.himalaya
     flake.homeModules.helix-editor
+    flake.homeModules.nyxt
     ./browser
     ./mpd
     ./shell
@@ -49,7 +50,6 @@ let
   browsers = [
     pkgs.brave
     pkgs.google-chrome
-    pkgs.nyxt
     pkgs.microsoft-edge
     pkgs.vivaldi
   ];
