@@ -32,6 +32,5 @@
 
   environment.systemPackages = [
     pkgs.acpi # CLI Battery checker
-    pkgs.alsa-utils # ALSA
   ];
 }
