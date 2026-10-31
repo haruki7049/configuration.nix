@@ -68,8 +68,6 @@ let
     # pkgs.zotero
     pkgs.vlc
     pkgs.prismlauncher
-    pkgs.pwvucontrol
-    pkgs.pavucontrol
     pkgs.qjackctl
     pkgs.sonata # MPD client
   ];
