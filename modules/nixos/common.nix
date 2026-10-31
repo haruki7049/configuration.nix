@@ -156,5 +156,5 @@
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.11";
 }

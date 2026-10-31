@@ -1,5 +1,9 @@
 { flake, ... }:
 
 {
-  imports = [ flake.homeModules.root ];
+  imports = [
+    flake.homeModules.linux
+    flake.homeModules.root
+    flake.homeModules.common
+  ];
 }

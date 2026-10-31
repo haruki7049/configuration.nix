@@ -1,17 +1,20 @@
+{ lib, ... }:
+
 {
   home = {
     username = "root";
-    homeDirectory = "/root";
+    homeDirectory = lib.mkForce "/root";
   };
 
-  programs = {
-    home-manager.enable = true;
-    git.enable = true;
+  # Git
+  programs.git.settings = {
+    # default branch on initializing is "main"
+    init.defaultBranch = "main";
+
+    # I want to use pull with rebasing
+    pull.rebase = true;
+
+    # Some ghq settings
+    ghq.root = "~/program-dir";
   };
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "26.11";
 }

@@ -1,7 +1,11 @@
 { flake, ... }:
 
 {
-  imports = [ flake.homeModules.linux ];
+  imports = [
+    flake.homeModules.linux
+    flake.homeModules.haruki
+    flake.homeModules.common
+  ];
 
   # Hyprland monitors for this host
   wayland.windowManager.hyprland.settings.monitor = [
