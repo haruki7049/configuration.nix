@@ -36,6 +36,7 @@ let
     pkgs.cmus
     pkgs.cyanrip
     pkgs.xdg-utils # xdg-open and etc
+    pkgs.imv # Wayland Image Viewer via Command Line interface
   ];
 
   browsers = [
