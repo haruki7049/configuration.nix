@@ -7,6 +7,7 @@
   imports = [
     flake.homeModules.nyxt
     flake.homeModules.fluidsynth
+    flake.homeModules.ashell
     ./develop
   ];
 
