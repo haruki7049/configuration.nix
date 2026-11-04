@@ -16,7 +16,7 @@
     mime.enable = true;
     mimeApps =
       let
-        BROWSER_DESKTOP = "com.google.Chrome.desktop";
+        BROWSER_DESKTOP = "firefox.desktop";
       in
       {
         enable = true;
