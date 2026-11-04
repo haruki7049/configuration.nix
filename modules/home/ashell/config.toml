@@ -1,4 +1,7 @@
 [modules]
-center = ["WindowTitle"]
 left = ["Workspaces", "MediaPlayer"]
+center = ["WindowTitle"]
 right = ["Tray", ["Clock", "Privacy", "Settings"]]
+
+[tempo]
+clock_format = "%F / %T"
