@@ -29,6 +29,7 @@ in
     flake.homeModules.himalaya
     flake.homeModules.helix-editor
     flake.homeModules.emacs
+    flake.homeModules.vscode
     flake.homeModules.firefox
   ];
 
