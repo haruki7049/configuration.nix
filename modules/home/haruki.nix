@@ -30,6 +30,7 @@ in
     flake.homeModules.helix-editor
     flake.homeModules.emacs
     flake.homeModules.firefox
+    flake.homeModules.jujutsu
   ];
 
   home = {
