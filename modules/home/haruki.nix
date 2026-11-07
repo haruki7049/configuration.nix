@@ -24,6 +24,7 @@ in
 
 {
   imports = [
+    flake.homeModules.eza
     flake.homeModules.claude-code
     flake.homeModules.obsidian
     flake.homeModules.himalaya
