@@ -7,7 +7,7 @@
 
 let
   username = "haruki";
-  homeDirectory = mkHomeDirectory username;
+  homeDirectory = lib.mkForce (mkHomeDirectory username);
   mkHomeDirectory =
     usrName:
     if pkgs.stdenv.hostPlatform.isDarwin then
