@@ -4,7 +4,6 @@
 
 {
   imports = [
-    ./emacs
     ./vscode
   ];
 }
