@@ -22,7 +22,6 @@
 
     # SSH
     ssh.enable = true;
-    ssh.enableDefaultConfig = false;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
