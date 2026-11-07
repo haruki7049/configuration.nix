@@ -65,8 +65,8 @@ in
     };
 
     # SSH
+    ssh.enableDefaultConfig = false;
     ssh.settings = {
-      enableDefaultConfig = false;
       "*" = {
         IdentityFile = [ "~/.ssh/haruki7049" ];
       };
