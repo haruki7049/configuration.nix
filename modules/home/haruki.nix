@@ -43,7 +43,7 @@ in
     git.settings = {
       # User's settings
       user.name = "haruki7049";
-      user.email = "haruki7049+git@mail.haruki7049.dev";
+      user.email = "haruki7049@mail.haruki7049.dev";
 
       # default branch on initializing is "main"
       init.defaultBranch = "main";
