@@ -45,10 +45,6 @@ in
       user.name = "haruki7049";
       user.email = "haruki7049@mail.haruki7049.dev";
 
-      # default branch on initializing is "main"
-      init.defaultBranch = "main";
-
-      pull.rebase = true; # I want to use pull with rebasing
       commit.gpgsign = true; # Signing (GPG/SSH)
       user.signingKey = "~/.ssh/haruki7049"; # Signing key (This is a SSH key)
       gpg.format = "ssh"; # I use SSH key
@@ -61,9 +57,6 @@ in
       credential."https://gist.github.com" = {
         helper = "${pkgs.gh}/bin/gh auth git-credential";
       };
-
-      # Some ghq settings
-      ghq.root = "~/program-dir";
     };
 
     # SSH
