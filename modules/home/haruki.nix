@@ -29,6 +29,7 @@ in
     flake.homeModules.obsidian
     flake.homeModules.himalaya
     flake.homeModules.helix-editor
+    flake.homeModules.jujutsu
     flake.homeModules.emacs
     flake.homeModules.vscode
     flake.homeModules.firefox
@@ -64,6 +65,21 @@ in
 
       # Some ghq settings
       ghq.root = "~/program-dir";
+    };
+
+    # Jujutsu
+    jujutsu.settings = {
+      # User's settings
+      user.name = "haruki7049";
+      user.email = "haruki7049@mail.haruki7049.dev";
+
+      # Sign my own commits with the same SSH key as Git
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+        key = "~/.ssh/haruki7049";
+        backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
+      };
     };
 
     # SSH
