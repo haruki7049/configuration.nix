@@ -1,6 +1,10 @@
-{ ... }:
+{ flake, ... }:
 
 {
+  imports = [
+    flake.homeModules.git
+  ];
+
   # Shell integration settings
   home.shell = {
     enableBashIntegration = true;
@@ -15,10 +19,6 @@
 
     # man
     man.man-db.enable = true;
-
-    # Git
-    git.enable = true;
-    git.lfs.enable = true;
 
     # SSH
     ssh.enable = true;
