@@ -46,6 +46,18 @@
     };
   };
 
+  # WayVR: OpenXR / OpenVR desktop overlay
+  systemd.user.services.wayvr = {
+    description = "WayVR desktop overlay for OpenXR/OpenVR";
+    partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.wayvr}/bin/wayvr --replace";
+      Restart = "on-failure";
+    };
+  };
+
   services = {
     # VR from Meta Quest series
     wivrn = {
