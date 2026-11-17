@@ -46,6 +46,21 @@
     };
   };
 
+  # WayVR: OpenXR / OpenVR desktop overlay
+  systemd.user.services.wayvr = {
+    description = "WayVR desktop overlay for OpenXR/OpenVR";
+    partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    environment = {
+      PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = "1";
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.wayvr}/bin/wayvr --replace";
+      Restart = "on-failure";
+    };
+  };
+
   services = {
     # VR from Meta Quest series
     wivrn = {
@@ -54,6 +69,10 @@
       steam.importOXRRuntimes = true;
       steam.enable = true;
       autoStart = true;
+
+      monadoEnvironment = {
+        WMR_HANDTRACKING = "0";
+      };
     };
 
     # Ollama
