@@ -25,6 +25,9 @@
     amdgpu = {
       opencl.enable = true;
       initrd.enable = true;
+
+      # Enable amdgpu overdrive (sets ppfeaturemask)
+      overdrive.enable = true;
     };
 
     # AMD CPU
@@ -36,6 +39,9 @@
       enable32Bit = true;
     };
   };
+
+  # Avoid CPU-side frequency ramp delay
+  powerManagement.cpuFreqGovernor = "performance";
 
   programs = {
     # OBS studio
@@ -74,6 +80,9 @@
         WMR_HANDTRACKING = "0";
       };
     };
+
+    # GUI/daemon for power limit, clocks and fan curve
+    lact.enable = true;
 
     # Ollama
     ollama.enable = true;
