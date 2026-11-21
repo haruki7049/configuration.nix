@@ -55,9 +55,12 @@
   # WayVR: OpenXR / OpenVR desktop overlay
   systemd.user.services.wayvr = {
     description = "WayVR desktop overlay for OpenXR/OpenVR";
+
+    # I use wayvr sometimes but not always
+    # # after = [ "graphical-session.target" ];
+    # # wantedBy = [ "graphical-session.target" ];
+
     partOf = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
     environment = {
       PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = "1";
     };
