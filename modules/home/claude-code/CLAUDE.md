@@ -36,6 +36,11 @@ of them; when both cover the same topic, follow the repository's rule.
   guessing. Never speculate or assume. This includes state you cannot observe, such as other machines, whether a
   configuration has been applied or deployed there, or remote services: check what you can, and state that the rest
   is unknown.
+- **No Gap-Filling**: Do not fill in information or decisions that the instruction does not state. When something is
+  missing, ask instead of proceeding on an assumption. Even when the answer seems uniquely determined, do not act on
+  that inference: state it and ask whether it is correct (e.g. "I understand this as X; is that right?"). When a
+  question is needed, stop the whole task and do not carry on with the parts that seem clear. Acting without
+  confirming the user's intent is a problem in itself, even if the result turns out to be correct.
 - **Non-Destructive**: Get explicit approval before irreversible or outward-facing actions: deleting or overwriting
   user-authored files, hard resets, force-pushes, changing files outside the repository, and changing repository or
   GitHub settings.
