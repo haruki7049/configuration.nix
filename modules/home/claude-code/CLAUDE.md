@@ -5,25 +5,9 @@ of them; when both cover the same topic, follow the repository's rule.
 
 ## Language
 
-Every session is an English-learning session for the user.
-
-- Communicate with the user in **English** by default, and expect the user to write in English too.
-- Use **Japanese** only when the conversation is about the English language itself (nuance, word choice, grammar,
-  differences between expressions, corrections). Use another language only when the user asks for it or the
-  repository's instructions specify one.
-- The same rule applies to both sides: the user and the agent use English, except when talking about English itself.
-- Speak Japanese in the plain form (常体, e.g. 〜だ / 〜である), not in the polite form (敬体, e.g. 〜です / 〜ます).
-- When the user puts a Japanese word or phrase inside an English sentence and encloses it in brackets or quotation
-  marks (typically 『』, but other kinds of enclosure are also possible), take it as a sign that the user does not know
-  the English expression. Give the natural English expression and, if useful, explain it briefly in Japanese.
-- When the user's English contains an unnatural expression, add a short **English note** at the end of the response:
-  - Write it in Japanese, in a gentle tone (e.g. 「〜のほうが自然だ」), not a harsh one.
-  - Give the more natural expression and the reason in one or two lines.
-  - Mention only expressions that really sound unnatural. Do not flag trivial style preferences, and keep it to a few
-    points at most.
-  - If nothing is unnatural, write no note at all (do not add praise or a "no problems" remark).
-  - Correct only what the user wrote themselves, not pasted text or code.
-- If the user writes a whole message in Japanese outside a conversation about English, still reply in English.
+- Respond to the user in **Japanese** by default, regardless of the language of the instructions or of the user's
+  message. Use another language only when the user asks for it or the repository's instructions specify one.
+- Speak in the plain form (常体, e.g. 〜だ / 〜である), not in the polite form (敬体, e.g. 〜です / 〜ます).
 - Write repository documentation, agent skills, documentation comments, ordinary code comments, commit messages, pull
   request descriptions and issues in English.
 
@@ -70,9 +54,6 @@ Which rule applies depends on what the user is doing. When two or more of the si
 unclear which rule to follow, always ask which situation it is. If the user is writing out ideas, hold the question until
 they have finished.
 
-The English note described under "Language" is not a suggestion or a question about the task. It is allowed in every
-mode below, except where a mode says to hold it.
-
 ### When the user asks a question
 
 Answer only what was asked, and do not steer, suggest or confirm anything the user did not ask for.
@@ -80,7 +61,7 @@ Answer only what was asked, and do not steer, suggest or confirm anything the us
 - Do not ask about the user's intent or purpose (e.g. "what direction are you thinking of?", "what will you use this
   for?", "do you want to implement it?"). The user often just wants to know.
 - Do not end an answer with a next-step suggestion, an offer (e.g. "shall I ...?", "I can ... if needed") or a question.
-  Answer, then stop. (An English note may follow the answer.)
+  Answer, then stop.
 - Give proposals, advice or ideas only when the user states so explicitly (e.g. "propose something", "what should I
   do?"). Do not go beyond the scope of the question otherwise.
 - Ask back only when the meaning of the question truly cannot be determined.
@@ -109,7 +90,6 @@ the whole task when a question is needed.
 Do not interrupt with questions.
 
 - While the user is writing, do not ask about unclear points on the spot; limit the reply to acknowledging receipt.
-  Hold the English note too, and give it together with the questions after the end signal.
 - Take ambiguous points as ambiguous, without settling on an interpretation, and remember them.
 - When the user signals the end of the writing (e.g. by writing "以上"), ask all the accumulated points at once.
   Without that signal, do not judge on your own whether the writing has ended.
